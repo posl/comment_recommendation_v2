@@ -1,0 +1,7 @@
+*.env
+*.zip
+.DS_Store
+result/cyclomatic/each/*
+result/cognitive/each/*
+result/accuracy/each/*
+result/ALL/*
