@@ -1,4 +1,5 @@
 import os
+import shutil
 
 class TextToScript:
     def __init__ (self, base_path, language_l):
@@ -7,11 +8,13 @@ class TextToScript:
 
     def main(self):
         # Create output folder
-        self.create_output_dir(self.base_path, ['script', 'pre_gen'])
+        os.makedirs('{0}/script/pre_gen/'.format(self.base_path), exist_ok=True)
 
         for language in self.language_l:
             input_path = '{0}/data/{1}/'.format(self.base_path, language)
             output_path = '{0}/script/pre_gen/{1}/'.format(self.base_path, language)
+            if os.path.exists(output_path):
+                shutil.rmtree(output_path)
             os.makedirs(output_path, exist_ok=True)
             files_l = os.listdir(input_path)
             files_l = sorted(files_l)
@@ -21,8 +24,8 @@ class TextToScript:
                 self.create_script(input_path + file, output_path + file.replace('.txt', '.py'))
 
     def create_output_dir(self, base_path, dir_l):
-        for dir in dir_l:
-            path = '{0}/{1}'.format(base_path, dir)
+        for dir_name in dir_l:
+            path = '{0}/{1}'.format(base_path, dir_name)
             os.makedirs(path, exist_ok=True)
             base_path = path 
     
