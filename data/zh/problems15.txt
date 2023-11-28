@@ -1,0 +1,18 @@
+给定两个整数数组 inorder 和 postorder（其中 inorder 是二叉树的无序遍历，postorder 是二叉树的有序遍历），构造并返回二叉树。
+
+示例 1：
+输入： inorder = [9,3,15,20,7], postorder = [9,15,7,20,3].
+输出：[3,9,20,null,null,15,7]
+
+例 2：
+输入： inorder = [-1]，postorder = [-1]
+输出： [-1]
+
+限制条件
+1 <= inorder.length <= 3000
+postorder.length == inorder.length
+-3000 <= inorder[i], postorder[i] <= 3000
+inorder 和 postorder 由唯一值组成。
+postorder 中的每个值也出现在 inorder 中。
+inorder 保证是对树的无序遍历。
+保证 postorder 是对树的后序遍历。

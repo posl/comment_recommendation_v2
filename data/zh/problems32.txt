@@ -1,0 +1,20 @@
+如果给定的字符串词数组（不包含重复词）在给定的词列表中，返回所有连接词。
+串联词的定义是，一个字符串完全由给定数组中至少两个较短的词（不一定是不同的）组成。
+
+例 1：
+输入： words = ["cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat"]
+输出：["catsdogcats"、"dogcatsdog"、"ratcatdogcat"] 
+说明："catsdogcats "可以由 "cats"、"dog "和 "cats "连接而成
+"dogcatsdog "可以由 "dog"、"cats "和 "dog "连接；
+"ratcatdogcat" 可以由 "鼠"、"猫"、"狗 "和 "猫 "连接而成。
+
+例 2：
+输入： words = ["cat", "dog", "catdog"]
+输出： ["catdog"]
+
+限制条件： 1 <= words.length <= 10^4
+1 <= words.length <= 10^4
+1 <= words[i].length <= 30
+words[i] 仅包含小写英文字母。
+所有单词字符串都是唯一的。
+1 <= sum(words[i].length) <= 10^5

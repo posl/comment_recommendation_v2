@@ -7,8 +7,8 @@
 #Input: n = 8
 #Output: 3
 #Explanation: 8 -> 4 -> 2 -> 1
-#Example 2:
 #
+#Example 2:
 #Input: n = 7
 #Output: 4
 #Explanation: 7 -> 8 -> 4 -> 2 -> 1

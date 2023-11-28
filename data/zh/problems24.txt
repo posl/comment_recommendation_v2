@@ -1,0 +1,26 @@
+给定两个字符串 s 和 t，返回 s 的不同子序列中等于 t 的个数。
+测试用例的生成是为了让答案适合 32 位有符号整数。
+
+示例 1：
+输入：s = "rabbbit"，t = "rabbit"
+输出： 3
+说明：
+如下所示，有 3 种方法可以从 s 生成 "rabbit"。
+rabbbit
+rabbbit
+rabbbit
+
+例 2：
+输入： s = "babgbag", t = "bag"
+输出： 5
+说明：
+如下所示，有 5 种方法可以从 s 生成 "bag"。
+babgbag
+babgbag
+babgbag
+babgbag
+babgbag
+
+限制条件：
+1 <= s.length, t.length <= 1000
+s 和 t 由英文字母组成。

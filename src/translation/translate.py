@@ -1,9 +1,9 @@
 import requests
 import os
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv('../../.env')
 
-API_KEY = os.getenv('DEEPL_API_KEY')
+API_KEY = os.getenv('DeepL_API_KEY')
 
 class Translate:
     def __init__(self, base_path, language):
@@ -21,18 +21,18 @@ class Translate:
             files_l.remove('.DS_Store')
 
         for file in files_l:
+            print(file)
             self.translate(input_path + file, output_path + file)
 
     def translate(self, Input, Output):
         with open(Input, 'r') as f:
             self.source_file_l = f.read()
-        
-        url = 'https://api.deepl.com/v2/translate'
+        url = 'https://api-free.deepl.com/v2/translate'
         params = {
             'auth_key': API_KEY,
             'text': self.source_file_l,
             'source_lang': 'EN',
-            'target_lang': self.language 
+            'target_lang': self.language
         }
 
         request = requests.post(url, data=params)

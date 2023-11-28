@@ -1,0 +1,22 @@
+我们将字符串 base 定义为 "abcdefghijklmnopqrstuvwxyz "的无限包络字符串，因此 base 将如下所示：
+"...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd...."。
+给定字符串 s，返回 base 中存在的唯一非空子串的个数。
+
+例 1：
+输入：s = "a"
+输出： 1
+说明： 只有 s 的子串 "a "在基数中：只有 s 的子串 "a "在基数中。
+
+例 2：
+输入： s = "cac"
+输出： 2
+说明在基数中，s 有两个子串（"a"、"c"）。
+
+例 3：
+输入： s = "zab
+输出： 6
+说明：s 的基中有六个子串（"z"、"a"、"b"、"za"、"ab "和 "zab"）。
+
+限制条件
+1 <= s.length <= 10^5
+s 由小写英文字母组成。
