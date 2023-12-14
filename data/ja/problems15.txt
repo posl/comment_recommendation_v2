@@ -1,19 +1,19 @@
-2つの整数配列 inorder と postorder が与えられたとき、inorderは二分木探索の深さ優先探索の行きがけ順、postorderは同じ木の帰りがけ順である。
-この2つの入力から構築される二分木を出力せよ。
+2つの整数配列 inorder と postorder が与えられ、ここでinorderは二分木探索の行きがけ順の走査、postorderは同じ木の帰りがけ順の走査である。
+この二分木を構築し、出力せよ。
 
 例 1：
 入力： inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
 出力： [3,9,20,null,null,15,7]
 
-例2：
+例２：
 入力： inorder = [-1]、postorder = [-1]
 出力： [-1]
 
-制約
+制約：
 1 <= inorder.length <= 3000
 postorder.length == inorder.length
 -3000 <= inorder[i], postorder[i] <= 3000
 inorderとpostorderは一意な値で構成される。
 postorderの各値はinorderにも現れる。
-inorderは二分木探索の深さ優先の行きがけ順であることが保証される。
-postorderは二分木探索の深さ優先の帰りがけ順であることが保証される。
+inorderは木探索の行きがけ順の走査であることが保証される。
+postorderは木探索の帰りがけ順の走査であることが保証される。

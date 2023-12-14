@@ -5,16 +5,16 @@
 入力： s = "rabbbit", t = "rabbit"
 出力： 3
 説明：
-以下に示すように、sから "rabbit "を生成する方法は3通りある。
+以下に示すように、sから "rabbit"を生成する方法は3通りある。
 rabbbit
 rabbbit
 rabbbit
 
-例2：
+例 2：
 入力： s = "babgbag", t = "bag"
 出力： 5
 説明：
-以下に示すように、sから "bag "を生成する方法は5通りある。
+以下に示すように、sから "bag"を生成する方法は5通りある。
 babgbag
 babgbag
 babgbag
