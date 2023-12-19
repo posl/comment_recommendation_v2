@@ -1,0 +1,71 @@
+def countDigitOne(n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    ones = 0
+    m = 1
+    while m <= n:
+        a = n // m
+        b = n % m
+        ones += (a + 8) // 10 * m + (a % 10 == 1) * (b + 1)
+        m *= 10
+    return ones
+print(countDigitOne(13))
+print(countDigitOne(0))
+print(countDigitOne(1))
+print(countDigitOne(10))
+print(countDigitOne(11))
+print(countDigitOne(12))
+print(countDigitOne(14))
+print(countDigitOne(20))
+print(countDigitOne(21))
+print(countDigitOne(22))
+print(countDigitOne(23))
+print(countDigitOne(24))
+print(countDigitOne(25))
+print(countDigitOne(26))
+print(countDigitOne(27))
+print(countDigitOne(28))
+print(countDigitOne(29))
+print(countDigitOne(30))
+print(countDigitOne(31))
+print(countDigitOne(32))
+print(countDigitOne(33))
+print(countDigitOne(34))
+print(countDigitOne(35))
+print(countDigitOne(36))
+print(countDigitOne(37))
+print(countDigitOne(38))
+print(countDigitOne(39))
+print(countDigitOne(40))
+print(countDigitOne(41))
+print(countDigitOne(42))
+print(countDigitOne(43))
+print(countDigitOne(44))
+print(countDigitOne(45))
+print(countDigitOne(46))
+print(countDigitOne(47))
+print(countDigitOne(48))
+print(countDigitOne(49))
+print(countDigitOne(50))
+print(countDigitOne(51))
+print(countDigitOne(52))
+print(countDigitOne(53))
+print(countDigitOne(54))
+print(countDigitOne(55))
+print(countDigitOne(56))
+print(countDigitOne(57))
+print(countDigitOne(58))
+print(countDigitOne(59))
+print(countDigitOne(60))
+print(countDigitOne(61))
+print(countDigitOne(62))
+print(countDigitOne(63))
+print(countDigitOne(64))
+print(countDigitOne(65))
+print(countDigitOne(66))
+print(countDigitOne(67))
+print(countDigitOne(68))
+print(countDigitOne(69))
+print(countDigitOne(70

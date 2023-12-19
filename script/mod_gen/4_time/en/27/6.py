@@ -1,0 +1,68 @@
+def countDigitOne(n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    count = 0
+    i = 1
+    while i <= n:
+        divider = i * 10
+        count += (n // divider) * i + min(max(n % divider - i + 1, 0), i)
+        i *= 10
+    return count
+print(countDigitOne(13))
+print(countDigitOne(0))
+print(countDigitOne(1))
+print(countDigitOne(10))
+print(countDigitOne(11))
+print(countDigitOne(12))
+print(countDigitOne(20))
+print(countDigitOne(21))
+print(countDigitOne(22))
+print(countDigitOne(30))
+print(countDigitOne(31))
+print(countDigitOne(32))
+print(countDigitOne(100))
+print(countDigitOne(101))
+print(countDigitOne(102))
+print(countDigitOne(110))
+print(countDigitOne(111))
+print(countDigitOne(112))
+print(countDigitOne(120))
+print(countDigitOne(121))
+print(countDigitOne(122))
+print(countDigitOne(200))
+print(countDigitOne(201))
+print(countDigitOne(202))
+print(countDigitOne(210))
+print(countDigitOne(211))
+print(countDigitOne(212))
+print(countDigitOne(220))
+print(countDigitOne(221))
+print(countDigitOne(222))
+print(countDigitOne(1000))
+print(countDigitOne(1001))
+print(countDigitOne(1002))
+print(countDigitOne(1010))
+print(countDigitOne(1011))
+print(countDigitOne(1012))
+print(countDigitOne(1020))
+print(countDigitOne(1021))
+print(countDigitOne(1022))
+print(countDigitOne(1100))
+print(countDigitOne(1101))
+print(countDigitOne(1102))
+print(countDigitOne(1110))
+print(countDigitOne(1111))
+print(countDigitOne(1112))
+print(countDigitOne(1120))
+print(countDigitOne(1121))
+print(countDigitOne(1122))
+print(countDigitOne(1200))
+print(countDigitOne(1201))
+print(countDigitOne(1202))
+print(countDigitOne(1210))
+print(countDigitOne(1211))
+print(countDigitOne(1212))
+print(countDigitOne(1220))
+print(countDigitOne(

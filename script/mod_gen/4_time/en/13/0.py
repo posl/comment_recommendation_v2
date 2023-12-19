@@ -1,0 +1,83 @@
+def integerReplacement(n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    count = 0
+    while n > 1:
+        if n % 2 == 0:
+            n = n // 2
+        elif n == 3 or n % 4 == 1:
+            n -= 1
+        else:
+            n += 1
+        count += 1
+    return count
+print(integerReplacement(8))
+print(integerReplacement(7))
+print(integerReplacement(4))
+print(integerReplacement(3))
+print(integerReplacement(2))
+print(integerReplacement(1))
+print(integerReplacement(0))
+print(integerReplacement(-1))
+print(integerReplacement(-2))
+print(integerReplacement(-3))
+print(integerReplacement(-4))
+print(integerReplacement(-5))
+print(integerReplacement(-6))
+print(integerReplacement(-7))
+print(integerReplacement(-8))
+print(integerReplacement(-9))
+print(integerReplacement(-10))
+print(integerReplacement(-11))
+print(integerReplacement(-12))
+print(integerReplacement(-13))
+print(integerReplacement(-14))
+print(integerReplacement(-15))
+print(integerReplacement(-16))
+print(integerReplacement(-17))
+print(integerReplacement(-18))
+print(integerReplacement(-19))
+print(integerReplacement(-20))
+print(integerReplacement(-21))
+print(integerReplacement(-22))
+print(integerReplacement(-23))
+print(integerReplacement(-24))
+print(integerReplacement(-25))
+print(integerReplacement(-26))
+print(integerReplacement(-27))
+print(integerReplacement(-28))
+print(integerReplacement(-29))
+print(integerReplacement(-30))
+print(integerReplacement(-31))
+print(integerReplacement(-32))
+print(integerReplacement(-33))
+print(integerReplacement(-34))
+print(integerReplacement(-35))
+print(integerReplacement(-36))
+print(integerReplacement(-37))
+print(integerReplacement(-38))
+print(integerReplacement(-39))
+print(integerReplacement(-40))
+print(integerReplacement(-41))
+print(integerReplacement(-42))
+print(integerReplacement(-43))
+print(integerReplacement(-44))
+print(integerReplacement(-45))
+print(integerReplacement(-46))
+print(integerReplacement(-47))
+print(integerReplacement(-48))
+print(integerReplacement(-49))
+print(integerReplacement(-50))
+print(integerReplacement(-51))
+print(integerReplacement(-52))
+print(integerReplacement(-53))
+print(integerReplacement(-54))
+print(integerReplacement(-55))
+print(integerReplacement(-56))
+print(integerReplacement(-57))
+print(integerReplacement(-58))
+print(integerReplacement(-59))
+print(integerReplacement(-60))
+print(integerReplacement(-61))

@@ -22,9 +22,7 @@ class AddFunction:
                 if 'errors.txt' in problem_dir_l:
                     problem_dir_l.remove('errors.txt')
                 problem_dir_l = sorted(problem_dir_l)
-
-                for problem_dir in problem_dir_l:
-                    self.add_function(input_path, output_path, problem_dir)
+                self.add_function(input_path, output_path, problem_dir_l)
 
     def add_function(self, Input, Output, Problem_Dir):
         for each_dir in Problem_Dir:

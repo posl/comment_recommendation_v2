@@ -1,0 +1,21 @@
+def maxSumSubmatrix(matrix, k):
+    """
+    :type matrix: List[List[int]]
+    :type k: int
+    :rtype: int
+    """
+    m = len(matrix)
+    n = len(matrix[0])
+    max_sum = float('-inf')
+    for i in range(m):
+        sums = [0] * n
+        for j in range(i, m):
+            for col in range(n):
+                sums[col] += matrix[j][col]
+            max_sum = max(max_sum, maxSubArray(sums, k))
+            if max_sum == k:
+                return k
+    return max_sum
+
+if __name__ == '__main__':
+    maxSumSubmatrix()
