@@ -22,9 +22,9 @@ class SplitScript:
                 files_l = sorted(files_l)
                 for file in files_l:
                     num_dif = (file.split('problems')[1].split('.py')[0]).upper()
-                    self.split_script(input_path, output_path, file, num_dif)
+                    self.split_script(input_path, output_path, file, num_dif, 10)
 
-    def split_script(self, Input, Output, File, Num_Dif):
+    def split_script(self, Input, Output, File, Num_Dif, Num_Script):
         os.mkdir('{0}/{1}'.format(Output, Num_Dif))
         with open('{0}/{1}'.format(Input, File), 'r') as f:
             try:
@@ -42,6 +42,8 @@ class SplitScript:
                     with open('{0}/{1}/{2}.py'.format(Output, Num_Dif, str(index)), 'w') as f:
                         for line in each_script_l:
                             f.write(line)
+                    if index == Num_Script - 1:
+                        break
                 print(File)
             except:
                 index = 0

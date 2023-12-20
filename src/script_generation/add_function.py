@@ -37,10 +37,16 @@ class AddFunction:
                     try:
                         if source_file_l[0].split(' ')[0] == 'def':
                             function_name = source_file_l[0].split(' ')[1].split('(')[0]
+                            argument = source_file_l[0].split('(')[1].split(')')[0]
+                            each_argument_l = argument.replace(' ', '').split(',')
                             if (function_name in source_file_l[-1]) and not('return' in source_file_l[-1]) and not('append' in source_file_l[-1]): #and not('print' in script_l[-1])
                                 pass
                             else:
-                                source_file_l.append('\nif __name__ == \'__main__\':\n' + '    ' + function_name + '()')
+                                source_file_l.append('\nif __name__ == \'__main__\':\n')
+                                for each_argument in each_argument_l:
+                                    compliment = self.add_input(each_argument)
+                                    source_file_l.append('    {0} = {1}'.format(each_argument, compliment))
+                                source_file_l.append('    a = {0}({1})\n    print(a)'.format(function_name, argument))
                             
                         with open('{0}/{1}/{2}'.format(Output, each_dir, file), 'w') as f:
                             for line in source_file_l:
@@ -48,6 +54,23 @@ class AddFunction:
                     except:
                         pass
             print(each_dir)
+    
+    def add_input(self, Argument):
+        if (Argument == 'nums') or (Argument == 'primes') or (Argument == 'inorder') or (Argument == 'postorder') or (Argument == 'coins') or (Argument == 'prices') or (Argument == 'stones'):
+            return 'list(map(int, input().split()))\n'
+        elif (Argument == 'words'):
+            return 'input().split()\n'
+        elif (Argument == 'target') or (Argument == 'n') or (Argument == 's') or (Argument == 't') or (Argument == 'k') or (Argument == 'amount') or (Argument == 'n1') or (Argument == 'n2'):
+            return 'int(input())\n'
+        elif (Argument == 'numRows') or (Argument == 'rowIndex') or (Argument == 'maxChoosableInteger') or (Argument == 'desiredTotal') or (Argument == 'buckets') or (Argument == 'minutesToDie') or (Argument == 'minutesToTest'):
+            return 'int(input())\n'
+        elif (Argument == 's1') or (Argument == 's2'):
+            return 'input()\n'
+        #elif (Argument == 'intervals') or (Argument == 'envelopes'):
+        #elif (Argument == 'matrix):
+        else:
+            return '==========please modify============\n'
+        
 
 if __name__ == '__main__':
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
