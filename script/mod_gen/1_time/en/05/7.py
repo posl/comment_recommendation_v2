@@ -60,6 +60,6 @@ s41 = "zabcdefghijklmnopqrstuvwxyzabcdefghijklmno"
 s42 = "
 
 if __name__ == '__main__':
-    s = int(input())
+    s = input()
     a = findSubstringInWraproundString(s)
     print(a)
