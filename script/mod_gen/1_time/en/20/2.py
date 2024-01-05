@@ -20,4 +20,6 @@ print(maxProfit([2,1,2,0,1]))
 print("The values above should be 3, 0, 3, and 2.")
 
 if __name__ == '__main__':
-    maxProfit()
+    prices = list(map(int, input().split()))
+    a = maxProfit(prices)
+    print(a)

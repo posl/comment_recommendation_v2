@@ -1,0 +1,91 @@
+language,problem_number,suggestion,test_case,output,message
+en,05,0.py,01,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'ebsyvvcnur'
+"
+en,05,0.py,02,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'ijmvhzjrua'
+"
+en,05,0.py,03,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'pandulkaof'
+"
+en,05,0.py,04,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'hktkegdqho'
+"
+en,05,0.py,05,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'agktqycrxyn'
+"
+en,05,0.py,06,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'fuhmiscvox'
+"
+en,05,0.py,07,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'zseotwcnsh'
+"
+en,05,0.py,08,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'paxxsjbmjd'
+"
+en,05,0.py,09,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'xhaxmkssyq'
+"
+en,05,0.py,10,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'izwqnxpsyf'
+"
+en,05,0.py,11,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'sfdseainkh'
+"
+en,05,0.py,12,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'fxepojcjqz'
+"
+en,05,0.py,13,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'pzgalbvqrm'
+"
+en,05,0.py,14,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'tecvgkkgxo'
+"
+en,05,0.py,15,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'wtdsvjnsdl'
+"
+en,05,0.py,sample_01,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'a'
+"
+en,05,0.py,sample_02,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'cac'
+"
+en,05,0.py,sample_03,,"Traceback (most recent call last):
+  File ""/Users/keikoyanagi/Desktop/comment_recommendation_v2/script/mod_gen/1_time/en//05/0.py"", line 20, in <module>
+    s = int(input())
+ValueError: invalid literal for int() with base 10: 'zab'
+"

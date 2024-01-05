@@ -44,7 +44,7 @@ class AddFunction:
                             else:
                                 source_file_l.append('\nif __name__ == \'__main__\':\n')
                                 for each_argument in each_argument_l:
-                                    compliment = self.add_input(each_argument)
+                                    compliment = self.add_input(each_argument, each_dir)
                                     source_file_l.append('    {0} = {1}'.format(each_argument, compliment))
                                 source_file_l.append('    a = {0}({1})\n    print(a)'.format(function_name, argument))
                             
@@ -55,13 +55,16 @@ class AddFunction:
                         pass
             print(each_dir)
     
-    def add_input(self, Argument):
+    def add_input(self, Argument, Each_dir):
         if (Argument == 'nums') or (Argument == 'primes') or (Argument == 'inorder') or (Argument == 'postorder') or (Argument == 'coins') or (Argument == 'prices') or (Argument == 'stones'):
             return 'list(map(int, input().split()))\n'
         elif (Argument == 'words'):
             return 'input().split()\n'
         elif (Argument == 'target') or (Argument == 'n') or (Argument == 's') or (Argument == 't') or (Argument == 'k') or (Argument == 'amount') or (Argument == 'n1') or (Argument == 'n2'):
-            return 'int(input())\n'
+            if Each_dir == '05':
+                return 'input()\n'
+            else:
+                return 'int(input())\n'
         elif (Argument == 'numRows') or (Argument == 'rowIndex') or (Argument == 'maxChoosableInteger') or (Argument == 'desiredTotal') or (Argument == 'buckets') or (Argument == 'minutesToDie') or (Argument == 'minutesToTest'):
             return 'int(input())\n'
         elif (Argument == 's1') or (Argument == 's2'):

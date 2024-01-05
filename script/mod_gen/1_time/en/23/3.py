@@ -15,4 +15,8 @@ print(poorPigs(25, 15, 60))
 print("The values above should be 2, 2, and 2.")
 
 if __name__ == '__main__':
-    poorPigs()
+    buckets = int(input())
+    minutesToDie = int(input())
+    minutesToTest = int(input())
+    a = poorPigs(buckets, minutesToDie, minutesToTest)
+    print(a)

@@ -57,4 +57,6 @@ print(nthUglyNumber(45))
 print(nth
 
 if __name__ == '__main__':
-    nthUglyNumber()
+    n = int(input())
+    a = nthUglyNumber(n)
+    print(a)

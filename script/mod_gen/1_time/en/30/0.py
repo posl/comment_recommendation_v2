@@ -73,4 +73,6 @@ def canCross(stones):
         return True
 
 if __name__ == '__main__':
-    canCross()
+    stones = list(map(int, input().split()))
+    a = canCross(stones)
+    print(a)

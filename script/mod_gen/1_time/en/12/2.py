@@ -27,4 +27,6 @@ def largestDivisibleSubset(nums):
     return ans[::-1]
 
 if __name__ == '__main__':
-    largestDivisibleSubset()
+    nums = list(map(int, input().split()))
+    a = largestDivisibleSubset(nums)
+    print(a)

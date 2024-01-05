@@ -9,4 +9,6 @@ def countBits(n):
     return ans
 
 if __name__ == '__main__':
-    countBits()
+    n = int(input())
+    a = countBits(n)
+    print(a)

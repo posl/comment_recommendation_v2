@@ -20,4 +20,6 @@ def findAllConcatenatedWordsInADict(words):
     return [word for word in words if dfs(word, wordDict, memo)]
 
 if __name__ == '__main__':
-    findAllConcatenatedWordsInADict()
+    words = input().split()
+    a = findAllConcatenatedWordsInADict(words)
+    print(a)

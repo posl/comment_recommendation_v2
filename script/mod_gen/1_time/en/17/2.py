@@ -8,4 +8,7 @@ def coinChange(coins, amount):
     return dp[amount] if dp[amount] != float('inf') else -1
 
 if __name__ == '__main__':
-    coinChange()
+    coins = list(map(int, input().split()))
+    amount = int(input())
+    a = coinChange(coins, amount)
+    print(a)

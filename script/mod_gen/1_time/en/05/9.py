@@ -46,4 +46,6 @@ print(uniqueSubstringsInWraparoundString("zabacdefghijklmnopqrstuv"))
 print
 
 if __name__ == '__main__':
-    uniqueSubstringsInWraparoundString()
+    s = int(input())
+    a = uniqueSubstringsInWraparoundString(s)
+    print(a)

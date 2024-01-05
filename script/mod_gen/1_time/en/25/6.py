@@ -19,4 +19,6 @@ def maxCoins(nums):
     # dp[i][i+4] = max(dp[i][i+3] + dp[i+
 
 if __name__ == '__main__':
-    maxCoins()
+    nums = list(map(int, input().split()))
+    a = maxCoins(nums)
+    print(a)

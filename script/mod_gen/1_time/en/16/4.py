@@ -9,4 +9,7 @@ def combinationSum4(nums, target):
     return dp[target]
 
 if __name__ == '__main__':
-    combinationSum4()
+    nums = list(map(int, input().split()))
+    target = int(input())
+    a = combinationSum4(nums, target)
+    print(a)

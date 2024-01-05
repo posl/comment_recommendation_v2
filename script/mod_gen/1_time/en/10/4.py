@@ -14,4 +14,6 @@ def eraseOverlapIntervals(intervals):
     return count
 
 if __name__ == '__main__':
-    eraseOverlapIntervals()
+    intervals = ==========please modify============
+    a = eraseOverlapIntervals(intervals)
+    print(a)

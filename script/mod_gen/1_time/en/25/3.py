@@ -16,4 +16,6 @@ print(maxCoins([1, 5]))
 # 10
 
 if __name__ == '__main__':
-    maxCoins()
+    nums = list(map(int, input().split()))
+    a = maxCoins(nums)
+    print(a)

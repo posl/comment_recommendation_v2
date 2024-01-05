@@ -17,4 +17,6 @@ def integerBreak(n):
         return 3 * integerBreak(n - 3)
 
 if __name__ == '__main__':
-    integerBreak()
+    n = int(input())
+    a = integerBreak(n)
+    print(a)

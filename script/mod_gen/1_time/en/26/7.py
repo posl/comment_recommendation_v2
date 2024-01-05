@@ -16,4 +16,7 @@ result = splitArray(nums, k)
 print(result)
 
 if __name__ == '__main__':
-    splitArray()
+    nums = list(map(int, input().split()))
+    k = int(input())
+    a = splitArray(nums, k)
+    print(a)

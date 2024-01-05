@@ -15,4 +15,7 @@ def nthSuperUglyNumber(n, primes):
     return ugly[n-1]
 
 if __name__ == '__main__':
-    nthSuperUglyNumber()
+    n = int(input())
+    primes = list(map(int, input().split()))
+    a = nthSuperUglyNumber(n, primes)
+    print(a)

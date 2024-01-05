@@ -19,4 +19,7 @@ def maxSumSubmatrix(matrix, k):
     return ans
 
 if __name__ == '__main__':
-    maxSumSubmatrix()
+    matrix = ==========please modify============
+    k = int(input())
+    a = maxSumSubmatrix(matrix, k)
+    print(a)

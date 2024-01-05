@@ -23,4 +23,6 @@ def findAllConcatenatedWordsInADict(words):
     return concatenated_words
 
 if __name__ == '__main__':
-    findAllConcatenatedWordsInADict()
+    words = input().split()
+    a = findAllConcatenatedWordsInADict(words)
+    print(a)

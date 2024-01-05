@@ -15,4 +15,7 @@ def numDistinct(s: str, t: str) -> int:
     return dp[n][m]
 
 if __name__ == '__main__':
-    numDistinct()
+    s:str = ==========please modify============
+    t:str = ==========please modify============
+    a = numDistinct(s: str, t: str)
+    print(a)

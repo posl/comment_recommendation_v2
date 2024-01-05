@@ -20,4 +20,7 @@ def canIWin(maxChoosableInteger, desiredTotal):
     return canWin(maxChoosableInteger, desiredTotal, used)
 
 if __name__ == '__main__':
-    canIWin()
+    maxChoosableInteger = int(input())
+    desiredTotal = int(input())
+    a = canIWin(maxChoosableInteger, desiredTotal)
+    print(a)

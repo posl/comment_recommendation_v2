@@ -13,4 +13,6 @@ def findAllConcatenatedWords(words):
     return concatWords
 
 if __name__ == '__main__':
-    findAllConcatenatedWords()
+    words = input().split()
+    a = findAllConcatenatedWords(words)
+    print(a)

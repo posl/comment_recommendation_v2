@@ -50,4 +50,7 @@ print(canIWin(10,2))
 print
 
 if __name__ == '__main__':
-    canIWin()
+    maxChoosableInteger = int(input())
+    desiredTotal = int(input())
+    a = canIWin(maxChoosableInteger, desiredTotal)
+    print(a)

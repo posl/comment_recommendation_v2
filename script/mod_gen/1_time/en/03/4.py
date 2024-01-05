@@ -23,4 +23,6 @@ def getRow(rowIndex):
     # rowIndex = 14: [1, 14, 91, 364, 1001, 2002, 3003, 3432,
 
 if __name__ == '__main__':
-    getRow()
+    rowIndex = int(input())
+    a = getRow(rowIndex)
+    print(a)

@@ -8,4 +8,6 @@ def largestDivisibleSubset(nums):
     return max(dp, key=len)
 
 if __name__ == '__main__':
-    largestDivisibleSubset()
+    nums = list(map(int, input().split()))
+    a = largestDivisibleSubset(nums)
+    print(a)

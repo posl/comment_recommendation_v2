@@ -37,4 +37,6 @@ def countDigitOne(n):
         return 80000000 + countDigitOne(n % 10000000) + count
 
 if __name__ == '__main__':
-    countDigitOne()
+    n = int(input())
+    a = countDigitOne(n)
+    print(a)

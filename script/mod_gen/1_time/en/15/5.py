@@ -8,4 +8,7 @@ def buildTree(inorder, postorder):
     return root
 
 if __name__ == '__main__':
-    buildTree()
+    inorder = list(map(int, input().split()))
+    postorder = list(map(int, input().split()))
+    a = buildTree(inorder, postorder)
+    print(a)

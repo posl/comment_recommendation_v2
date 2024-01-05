@@ -17,4 +17,6 @@ def findSubstringInWraproundString(s):
     return sum(dp)
 
 if __name__ == '__main__':
-    findSubstringInWraproundString()
+    s = int(input())
+    a = findSubstringInWraproundString(s)
+    print(a)

@@ -19,4 +19,6 @@ def countNumbersWithUniqueDigits(n):
         return 2345851
 
 if __name__ == '__main__':
-    countNumbersWithUniqueDigits()
+    n = int(input())
+    a = countNumbersWithUniqueDigits(n)
+    print(a)

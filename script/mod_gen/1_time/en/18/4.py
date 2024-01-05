@@ -11,4 +11,6 @@ def countNumbersWithUniqueDigits(n):
     return res
 
 if __name__ == '__main__':
-    countNumbersWithUniqueDigits()
+    n = int(input())
+    a = countNumbersWithUniqueDigits(n)
+    print(a)

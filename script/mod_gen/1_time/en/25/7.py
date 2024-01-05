@@ -19,4 +19,6 @@ print(maxCoins([1,5,8,9,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,7,8,9,1,2,3,4,
 print("The values above should be 167, 10, 516, and 1750.")
 
 if __name__ == '__main__':
-    maxCoins()
+    nums = list(map(int, input().split()))
+    a = maxCoins(nums)
+    print(a)

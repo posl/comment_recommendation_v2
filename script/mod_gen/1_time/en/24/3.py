@@ -19,4 +19,7 @@ def numDistinct(s, t):
     return dp[m][n]
 
 if __name__ == '__main__':
-    numDistinct()
+    s = int(input())
+    t = int(input())
+    a = numDistinct(s, t)
+    print(a)

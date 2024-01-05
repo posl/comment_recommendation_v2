@@ -20,4 +20,7 @@ def nthSuperUglyNumber(n, primes):
     return ugly[-1]
 
 if __name__ == '__main__':
-    nthSuperUglyNumber()
+    n = int(input())
+    primes = list(map(int, input().split()))
+    a = nthSuperUglyNumber(n, primes)
+    print(a)

@@ -40,4 +40,9 @@ def getMaxRepetitions(s1, n1, s2, n2):
             if ch == s2[index
 
 if __name__ == '__main__':
-    getMaxRepetitions()
+    s1 = input()
+    n1 = int(input())
+    s2 = input()
+    n2 = int(input())
+    a = getMaxRepetitions(s1, n1, s2, n2)
+    print(a)

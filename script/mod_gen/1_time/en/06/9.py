@@ -31,4 +31,6 @@ def nthUglyNumber(n):
     return ugly[-1]
 
 if __name__ == '__main__':
-    nthUglyNumber()
+    n = int(input())
+    a = nthUglyNumber(n)
+    print(a)

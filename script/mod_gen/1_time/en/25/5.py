@@ -9,4 +9,6 @@ def solution(nums):
     return dp[0][n - 1]
 
 if __name__ == '__main__':
-    solution()
+    nums = list(map(int, input().split()))
+    a = solution(nums)
+    print(a)

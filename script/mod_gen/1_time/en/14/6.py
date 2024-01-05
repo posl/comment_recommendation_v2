@@ -9,4 +9,6 @@ def integerBreak(n):
     return product
 
 if __name__ == '__main__':
-    integerBreak()
+    n = int(input())
+    a = integerBreak(n)
+    print(a)

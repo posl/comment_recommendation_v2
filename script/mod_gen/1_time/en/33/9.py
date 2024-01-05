@@ -40,4 +40,6 @@ def numberOfArithmeticSlices(nums):
     # 1 <= nums[i] <= 16000
 
 if __name__ == '__main__':
-    numberOfArithmeticSlices()
+    nums = list(map(int, input().split()))
+    a = numberOfArithmeticSlices(nums)
+    print(a)

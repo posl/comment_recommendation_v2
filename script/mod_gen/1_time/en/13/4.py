@@ -9,4 +9,6 @@ def minOperations(n):
     return count
 
 if __name__ == '__main__':
-    minOperations()
+    n = int(input())
+    a = minOperations(n)
+    print(a)

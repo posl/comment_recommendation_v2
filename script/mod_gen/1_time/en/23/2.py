@@ -9,4 +9,8 @@ print(poorPigs(1, 1, 1))
 print("The values above should be 2, 2, 5, 1, and 0.")
 
 if __name__ == '__main__':
-    poorPigs()
+    buckets = int(input())
+    minutesToDie = int(input())
+    minutesToTest = int(input())
+    a = poorPigs(buckets, minutesToDie, minutesToTest)
+    print(a)

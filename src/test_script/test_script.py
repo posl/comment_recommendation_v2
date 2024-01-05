@@ -2,6 +2,7 @@ import subprocess
 import os
 import csv
 import shutil
+import re
 
 class TestScript:
     def __init__(self, Base_path, Times, Language):
@@ -11,7 +12,7 @@ class TestScript:
         self.base_script_path = '{0}/script/mod_gen/{1}/{2}/'.format(Base_path, Times, Language)
         self.all_result_path = '{0}/result/ALL/{1}/{2}/'.format(Base_path, Times, Language)
         self.accu_result_path = '{0}/result/accuracy/each/{1}/{2}/'.format(Base_path, Times, Language)
-
+    
     def main(self):
         self.delete_result(self.all_result_path)
         self.delete_result(self.accu_result_path)
@@ -22,6 +23,7 @@ class TestScript:
         for each_problem in problem_l:
             self.problem_number = each_problem
             suggestion_l = sorted(os.listdir('{0}/{1}'.format(self.base_script_path, each_problem)))
+            suggestion_l = [suggestion_l[0]]
             for each_suggestion in suggestion_l:
                 self.script_path = '{0}/{1}/{2}'.format(self.base_script_path, each_problem, each_suggestion)
                 self.suggestion = each_suggestion

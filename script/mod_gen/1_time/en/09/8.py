@@ -23,4 +23,6 @@ result = canPartition(nums)
 print(result)
 
 if __name__ == '__main__':
-    canPartition()
+    nums = list(map(int, input().split()))
+    a = canPartition(nums)
+    print(a)

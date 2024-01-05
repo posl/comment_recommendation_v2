@@ -23,4 +23,6 @@ def longestIncreasingPath(matrix):
     return res
 
 if __name__ == '__main__':
-    longestIncreasingPath()
+    matrix = ==========please modify============
+    a = longestIncreasingPath(matrix)
+    print(a)

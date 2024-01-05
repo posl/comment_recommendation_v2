@@ -28,4 +28,6 @@ def maxProfit(prices):
     #dp[19] = max(dp[
 
 if __name__ == '__main__':
-    maxProfit()
+    prices = list(map(int, input().split()))
+    a = maxProfit(prices)
+    print(a)

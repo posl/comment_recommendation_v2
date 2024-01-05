@@ -58,4 +58,6 @@ print(countNumbersWithUniqueDigits(47))
 print(countNumbers
 
 if __name__ == '__main__':
-    countNumbersWithUniqueDigits()
+    n = int(input())
+    a = countNumbersWithUniqueDigits(n)
+    print(a)

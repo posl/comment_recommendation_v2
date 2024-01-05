@@ -20,4 +20,6 @@ def generate(numRows):
     return triangle
 
 if __name__ == '__main__':
-    generate()
+    numRows = int(input())
+    a = generate(numRows)
+    print(a)

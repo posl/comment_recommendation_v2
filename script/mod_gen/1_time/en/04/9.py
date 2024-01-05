@@ -66,4 +66,6 @@ def countBits(n):
     # 60 111
 
 if __name__ == '__main__':
-    countBits()
+    n = int(input())
+    a = countBits(n)
+    print(a)

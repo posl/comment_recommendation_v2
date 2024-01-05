@@ -80,4 +80,6 @@ def integerBreak(n):
     if n ==
 
 if __name__ == '__main__':
-    integerBreak()
+    n = int(input())
+    a = integerBreak(n)
+    print(a)

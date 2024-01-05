@@ -16,4 +16,7 @@ print(numDistinct("babgbag", "bag"))
 print("The values above should be 3, 5, and 5.")
 
 if __name__ == '__main__':
-    numDistinct()
+    s:str = ==========please modify============
+    t:str = ==========please modify============
+    a = numDistinct(s: str, t: str)
+    print(a)

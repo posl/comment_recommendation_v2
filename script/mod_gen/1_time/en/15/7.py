@@ -8,4 +8,8 @@ def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
     return root
 
 if __name__ == '__main__':
-    buildTree()
+    self = ==========please modify============
+    inorder:List[int] = ==========please modify============
+    postorder:List[int] = ==========please modify============
+    a = buildTree(self, inorder: List[int], postorder: List[int])
+    print(a)

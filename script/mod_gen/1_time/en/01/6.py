@@ -6,4 +6,7 @@ def twoSum(nums, target):
                     return [i,j]
 
 if __name__ == '__main__':
-    twoSum()
+    nums = list(map(int, input().split()))
+    target = int(input())
+    a = twoSum(nums, target)
+    print(a)

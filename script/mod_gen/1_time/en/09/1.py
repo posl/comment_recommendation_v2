@@ -18,4 +18,6 @@ def canPartition(nums):
         return False
 
 if __name__ == '__main__':
-    canPartition()
+    nums = list(map(int, input().split()))
+    a = canPartition(nums)
+    print(a)

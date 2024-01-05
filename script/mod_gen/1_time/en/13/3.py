@@ -9,4 +9,6 @@ def numSteps(n):
     return count
 
 if __name__ == '__main__':
-    numSteps()
+    n = int(input())
+    a = numSteps(n)
+    print(a)

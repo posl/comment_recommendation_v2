@@ -27,9 +27,19 @@ class MakeDir:
                     f = open('{0}/test_case/{1}/in/sample_{2}.txt'.format(self.base_path, each_dir_path, number), 'w')
                     f = open('{0}/test_case/{1}/out/sample_{2}.txt'.format(self.base_path, each_dir_path, number), 'w')
         return
+    
+    def create_testcase_txt(self):
+        if self.pre_flag == True:
+            target_dir = sorted(os.listdir('{0}/test_case/'.format(self.base_path)))
+            for each_dir_path in target_dir:
+                for number in range(1, 16):
+                    f = open('{0}/test_case/{1}/in/{2}.txt'.format(self.base_path, each_dir_path, str(number).zfill(2)), 'w')
+                    f = open('{0}/test_case/{1}/out/{2}.txt'.format(self.base_path, each_dir_path, str(number).zfill(2)), 'w')
+        return
 
 if __name__ == '__main__':
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     md = MakeDir(base_path, True)
-    md.test_case_dir()
-    md.create_sample_txt()
+    #md.test_case_dir()
+    #md.create_sample_txt()
+    md.create_testcase_txt()

@@ -21,4 +21,6 @@ result = longestIncreasingPath(matrix)
 print(result)
 
 if __name__ == '__main__':
-    longestIncreasingPath()
+    matrix = ==========please modify============
+    a = longestIncreasingPath(matrix)
+    print(a)

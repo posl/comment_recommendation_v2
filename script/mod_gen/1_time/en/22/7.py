@@ -17,4 +17,6 @@ def maxEnvelopes(envelopes):
     return len(dp)
 
 if __name__ == '__main__':
-    maxEnvelopes()
+    envelopes = ==========please modify============
+    a = maxEnvelopes(envelopes)
+    print(a)

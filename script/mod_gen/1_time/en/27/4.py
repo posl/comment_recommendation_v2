@@ -11,4 +11,6 @@ def countDigitOne(n):
     return count
 
 if __name__ == '__main__':
-    countDigitOne()
+    n = int(input())
+    a = countDigitOne(n)
+    print(a)

@@ -35,4 +35,7 @@ def numDistinct(s, t):
     return dp[-1]
 
 if __name__ == '__main__':
-    numDistinct()
+    s = int(input())
+    t = int(input())
+    a = numDistinct(s, t)
+    print(a)

@@ -17,4 +17,6 @@ print(nthUglyNumber(11))
 print("The values above should be 12, 1, and 15.")
 
 if __name__ == '__main__':
-    nthUglyNumber()
+    n = int(input())
+    a = nthUglyNumber(n)
+    print(a)

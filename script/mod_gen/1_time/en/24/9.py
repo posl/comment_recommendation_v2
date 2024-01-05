@@ -33,4 +33,7 @@ print(numDistinct("babgbag", "bag"))
 print(num
 
 if __name__ == '__main__':
-    numDistinct()
+    s = int(input())
+    t = int(input())
+    a = numDistinct(s, t)
+    print(a)

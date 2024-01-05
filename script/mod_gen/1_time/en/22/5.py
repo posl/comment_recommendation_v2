@@ -16,4 +16,6 @@ print(maxEnvelopes([[46,89],[50,53],[52,68],[72,45],[77,81]]))
 print("The values above should be 3, 1, 5, and 3.")
 
 if __name__ == '__main__':
-    maxEnvelopes()
+    envelopes = ==========please modify============
+    a = maxEnvelopes(envelopes)
+    print(a)

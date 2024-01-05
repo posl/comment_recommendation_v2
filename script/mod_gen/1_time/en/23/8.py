@@ -65,4 +65,8 @@ def poorPigs(buckets, minutesToDie, minutesToTest):
         elif minutes
 
 if __name__ == '__main__':
-    poorPigs()
+    buckets = int(input())
+    minutesToDie = int(input())
+    minutesToTest = int(input())
+    a = poorPigs(buckets, minutesToDie, minutesToTest)
+    print(a)

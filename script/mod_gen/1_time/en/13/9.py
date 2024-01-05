@@ -17,4 +17,6 @@ def integerReplacement(n):
         return 1 + min(integerReplacement(n + 1), integerReplacement(n - 1))
 
 if __name__ == '__main__':
-    integerReplacement()
+    n = int(input())
+    a = integerReplacement(n)
+    print(a)

@@ -15,4 +15,6 @@ def countDigitOne(n):
     # 6. 1s in the hundred thousands digit: 100000, 100001, 100002, ... 199999, 1100000, 1100001, 1100002, ... 1199999, 2100000, 2100001, ... 2199999, 3100000, 3100001,
 
 if __name__ == '__main__':
-    countDigitOne()
+    n = int(input())
+    a = countDigitOne(n)
+    print(a)

@@ -11,4 +11,7 @@ def rotate(nums, k):
     return nums
 
 if __name__ == '__main__':
-    rotate()
+    nums = list(map(int, input().split()))
+    k = int(input())
+    a = rotate(nums, k)
+    print(a)

@@ -18,4 +18,6 @@ def longestIncreasingPath(matrix):
     return max_len
 
 if __name__ == '__main__':
-    longestIncreasingPath()
+    matrix = ==========please modify============
+    a = longestIncreasingPath(matrix)
+    print(a)

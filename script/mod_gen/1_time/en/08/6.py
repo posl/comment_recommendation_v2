@@ -9,4 +9,6 @@ def maxRotateFunction(nums):
     return maxSum
 
 if __name__ == '__main__':
-    maxRotateFunction()
+    nums = list(map(int, input().split()))
+    a = maxRotateFunction(nums)
+    print(a)

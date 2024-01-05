@@ -7,4 +7,6 @@ def lengthOfLIS(nums):
     return max(dp)
 
 if __name__ == '__main__':
-    lengthOfLIS()
+    nums = list(map(int, input().split()))
+    a = lengthOfLIS(nums)
+    print(a)

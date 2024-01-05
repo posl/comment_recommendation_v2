@@ -8,4 +8,8 @@ def combinationSum4(self, nums: List[int], target: int) -> int:
     return dp[target]
 
 if __name__ == '__main__':
-    combinationSum4()
+    self = ==========please modify============
+    nums:List[int] = ==========please modify============
+    target:int = ==========please modify============
+    a = combinationSum4(self, nums: List[int], target: int)
+    print(a)

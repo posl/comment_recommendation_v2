@@ -13,4 +13,6 @@ def generate(numRows):
     return pascal
 
 if __name__ == '__main__':
-    generate()
+    numRows = int(input())
+    a = generate(numRows)
+    print(a)

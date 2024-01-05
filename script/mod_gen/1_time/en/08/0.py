@@ -18,4 +18,6 @@ print(maxRotateFunction([-100,100]))
 print("The values above should be 26, 0, 330, 0, and 0.")
 
 if __name__ == '__main__':
-    maxRotateFunction()
+    nums = list(map(int, input().split()))
+    a = maxRotateFunction(nums)
+    print(a)

@@ -45,4 +45,6 @@ print(countBits(10000000000000000000000000000000))
 print(count
 
 if __name__ == '__main__':
-    countBits()
+    n = int(input())
+    a = countBits(n)
+    print(a)

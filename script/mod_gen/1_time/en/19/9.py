@@ -11,4 +11,7 @@ def canIWin(maxChoosableInteger, desiredTotal):
     return canIWinHelper(list(range(1, maxChoosableInteger + 1)), desiredTotal, {})
 
 if __name__ == '__main__':
-    canIWin()
+    maxChoosableInteger = int(input())
+    desiredTotal = int(input())
+    a = canIWin(maxChoosableInteger, desiredTotal)
+    print(a)

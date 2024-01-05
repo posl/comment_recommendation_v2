@@ -24,4 +24,6 @@ print("The arrays above should be [\"catsdogcats\",\"dogcatsdog\",\"ratcatdogcat
     and [\"catdog\"].")
 
 if __name__ == '__main__':
-    findAllConcatenatedWordsInADict()
+    words = input().split()
+    a = findAllConcatenatedWordsInADict(words)
+    print(a)

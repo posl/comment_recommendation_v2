@@ -16,4 +16,6 @@ def canPartition(nums):
     return dp[target]
 
 if __name__ == '__main__':
-    canPartition()
+    nums = list(map(int, input().split()))
+    a = canPartition(nums)
+    print(a)

@@ -37,4 +37,6 @@ def numberOfArithmeticSlices(nums):
     #                 dp[i][j]
 
 if __name__ == '__main__':
-    numberOfArithmeticSlices()
+    nums = list(map(int, input().split()))
+    a = numberOfArithmeticSlices(nums)
+    print(a)

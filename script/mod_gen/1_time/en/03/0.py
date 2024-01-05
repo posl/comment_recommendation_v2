@@ -15,4 +15,6 @@ def getRow(rowIndex):
     return []
 
 if __name__ == '__main__':
-    getRow()
+    rowIndex = int(input())
+    a = getRow(rowIndex)
+    print(a)

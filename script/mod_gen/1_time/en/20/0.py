@@ -13,4 +13,6 @@ def maxProfit(prices):
     return dp[n-1][0]
 
 if __name__ == '__main__':
-    maxProfit()
+    prices = list(map(int, input().split()))
+    a = maxProfit(prices)
+    print(a)
