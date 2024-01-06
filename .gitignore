@@ -5,5 +5,5 @@ result/cyclomatic/each/*
 result/cognitive/each/*
 result/accuracy/each/*
 result/ALL/*
-test_case/*
+#test_case/*
 script/split_gen/*

@@ -11,6 +11,7 @@ def eraseOverlapIntervals(intervals):
     return count
 
 if __name__ == '__main__':
-    intervals = ==========please modify============
+    intervals = list(map(int, input().split()))
+    intervals = [intervals[i:i+2] for i in range(0, len(intervals), 2)]
     a = eraseOverlapIntervals(intervals)
     print(a)

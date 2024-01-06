@@ -19,13 +19,16 @@ class PreTestScript:
         if '.DS_Store' in problem_l:
             problem_l.remove('.DS_Store')
         problem_l.sort()
-        problem_l = [problem_l[4]]
+        target = ['09']
+        problem_l = target
         for each_problem in problem_l:
             self.problem_number = each_problem
             suggestion_l = sorted(os.listdir('{0}/{1}'.format(self.base_script_path, each_problem)))
             if os.path.exists(self.pre_result_path + '/' + self.problem_number):
                 shutil.rmtree(self.pre_result_path + '/' + self.problem_number)
             os.makedirs('{0}/{1}'.format(self.pre_result_path, self.problem_number), exist_ok=True)
+            #suggestion_l = [suggestion_l[2]]
+            suggestion_l = [suggestion_l[0], suggestion_l[2]]
             for each_suggestion in suggestion_l:
                 self.script_path = '{0}/{1}/{2}'.format(self.base_script_path, each_problem, each_suggestion)
                 self.suggestion = each_suggestion
