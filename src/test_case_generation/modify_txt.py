@@ -6,7 +6,7 @@ class ModifyTxt:
         self.base_path = '{0}/test_case'.format(Base_path)
 
     def main(self):
-        problem_l = ['10']
+        problem_l = ['11']
         for each_problem in problem_l:
             self.modify_txt(each_problem)
             print(each_problem)

@@ -19,7 +19,7 @@ class PreTestScript:
         if '.DS_Store' in problem_l:
             problem_l.remove('.DS_Store')
         problem_l.sort()
-        target = ['10']
+        target = ['11']
         problem_l = target
         for each_problem in problem_l:
             self.problem_number = each_problem
@@ -28,7 +28,7 @@ class PreTestScript:
                 shutil.rmtree(self.pre_result_path + '/' + self.problem_number)
             os.makedirs('{0}/{1}'.format(self.pre_result_path, self.problem_number), exist_ok=True)
             #suggestion_l = [suggestion_l[2]]
-            suggestion_l = [suggestion_l[0], suggestion_l[1]]
+            suggestion_l = [suggestion_l[1], suggestion_l[2]]
             for each_suggestion in suggestion_l:
                 self.script_path = '{0}/{1}/{2}'.format(self.base_script_path, each_problem, each_suggestion)
                 self.suggestion = each_suggestion
@@ -39,7 +39,8 @@ class PreTestScript:
                 all_test_result_l = self.pre_pyexe()
                 self.write_pre_result(all_test_result_l)
                 #break
-            break
+            #break
+            self.make_output(each_problem, suggestion_l[0])
     
     def pre_pyexe(self):
         all_test_result = []
@@ -81,6 +82,14 @@ class PreTestScript:
             for each_test_result in all_test_result_l:
                 writer.writerow(each_test_result)
         return
+    
+    def make_output(self, Problem, Suggestion):
+        with open('{0}/{1}/{2}.csv'.format(self.pre_result_path, Problem, Suggestion.split('.')[0]), 'r') as f:
+            reader = csv.reader(f)
+            content = [row for row in reader]
+        for index in range(1, 16):
+            with open('{0}/test_case/{1}/out/{2}.txt'.format(self.base_path, Problem, str(index).zfill(2)), 'w') as f:
+                f.write(content[index][4])
     
 if __name__ == '__main__':
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
