@@ -60,7 +60,7 @@ class AddFunction:
             return 'list(map(int, input().split()))\n'
         elif (Argument == 'words'):
             return 'input().split()\n'
-        elif (Argument == 'target') or (Argument == 'n') or (Argument == 's') or (Argument == 't') or (Argument == 'k') or (Argument == 'amount') or (Argument == 'n1') or (Argument == 'n2'):
+        elif (Argument == 'num') or (Argument == 'target') or (Argument == 'n') or (Argument == 's') or (Argument == 't') or (Argument == 'k') or (Argument == 'amount') or (Argument == 'n1') or (Argument == 'n2'):
             if Each_dir == '05':
                 return 'input()\n'
             else:

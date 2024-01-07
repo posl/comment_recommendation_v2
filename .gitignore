@@ -7,3 +7,4 @@ result/accuracy/each/*
 result/ALL/*
 #test_case/*
 script/split_gen/*
+leetcode_solution/*

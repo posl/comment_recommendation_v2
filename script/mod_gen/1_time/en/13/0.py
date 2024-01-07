@@ -13,6 +13,6 @@ def numberOfSteps(num):
     return steps
 
 if __name__ == '__main__':
-    num = ==========please modify============
+    num = int(input())
     a = numberOfSteps(num)
     print(a)

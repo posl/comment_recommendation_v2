@@ -5,8 +5,7 @@ class ModifyTxt:
     def __init__(self, Base_path):
         self.base_path = '{0}/test_case'.format(Base_path)
 
-    def main(self):
-        problem_l = ['11']
+    def main(self, problem_l):
         for each_problem in problem_l:
             self.modify_txt(each_problem)
             print(each_problem)
@@ -29,4 +28,5 @@ class ModifyTxt:
 
 if __name__ == '__main__':
     Base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))).replace('\\', '/')
-    ModifyTxt(Base_path).main()
+    problem_l = ['11']
+    ModifyTxt(Base_path).main(problem_l)
