@@ -16,6 +16,7 @@ def longestIncreasingPath(matrix):
     return max([max(i) for i in dp])
 
 if __name__ == '__main__':
-    matrix = ==========please modify============
+    N, M = map(int, input().split())
+    matrix = [list(map(int, input().split())) for _ in range(N)]
     a = longestIncreasingPath(matrix)
     print(a)
