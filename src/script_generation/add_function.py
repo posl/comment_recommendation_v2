@@ -43,6 +43,9 @@ class AddFunction:
                                 pass
                             else:
                                 source_file_l.append('\nif __name__ == \'__main__\':\n')
+                                # for matrix
+                                if each_dir == '28':
+                                    source_file_l.append('    N, M = map(int, input().split())\n')
                                 for each_argument in each_argument_l:
                                     compliment = self.add_input(each_argument, each_dir)
                                     source_file_l.append('    {0} = {1}'.format(each_argument, compliment))
@@ -71,10 +74,12 @@ class AddFunction:
             return 'input()\n'
         #elif (Argument == 'intervals') or (Argument == 'envelopes'):
         #elif (Argument == 'matrix):
-        elif Each_dir == '10':
+        elif Each_dir == '10': # Argument == 'intervals'
             return 'list(map(int, input().split()))\n    intervals = [intervals[i:i+2] for i in range(0, len(intervals), 2)]\n'
-        elif Each_dir == '22':
+        elif Each_dir == '22': # Argument == 'envelopes'
             return 'list(map(int, input().split()))\n    envelopes = [envelopes[i:i+2] for i in range(0, len(envelopes), 2)]\n'
+        elif Each_dir == '28': # Argumtnt == 'matrix'
+            return '[list(map(int, input().split())) for _ in range(N)]\n'
         else:
             return '==========please modify============\n'
         
