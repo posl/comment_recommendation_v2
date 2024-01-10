@@ -1,0 +1,2 @@
+characterset
+chat
