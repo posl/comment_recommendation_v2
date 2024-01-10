@@ -73,6 +73,8 @@ class AddFunction:
         #elif (Argument == 'matrix):
         elif Each_dir == '10':
             return 'list(map(int, input().split()))\n    intervals = [intervals[i:i+2] for i in range(0, len(intervals), 2)]\n'
+        elif Each_dir == '22':
+            return 'list(map(int, input().split()))\n    envelopes = [envelopes[i:i+2] for i in range(0, len(envelopes), 2)]\n'
         else:
             return '==========please modify============\n'
         

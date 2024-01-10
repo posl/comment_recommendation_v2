@@ -13,6 +13,7 @@ def maxEnvelopes(envelopes):
     return max(dp)
 
 if __name__ == '__main__':
-    envelopes = ==========please modify============
+    envelopes = list(map(int, input().split()))
+    envelopes = [envelopes[i:i+2] for i in range(0, len(envelopes), 2)]
     a = maxEnvelopes(envelopes)
     print(a)
