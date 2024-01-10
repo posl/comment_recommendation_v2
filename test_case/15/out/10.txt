@@ -1,0 +1,1 @@
+[1, 5, 7, 10, None, None, 50, None, None, 40]

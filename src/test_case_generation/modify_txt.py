@@ -22,7 +22,9 @@ class ModifyTxt:
     def rewrite_txt(self, Path, Index):
         with open('{0}/{1}'.format(Path, Index), 'r') as f:
             data = f.read()
+            data = re.sub('\\n(.*)[:=] |], (\w+) = ', '\\n', data)
             data = re.sub('`|\[|\]|,', '', data)
+            #data = re.sub('\\n ', '\\n',data)
         with open('{0}/{1}'.format(Path, Index), 'w') as f:
             f.write(data)
 
