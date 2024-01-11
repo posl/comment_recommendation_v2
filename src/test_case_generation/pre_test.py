@@ -93,7 +93,14 @@ class PreTestScript:
             content = [row for row in reader]
         for index in range(1, 16):
             with open('{0}/test_case/{1}/out/{2}.txt'.format(self.base_path, Problem, str(index).zfill(2)), 'w') as f:
-                f.write(content[index][4])
+                if Problem != '32':
+                    f.write(content[index][4])
+                else:
+                    answer = content[index][4]
+                    answer = re.sub('\[|\]|,', '', answer)
+                    answer = answer.split()
+                    answer = str(answer)
+                    f.write(answer)
     
 if __name__ == '__main__':
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

@@ -1,0 +1,1 @@
+['blackboard', 'whiteboard', 'boardblack', 'boardwhite']
