@@ -45,33 +45,33 @@ class TextToScript:
             source_file_l.append('\nclass Solution:\n')
 
         if Problem == '01':
-            source_file_l.append('    def twoSum(self, nums: list[int], target: int) -> list[int]:\n')
+            source_file_l.append('    def twoSum(self, nums: list[int], target: int) -> list[int]:')
         elif Problem == '02':
-            source_file_l.append('    def generate(self, numRows: int) -> list[list[int]]:\n')
+            source_file_l.append('    def generate(self, numRows: int) -> list[list[int]]:')
         elif Problem == '03':    
-            source_file_l.append('    def getRow(self, rowIndex: int) -> list[int]:\n')
+            source_file_l.append('    def getRow(self, rowIndex: int) -> list[int]:')
         elif Problem == '04':
-            source_file_l.append('    def countBits(self, n: int) -> list[int]:\n')
+            source_file_l.append('    def countBits(self, n: int) -> list[int]:')
         elif Problem == '05':
-            source_file_l.append('    def findSubstringInWraproundString(self, s: str) -> int:\n')
+            source_file_l.append('    def findSubstringInWraproundString(self, s: str) -> int:')
         elif Problem == '06':
-            source_file_l.append('    def nthUglyNumber(self, n: int) -> int:\n')
+            source_file_l.append('    def nthUglyNumber(self, n: int) -> int:')
         elif Problem == '07':
-            source_file_l.append('    def nthSuperUglyNumber(self, n: int, primes: list[int]) -> int:\n')
+            source_file_l.append('    def nthSuperUglyNumber(self, n: int, primes: list[int]) -> int:')
         elif Problem == '08':
-            source_file_l.append('    def maxRotateFunction(self, nums: list[int]) -> int:\n')
+            source_file_l.append('    def maxRotateFunction(self, nums: list[int]) -> int:')
         elif Problem == '09':
-            source_file_l.append('    def canPartition(self, nums: list[int]) -> bool:\n')
+            source_file_l.append('    def canPartition(self, nums: list[int]) -> bool:')
         elif Problem == '10':
-            source_file_l.append('    def eraseOverlapIntervals(self, intervals: list[list[int]]) -> int:\n')
+            source_file_l.append('    def eraseOverlapIntervals(self, intervals: list[list[int]]) -> int:')
         elif Problem == '11':
-            source_file_l.append('    def lengthOfLIS(self, nums: list[int]) -> int:\n')
+            source_file_l.append('    def lengthOfLIS(self, nums: list[int]) -> int:')
         elif Problem == '12':
-            source_file_l.append('    def largestDivisibleSubset(self, nums: list[int]) -> list[int]:\n')
+            source_file_l.append('    def largestDivisibleSubset(self, nums: list[int]) -> list[int]:')
         elif Problem == '13':
-            source_file_l.append('    def integerReplacement(self, n: int) -> int:\n')
+            source_file_l.append('    def integerReplacement(self, n: int) -> int:')
         elif Problem == '14':
-            source_file_l.append('    def integerBreak(self, n: int) -> int:\n')
+            source_file_l.append('    def integerBreak(self, n: int) -> int:')
         elif Problem == '15':
             source_file_l.append('\n\n# Definition for a binary tree node.\n')
             source_file_l.append('# class TreeNode(object):\n')
@@ -85,43 +85,43 @@ class TextToScript:
             source_file_l.append('        :type inorder: list[int]\n')
             source_file_l.append('        :type postorder: list[int]\n')
             source_file_l.append('        :rtype: TreeNode\n')
-            source_file_l.append('        """\n')
+            source_file_l.append('        """')
         elif Problem == '16':
-            source_file_l.append('    def combinationSum4(self, nums: list[int], target: int) -> int:\n')
+            source_file_l.append('    def combinationSum4(self, nums: list[int], target: int) -> int:')
         elif Problem == '17':
-            source_file_l.append('    def coinChange(self, coins: list[int], amount: int) -> int:\n')
+            source_file_l.append('    def coinChange(self, coins: list[int], amount: int) -> int:')
         elif Problem == '18':
-            source_file_l.append('    def countNumbersWithUniqueDigits(self, n: int) -> int:\n')
+            source_file_l.append('    def countNumbersWithUniqueDigits(self, n: int) -> int:')
         elif Problem == '19':
-            source_file_l.append('    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n')
+            source_file_l.append('    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:')
         elif Problem == '20':
-            source_file_l.append('    def maxProfit(self, prices: list[int]) -> int:\n')
+            source_file_l.append('    def maxProfit(self, prices: list[int]) -> int:')
         elif Problem == '21':
-            source_file_l.append('    def numberOfArithmeticSlices(self, nums: list[int]) -> int:\n')
+            source_file_l.append('    def numberOfArithmeticSlices(self, nums: list[int]) -> int:')
         elif Problem == '22':
-            source_file_l.append('    def maxEnvelopes(self, envelopes: list[list[int]]) -> int:\n')
+            source_file_l.append('    def maxEnvelopes(self, envelopes: list[list[int]]) -> int:')
         elif Problem == '23':
-            source_file_l.append('    def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:\n')
+            source_file_l.append('    def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:')
         elif Problem == '24':
-            source_file_l.append('    def numDistinct(self, s: str, t: str) -> int:\n')
+            source_file_l.append('    def numDistinct(self, s: str, t: str) -> int:')
         elif Problem == '25':
-            source_file_l.append('    def maxCoins(self, nums: list[int]) -> int:\n')
+            source_file_l.append('    def maxCoins(self, nums: list[int]) -> int:')
         elif Problem == '26':
-            source_file_l.append('    def splitArray(self, nums: list[int], k: int) -> int:\n')
+            source_file_l.append('    def splitArray(self, nums: list[int], k: int) -> int:')
         elif Problem == '27':
-            source_file_l.append('    def countDigitOne(self, n: int) -> int:\n')
+            source_file_l.append('    def countDigitOne(self, n: int) -> int:')
         elif Problem == '28':
-            source_file_l.append('    def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:\n')
+            source_file_l.append('    def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:')
         elif Problem == '29':
-            source_file_l.append('    def longestIncreasingPath(self, matrix: list[list[int]]) -> int:\n')
+            source_file_l.append('    def longestIncreasingPath(self, matrix: list[list[int]]) -> int:')
         elif Problem == '30':
-            source_file_l.append('    def canCross(self, stones: list[int]) -> bool:\n')
+            source_file_l.append('    def canCross(self, stones: list[int]) -> bool:')
         elif Problem == '31':
-            source_file_l.append('    def getMaxRepetitions(self, s1: str, n1: int, s2: str, n2: int) -> int:\n')
+            source_file_l.append('    def getMaxRepetitions(self, s1: str, n1: int, s2: str, n2: int) -> int:')
         elif Problem == '32':
-            source_file_l.append('    def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:\n')
+            source_file_l.append('    def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:')
         elif Problem == '33':
-            source_file_l.append('    def numberOfArithmeticSlices(self, nums: list[int]) -> int:\n')
+            source_file_l.append('    def numberOfArithmeticSlices(self, nums: list[int]) -> int:')
 
 if __name__ == '__main__':
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
