@@ -30,7 +30,7 @@ class AddFunction:
         
             files_l = os.listdir('{0}/{1}'.format(Input, each_dir))
             files_l = sorted(files_l)
-
+            files_l = [files_l[0]]
             for file in files_l:
                 with open('{0}/{1}/{2}'.format(Input, each_dir, file), 'r') as f:
                     source_file_l = f.readlines()
