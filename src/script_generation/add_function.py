@@ -39,6 +39,13 @@ class AddFunction:
                             function_name = source_file_l[0].split(' ')[1].split('(')[0]
                             argument = source_file_l[0].split('(')[1].split(')')[0]
                             each_argument_l = argument.replace(' ', '').split(',')
+                            each_argument_l = list(map(lambda x: x.split(':')[0], each_argument_l))
+                            new_argument = ''
+                            for index, each_argument in enumerate(each_argument_l):
+                                if index == len(each_argument_l) - 1:
+                                    new_argument += '{0}'.format(each_argument)
+                                else:
+                                    new_argument += '{0}, '.format(each_argument)
                             if (function_name in source_file_l[-1]) and not('return' in source_file_l[-1]) and not('append' in source_file_l[-1]): #and not('print' in script_l[-1])
                                 pass
                             else:
@@ -49,7 +56,7 @@ class AddFunction:
                                 for each_argument in each_argument_l:
                                     compliment = self.add_input(each_argument, each_dir)
                                     source_file_l.append('    {0} = {1}'.format(each_argument, compliment))
-                                source_file_l.append('    a = {0}({1})\n    print(a)'.format(function_name, argument))
+                                source_file_l.append('    a = {0}({1})\n    print(a)'.format(function_name, new_argument))
                             
                         with open('{0}/{1}/{2}'.format(Output, each_dir, file), 'w') as f:
                             for line in source_file_l:

@@ -1,3 +1,4 @@
+import bisect
 def lengthOfLIS(nums):
     """
     :type nums: List[int]

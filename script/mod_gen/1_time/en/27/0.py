@@ -5,6 +5,6 @@ def countDigitOne(n: int) -> int:
     return count
 
 if __name__ == '__main__':
-    n:int = ==========please modify============
-    a = countDigitOne(n: int)
+    n = int(input())
+    a = countDigitOne(n)
     print(a)
