@@ -11,5 +11,5 @@
 #
 #Constraints:
 #0 <= n <= 8
-
-def 
+class Solution:
+    def countNumbersWithUniqueDigits(self, n: int) -> int:

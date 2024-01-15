@@ -40,6 +40,8 @@ class AddFunction:
                             argument = source_file_l[0].split('(')[1].split(')')[0]
                             each_argument_l = argument.replace(' ', '').split(',')
                             each_argument_l = list(map(lambda x: x.split(':')[0], each_argument_l))
+                            if 'self' in each_argument_l:
+                                each_argument_l.remove('self')
                             new_argument = ''
                             for index, each_argument in enumerate(each_argument_l):
                                 if index == len(each_argument_l) - 1:

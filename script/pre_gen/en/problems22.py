@@ -16,5 +16,5 @@
 #1 <= envelopes.length <= 10^5
 #envelopes[i].length == 2
 #1 <= w_i, h_i <= 10^5
-
-def 
+class Solution:
+    def maxEnvelopes(self, envelopes: list[list[int]]) -> int:

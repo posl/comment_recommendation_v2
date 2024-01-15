@@ -16,5 +16,5 @@
 #1 <= nums.length <= 1000
 #1 <= nums[i] <= 2 * 10^9
 #All the integers in nums are unique.
-
-def 
+class Solution:
+    def largestDivisibleSubset(self, nums: list[int]) -> list[int]:

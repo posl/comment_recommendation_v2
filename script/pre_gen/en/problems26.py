@@ -23,5 +23,5 @@
 #1 <= nums.length <= 1000
 #0 <= nums[i] <= 10^6
 #1 <= k <= min(50, nums.length)
-
-def 
+class Solution:
+    def splitArray(self, nums: list[int], k: int) -> int:

@@ -17,5 +17,5 @@
 #0 <= rowIndex <= 33
 #
 #Follow up: Could you optimize your algorithm to use only O(rowIndex) extra space?
-
-def 
+class Solution:
+    def getRow(self, rowIndex: int) -> list[int]:

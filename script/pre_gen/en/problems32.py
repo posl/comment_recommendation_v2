@@ -18,5 +18,5 @@
 #words[i] consists of only lowercase English letters.
 #All the strings of words are unique.
 #1 <= sum(words[i].length) <= 10^5
-
-def 
+class Solution:
+    def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:

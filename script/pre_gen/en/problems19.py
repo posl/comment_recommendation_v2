@@ -24,5 +24,5 @@
 #Constraints:
 #1 <= maxChoosableInteger <= 20
 #0 <= desiredTotal <= 300
-
-def 
+class Solution:
+    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:

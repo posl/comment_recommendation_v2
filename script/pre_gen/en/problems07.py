@@ -18,5 +18,5 @@
 #2 <= primes[i] <= 1000
 #primes[i] is guaranteed to be a prime number.
 #All the values of primes are unique and sorted in ascending order.
-
-def 
+class Solution:
+    def nthSuperUglyNumber(self, n: int, primes: list[int]) -> int:

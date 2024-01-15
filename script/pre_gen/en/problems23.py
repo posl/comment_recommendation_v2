@@ -31,5 +31,5 @@
 #Constraints:
 #1 <= buckets <= 1000
 #1 <= minutesToDie <= minutesToTest <= 100
-
-def 
+class Solution:
+    def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:

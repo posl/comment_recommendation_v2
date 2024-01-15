@@ -15,5 +15,5 @@
 #Constraints:
 #1 <= nums.length <= 5000
 #-1000 <= nums[i] <= 1000
-
-def 
+class Solution:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:

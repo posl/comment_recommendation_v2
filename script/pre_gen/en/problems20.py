@@ -15,5 +15,5 @@
 #Constraints:
 #1 <= prices.length <= 5000
 #0 <= prices[i] <= 1000
-
-def 
+class Solution:
+    def maxProfit(self, prices: list[int]) -> int:

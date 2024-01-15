@@ -22,5 +22,5 @@
 #Only one valid answer exists.
 #
 #Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
-
-def 
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:

@@ -11,5 +11,5 @@
 #
 #Constraints:
 #1 <= numRows <= 30
-
-def 
+class Solution:
+    def generate(self, numRows: int) -> list[list[int]]:

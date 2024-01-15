@@ -26,5 +26,5 @@
 #Constraints:
 #1  <= nums.length <= 1000
 #-2^31 <= nums[i] <= 2^31 - 1
-
-def 
+class Solution:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:

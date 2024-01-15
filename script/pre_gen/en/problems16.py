@@ -26,5 +26,5 @@
 #1 <= target <= 1000
 #
 #Follow up: What if negative numbers are allowed in the given array? How does it change the problem? What limitation we need to add to the question to allow negative numbers?
-
-def 
+class Solution:
+    def combinationSum4(self, nums: list[int], target: int) -> int:

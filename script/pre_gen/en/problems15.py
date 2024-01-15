@@ -17,4 +17,16 @@
 #inorder is guaranteed to be the inorder traversal of the tree.
 #postorder is guaranteed to be the postorder traversal of the tree.
 
-def 
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def buildTree(self, inorder, postorder):
+        """
+        :type inorder: list[int]
+        :type postorder: list[int]
+        :rtype: TreeNode
+        """

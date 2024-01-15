@@ -20,5 +20,5 @@
 #
 #Constraints:
 #1 <= n <= 2^31 - 1
-
-def 
+class Solution:
+    def integerReplacement(self, n: int) -> int:

@@ -17,5 +17,5 @@
 #n == nums.length
 #1 <= n <= 300
 #0 <= nums[i] <= 100
-
-def 
+class Solution:
+    def maxCoins(self, nums: list[int]) -> int:

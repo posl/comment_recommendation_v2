@@ -13,5 +13,5 @@
 #
 #Constraints:
 #2 <= n <= 58
-
-def 
+class Solution:
+    def integerBreak(self, n: int) -> int:

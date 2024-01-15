@@ -17,5 +17,5 @@
 #0 <= stones[i] <= 2^31 - 1
 #stones[0] == 0
 #stones is sorted in a strictly increasing order.
-
-def 
+class Solution:
+    def canCross(self, stones: list[int]) -> bool:

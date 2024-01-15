@@ -24,5 +24,5 @@
 #Constraints:
 #1 <= s.length, t.length <= 1000
 #s and t consist of English letters.
-
-def 
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:

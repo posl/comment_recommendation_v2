@@ -10,5 +10,5 @@
 #
 #Constraints:
 #0 <= n <= 10^9
-
-def 
+class Solution:
+    def countDigitOne(self, n: int) -> int:

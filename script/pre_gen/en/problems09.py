@@ -13,5 +13,5 @@
 #Constraints:
 #1 <= nums.length <= 200
 #1 <= nums[i] <= 100
-
-def 
+class Solution:
+    def canPartition(self, nums: list[int]) -> bool:

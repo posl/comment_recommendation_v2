@@ -18,5 +18,5 @@
 #-10^5 <= k <= 10^5
 #
 #Follow up: What if the number of rows is much larger than the number of columns?
-
-def 
+class Solution:
+    def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:

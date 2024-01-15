@@ -1,5 +1,4 @@
-#Given an integer array nums, return the length of the longest strictly increasing 
-#subsequence.
+#Given an integer array nums, return the length of the longest strictly increasing subsequence.
 #
 #Example 1:
 #Input: nums = [10,9,2,5,3,7,101,18]
@@ -19,5 +18,5 @@
 #-10^4 <= nums[i] <= 10^4
 #
 #Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
-
-def 
+class Solution:
+    def lengthOfLIS(self, nums: list[int]) -> int:

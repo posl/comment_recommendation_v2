@@ -20,5 +20,5 @@
 #n == matrix[i].length
 #1 <= m, n <= 200
 #0 <= matrix[i][j] <= 2^31 - 1
-
-def 
+class Solution:
+    def longestIncreasingPath(self, matrix: list[list[int]]) -> int:

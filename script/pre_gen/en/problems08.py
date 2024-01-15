@@ -22,5 +22,5 @@
 #n == nums.length
 #1 <= n <= 10^5
 #-100 <= nums[i] <= 100
-
-def 
+class Solution:
+    def maxRotateFunction(self, nums: list[int]) -> int:

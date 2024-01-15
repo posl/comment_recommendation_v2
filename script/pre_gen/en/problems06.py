@@ -13,5 +13,5 @@
 #
 #Constraints:
 #1 <= n <= 1690
-
-def 
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
