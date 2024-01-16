@@ -44,7 +44,7 @@ class TestScript:
     def pyexe(self):
         all_test_result = []
         accuracy_l = [self.language, self.problem_number, self.suggestion]
-        accruracy = 0
+        accuracy = 0
         for index, each_test_input in enumerate(self.input_path_l):
             each_test_input_path = '{0}/{1}'.format(self.input_path, self.input_path_l[index])
             each_test_output_path = '{0}/{1}'.format(self.output_path, self.output_path_l[index])
