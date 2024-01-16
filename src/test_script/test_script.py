@@ -81,13 +81,13 @@ class TestScript:
         return all_test_result, accuracy_l
     
     def write_result(self, All_test_result, Accuracy_l):
-        with open('{0}/{1}.csv'.format(self.all_result_path, self.problem_number, 'a')) as f:
+        with open('{0}/{1}.csv'.format(self.all_result_path, self.problem_number), 'a') as f:
             writer = csv.writer(f)
             if self.suggestion == '0':
                 writer.writerow(['Language', 'Problem_number', 'Suggestion', 'Test_case', 'Correct', 'Output', 'Answer', 'Message', 'Accuracy'])
             writer.writerows(All_test_result)
         
-        with open('{0}/{1}_accuracy.csv'.format(self.accu_result_path, self.problem_number, 'a')) as f:
+        with open('{0}/{1}_accuracy.csv'.format(self.accu_result_path, self.problem_number), 'a') as f:
             writer = csv.writer(f)
             if self.suggestion == '0':
                 writer.writerow(['Language', 'Problem_number', 'Suggestion', 'Test_case_num', 'Total_test_case', 'Accuracy'])
