@@ -1,5 +1,6 @@
 import os 
 import shutil
+from add_package import AddPackage
 
 class AddFunction:
     def __init__(self, base_path, time_l, language_l):
@@ -124,3 +125,5 @@ if __name__ == '__main__':
         language_l.append(language)
     af = AddFunction(base_path, time_l, language_l)
     af.main()
+    add_package = AddPackage(base_path)
+    add_package.main()

@@ -6,7 +6,7 @@ class AddPackage:
     
     def main(self):
         self.add_package('1', 'en', '33', 'collections', 'Counter')
-        #self.add_package('1', 'en', '28', False, 'bisect')
+        self.add_package('1', 'en', '24', 'functools', 'cache')
         #self.add_package('1', 'en', '15', False, '')
 
     def add_package(self, time, language, problem, from_package, import_package):

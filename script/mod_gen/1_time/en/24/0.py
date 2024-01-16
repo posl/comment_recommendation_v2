@@ -1,3 +1,4 @@
+from functools import cache
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
         @cache
@@ -13,7 +14,7 @@ class Solution:
         return dfs(0, 0)
 
 if __name__ == '__main__':
-    s = int(input())
-    t = int(input())
+    s = input()
+    t = input()
     a = Solution()
     print(a.numDistinct(s, t))
