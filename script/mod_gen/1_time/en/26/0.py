@@ -1,28 +1,19 @@
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    def isValid(nums, mid, k):
-        count = 1
-        currSum = 0
-        for num in nums:
-            currSum += num
-            if currSum > mid:
-                count += 1
-                currSum = num
-        return count <= k
-    
-    left = max(nums)
-    right = sum(nums)
-    while left < right:
-        mid = (left + right) // 2
-        if isValid(nums, mid, k):
-            right = mid
+class Solution:
+    def splitArray(self, nums: list[int], k: int) -> int:
+        #print(nums, k)
+        if len(nums) == 1: return nums[0]
+        if k == 1: return sum(nums)
+        if k == len(nums): return max(nums)
+        if k == 2:
+            return max(sum(nums[:i]) for i in range(1, len(nums)))
         else:
-            left = mid + 1
-    return left
-print(splitArray([7,2,5,10,8], 2))
-print(splitArray([1,2,3,4,5], 2))
-print(splitArray([1,4,4], 3))
+            for i in range(1, len(nums)):
+                if self.splitArray(nums[i:], k - 1) < self.splitArray(nums[i:], k):
+                    return self.splitArray(nums[i:], k - 1)
+            return self.splitArray(nums, k - 1)
+
+if __name__ == '__main__':
+    nums = list(map(int, input().split()))
+    k = int(input())
+    a = Solution()
+    print(a.splitArray(nums, k))

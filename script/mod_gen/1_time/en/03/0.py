@@ -1,20 +1,20 @@
-def getRow(rowIndex):
-    if rowIndex == 0:
-        return [1]
-    if rowIndex == 1:
-        return [1,1]
-    if rowIndex >= 2:
-        triangle = [[1],[1,1]]
-        for i in range(2,rowIndex+1):
-            row = [1]
-            for j in range(1,i):
-                row.append(triangle[i-1][j-1]+triangle[i-1][j])
-            row.append(1)
-            triangle.append(row)
-        return triangle[rowIndex]
-    return []
+class Solution:
+    def getRow(self, rowIndex: int) -> list[int]:
+        if rowIndex == 0:
+            return [1]
+        elif rowIndex == 1:
+            return [1,1]
+        else:
+            current = [1,1]
+            for i in range(2, rowIndex+1):
+                previous = current.copy()
+                current = [1]
+                for j in range(1, i):
+                    current.append(previous[j-1] + previous[j])
+                current.append(1)
+            return current
 
 if __name__ == '__main__':
     rowIndex = int(input())
-    a = getRow(rowIndex)
-    print(a)
+    a = Solution()
+    print(a.getRow(rowIndex))

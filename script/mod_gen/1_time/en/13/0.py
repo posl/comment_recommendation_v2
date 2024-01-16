@@ -1,18 +1,20 @@
-def numberOfSteps(num):
-    """
-    :type num: int
-    :rtype: int
-    """
-    steps = 0
-    while num > 0:
-        if num % 2 == 0:
-            num = num / 2
-        else:
-            num = num - 1
-        steps += 1
-    return steps
+class Solution:
+    def integerReplacement(self, n: int) -> int:
+        count = 0
+        while n > 1:
+            if n % 2 == 0:
+                n = n / 2
+            else:
+                if n == 3:
+                    n = 2
+                elif (n + 1) % 4 == 0:
+                    n = n + 1
+                else:
+                    n = n - 1
+            count = count + 1
+        return count
 
 if __name__ == '__main__':
-    num = int(input())
-    a = numberOfSteps(num)
-    print(a)
+    n = int(input())
+    a = Solution()
+    print(a.integerReplacement(n))

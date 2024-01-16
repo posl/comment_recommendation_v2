@@ -1,13 +1,16 @@
-def numberOfArithmeticSlices(nums):
-    if len(nums) < 3:
-        return 0
-    dp = [0] * len(nums)
-    for i in range(2, len(nums)):
-        if nums[i] - nums[i-1] == nums[i-1] - nums[i-2]:
-            dp[i] = dp[i-1] + 1
-    return sum(dp)
+class Solution:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        count = 0
+        for i in range(len(nums)-2):
+            diff = nums[i+1] - nums[i]
+            for j in range(i+1, len(nums)-1):
+                if nums[j+1] - nums[j] == diff:
+                    count += 1
+                else:
+                    break
+        return count
 
 if __name__ == '__main__':
     nums = list(map(int, input().split()))
-    a = numberOfArithmeticSlices(nums)
-    print(a)
+    a = Solution()
+    print(a.numberOfArithmeticSlices(nums))

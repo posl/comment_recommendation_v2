@@ -1,16 +1,10 @@
-def findAllConcatenatedWordsInADict(words):
-    ans = []
-    words.sort(key=len)
-    wordDict = set()
-    for word in words:
-        if word == "":
-            continue
-        if isConcatenated(word, wordDict):
-            ans.append(word)
-        wordDict.add(word)
-    return ans
+class Solution:
+    def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        self.wordDict = set(words)
+        self.memo = {}
+        return [word for word in words if self.helper(word)]
 
 if __name__ == '__main__':
     words = input().split()
-    a = findAllConcatenatedWordsInADict(words)
-    print(a)
+    a = Solution()
+    print(a.findAllConcatenatedWordsInADict(words))

@@ -1,27 +1,21 @@
-import bisect
-def maxSumSubmatrix(matrix, k):
-    if not matrix:
-        return 0
-    m, n = len(matrix), len(matrix[0])
-    ans = float('-inf')
-    for left in range(n):
-        rowSum = [0] * m
-        for right in range(left, n):
-            for i in range(m):
-                rowSum[i] += matrix[i][right]
-            prefixSum = [0]
-            cur = 0
-            for r in rowSum:
-                cur += r
-                idx = bisect.bisect_left(prefixSum, cur - k)
-                if idx < len(prefixSum):
-                    ans = max(ans, cur - prefixSum[idx])
-                bisect.insort(prefixSum, cur)
-    return ans
+class Solution:
+    def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m = len(matrix)
+        n = len(matrix[0])
+        max_sum = float("-inf")
+        for left in range(n):
+            row_sum = [0] * m
+            for right in range(left, n):
+                for i in range(m):
+                    row_sum[i] += matrix[i][right]
+                max_sum = max(max_sum, self.maxSubArray(row_sum, k))
+                if max_sum == k:
+                    return k
+        return max_sum
 
 if __name__ == '__main__':
     N, M = map(int, input().split())
     matrix = [list(map(int, input().split())) for _ in range(N)]
     k = int(input())
-    a = maxSumSubmatrix(matrix, k)
-    print(a)
+    a = Solution()
+    print(a.maxSumSubmatrix(matrix, k))
