@@ -10,8 +10,8 @@ class TestScript:
         self.base_path = Base_path
         self.language = Language
         self.base_script_path = '{0}/script/mod_gen/{1}/{2}/'.format(Base_path, Times, Language)
-        self.all_result_path = '{0}/result/ALL/{1}/{2}/'.format(Base_path, Times, Language)
-        self.accu_result_path = '{0}/result/accuracy/each/{1}/{2}/'.format(Base_path, Times, Language)
+        self.all_result_path = '{0}/result/ALL/{1}/{2}'.format(Base_path, Times, Language)
+        self.accu_result_path = '{0}/result/accuracy/each/{1}/{2}'.format(Base_path, Times, Language)
     
     def main(self):
         self.delete_result(self.all_result_path)
