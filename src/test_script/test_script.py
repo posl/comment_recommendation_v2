@@ -26,7 +26,7 @@ class TestScript:
             suggestion_l = [suggestion_l[0]]
             for each_suggestion in suggestion_l:
                 self.script_path = '{0}/{1}/{2}'.format(self.base_script_path, each_problem, each_suggestion)
-                self.suggestion = each_suggestion
+                self.suggestion = each_suggestion.split('.')[0]
                 self.input_path = '{0}/test_case/{1}/in/'.format(self.base_path, each_problem)
                 self.input_path_l = sorted(os.listdir(self.input_path))
                 self.output_path = ('{0}/test_case/{1}/out/'.format(self.base_path, each_problem))
