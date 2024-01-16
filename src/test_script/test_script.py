@@ -52,7 +52,7 @@ class TestScript:
             try:
                 process = subprocess.run(cmd, shell = True, capture_output = True, text = True, timeout = 30)
                 output = process.stdout
-                output = output.encode('utf-8')
+                output = re.sub("b'|'|\\n", '', output)
                 message = process.stderr
 
             except subprocess.TimeoutExpired:
