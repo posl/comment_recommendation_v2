@@ -59,6 +59,10 @@ class AddFunction:
                                 # problem == 15 -> add class TreeNode and class Solution(object):\n
                                 class_l = self.add_class(each_dir)
                                 source_file_l = class_l + source_file_l
+                                # add print function
+                                if each_dir == '15':
+                                    print_func_l = self.add_print_func(each_dir)
+                                    source_file_l = source_file_l + print_func_l
                                 source_file_l.append('\nif __name__ == \'__main__\':\n')
                                 # for matrix
                                 if (each_dir == '28') or (each_dir == '29'):
@@ -67,7 +71,10 @@ class AddFunction:
                                     compliment = self.add_input(each_argument, each_dir)
                                     source_file_l.append('    {0} = {1}'.format(each_argument, compliment))
                                 #source_file_l.append('    a = {0}({1})\n    print(a)'.format(function_name, new_argument))
-                                source_file_l.append('    a = Solution()\n    print(a.{0}({1}))'.format(function_name, new_argument))
+                                if each_dir == '15':
+                                    source_file_l.append('    a = Solution()\n    b = a.{0}({1})\n    levelOrder(b)'.format(function_name, new_argument))
+                                else:
+                                    source_file_l.append('    a = Solution()\n    print(a.{0}({1}))'.format(function_name, new_argument))
                             
                         with open('{0}/{1}/{2}'.format(Output, each_dir, file), 'w') as f:
                             for line in source_file_l:
@@ -76,6 +83,12 @@ class AddFunction:
                         pass
             print(each_dir)
     
+    def add_print_func(self, Each_dir):
+        if Each_dir == '15':
+            with open('{0}/print_func/15/func.py'.format(self.base_path), 'r') as f:
+                source_file_l = f.readlines()
+                return source_file_l
+
     def add_class(self, Each_dir):
         source_file_l = []
         if Each_dir == '15':
