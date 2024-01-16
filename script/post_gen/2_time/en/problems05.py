@@ -3,263 +3,181 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def findSubstringInWraproundString(s):
-    """
-    :type p: str
-    :rtype: int
-    """
-    if not s:
-        return 0
-    count = 1
-    dp = [0]*26
-    dp[ord(s[0])-ord('a')] = 1
-    for i in range(1,len(s)):
-        if ord(s[i])-ord(s[i-1]) == 1 or (s[i] == 'a' and s[i-1] == 'z'):
-            count += 1
-        else:
-            count = 1
-        dp[ord(s[i])-ord('a')] = max(dp[ord(s[i])-ord('a')],count)
-    return sum(dp)
-
-print(findSubstringInWraproundString('a'))
-print(findSubstringInWraproundString('cac'))
-print(findSubstringInWraproundString('zab'))
-print(findSubstringInWraproundString('zabcdefghijk'))
+def findSubstringInWraproundString(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+        dp = [0]*26
+        dp[ord(s[0])-ord('a')] = 1
+        count = 1
+        for i in range(1,len(s)):
+            if ord(s[i])-ord(s[i-1]) == 1 or (s[i-1] == 'z' and s[i] == 'a'):
+                count += 1
+            else:
+                count = 1
+            dp[ord(s[i])-ord('a')] = max(dp[ord(s[i])-ord('a')],count)
+        return sum(dp)
 
 =======
 Suggestion 2
 
-def findSubstringInWraproundString(s):
-    """
-    :type p: str
-    :rtype: int
-    """
-    if not s:
-        return 0
-    if len(s) == 1:
-        return 1
-    dp = [0] * 26
-    dp[ord(s[0]) - ord('a')] = 1
-    cur_len = 1
-    for i in range(1, len(s)):
-        if ord(s[i]) - ord(s[i - 1]) == 1 or (s[i] == 'a' and s[i - 1] == 'z'):
-            cur_len += 1
-        else:
-            cur_len = 1
-        dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], cur_len)
-    return sum(dp)
-
-print(findSubstringInWraproundString("zab"))
-print(findSubstringInWraproundString("cac"))
-print(findSubstringInWraproundString("a"))
-print(findSubstringInWraproundString("zaba"))
-print(findSubstringInWraproundString("zabaz"))
-print(findSubstringInWraproundString("zabazab"))
-print(findSubstringInWraproundString("zabazaba"))
-print(findSubstringInWraproundString("zabazabaz"))
-print(findSubstringInWraproundString("zabazabaza"))
-print(findSubstringInWraproundString("zabazabazab"))
-print(findSubstringInWraproundString("zabazabazaba"))
-print(findSubstringInWraproundString("zabazabazabaz"))
-print(findSubstringInWraproundString("zabazabazabaza"))
-print(findSubstringInWraproundString("zabazabazabazab"))
-print(findSubstringInWraproundString("zabazabazabazaba"))
-print(findSubstringInWraproundString("zabazabazabazabaz"))
-print(findSubstringInWraproundString("zabazabazabazabaza"))
-print(findSubstringInWraproundString("zabazabazabazabazab"))
-print(findSubstringInWraproundString("zabazabazabazabazaba"))
-print(findSubstringInWraproundString("zabazabazabazabazabaz"))
-print(findSubstringInWraproundString("zabazabazabazabazabaza"))
+def findSubstringInWraproundString(self, s: str) -> int:
+        if not s:
+            return 0
+        dp = [0]*26
+        dp[ord(s[0])-ord('a')] = 1
+        count = 1
+        for i in range(1, len(s)):
+            if ord(s[i])-ord(s[i-1]) == 1 or (s[i-1] == 'z' and s[i] == 'a'):
+                count += 1
+            else:
+                count = 1
+            dp[ord(s[i])-ord('a')] = max(dp[ord(s[i])-ord('a')], count)
+        return sum(dp)
 
 =======
 Suggestion 3
 
-def findSubstringInWraproundString(s):
-    """
-    :type p: str
-    :rtype: int
-    """
-    if len(s) <= 1:
-        return len(s)
-    dp = [0] * 26
-    dp[ord(s[0]) - ord('a')] = 1
-    count = 1
-    for i in range(1, len(s)):
-        if ord(s[i]) - ord(s[i - 1]) == 1 or (s[i] == 'a' and s[i - 1] == 'z'):
-            count += 1
-        else:
-            count = 1
-        dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], count)
-    return sum(dp)
-
-print(findSubstringInWraproundString("zab"))
+def findSubstringInWraproundString(self, s: str) -> int:
+        if not s:
+            return 0
+        if len(s) == 1:
+            return 1
+        char_dict = {}
+        for i in range(26):
+            char_dict[chr(ord('a') + i)] = 0
+        char_dict[s[0]] = 1
+        max_len = 1
+        for i in range(1, len(s)):
+            if ord(s[i]) - ord(s[i - 1]) == 1 or ord(s[i - 1]) - ord(s[i]) == 25:
+                max_len += 1
+            else:
+                max_len = 1
+            char_dict[s[i]] = max(char_dict[s[i]], max_len)
+        return sum(char_dict.values())
 
 =======
 Suggestion 4
 
-def findSubstringInWraproundString(s):
-    """
-    :type p: str
-    :rtype: int
-    """
-    if not s:
-        return 0
-    
-    length = len(s)
-    dp = [0] * 26
-    dp[ord(s[0]) - ord('a')] = 1
-    count = 1
-    
-    for i in range(1, length):
-        if ord(s[i]) - ord(s[i - 1]) == 1 or ord(s[i]) - ord(s[i - 1]) == -25:
-            count += 1
-        else:
-            count = 1
-        dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], count)
-    
-    return sum(dp)
-
-print(findSubstringInWraproundString("zab"))
+def findSubstringInWraproundString(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+        dp = [0] * 26
+        dp[ord(s[0]) - ord('a')] = 1
+        count = 1
+        for i in range(1, len(s)):
+            if ord(s[i]) - ord(s[i-1]) == 1 or ord(s[i]) - ord(s[i-1]) == -25:
+                count += 1
+            else:
+                count = 1
+            dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], count)
+        return sum(dp)
 
 =======
 Suggestion 5
 
-def unique_substrings_in_wraparound_string(s):
-    """
-    :type s: str
-    :rtype: int
-    """
-    # Time Complexity: O(N)
-    # Space Complexity: O(1)
-    # Explanation: We can use dynamic programming to solve this problem.
-    # Let dp[i] be the number of unique substrings in s that ends with letter chr(i).
-    # We can see that dp[i] = 1 + dp[i-1] if s[i] - s[i-1] = 1 or -25,
-    # otherwise dp[i] = 1.
-    # Finally, we return the sum of dp[i] for i in range(26).
-    dp = [0] * 26
-    count = 0
-    for i in range(len(s)):
-        if i > 0 and (ord(s[i]) - ord(s[i-1]) == 1 or ord(s[i]) - ord(s[i-1]) == -25):
-            count += 1
-        else:
-            count = 1
-        dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], count)
-    return sum(dp)
+def findSubstringInWraproundString(self, s: str) -> int:
+        if not s:
+            return 0
+        dp = [0] * 26
+        dp[ord(s[0]) - ord('a')] = 1
+        l = 1
+        for i in range(1, len(s)):
+            if ord(s[i]) - ord(s[i-1]) == 1 or ord(s[i-1]) - ord(s[i]) == 25:
+                l += 1
+            else:
+                l = 1
+            dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], l)
+        return sum(dp)
 
 =======
 Suggestion 6
 
-def unique_substrings_in_wraparound_string(s):
-    """
-    :type s: str
-    :rtype: int
-    """
-    count = [0] * 26
-    max_len = 0
-    for i in range(len(s)):
-        if i > 0 and (ord(s[i]) - ord(s[i - 1]) == 1 or ord(s[i - 1]) - ord(s[i]) == 25):
-            max_len += 1
-        else:
-            max_len = 1
-        count[ord(s[i]) - ord('a')] = max(count[ord(s[i]) - ord('a')], max_len)
-    return sum(count)
-    
-print(unique_substrings_in_wraparound_string('zab'))
-print(unique_substrings_in_wraparound_string('cac'))
-print(unique_substrings_in_wraparound_string('a'))
+def findSubstringInWraproundString(self, s: str) -> int:
+        if not s:
+            return 0
+        dp = [0]*26
+        dp[ord(s[0])-ord('a')] = 1
+        count = 1
+        for i in range(1, len(s)):
+            if ord(s[i]) - ord(s[i-1]) == 1 or (ord(s[i-1]) - ord(s[i]) == 25):
+                count += 1
+            else:
+                count = 1
+            dp[ord(s[i])-ord('a')] = max(dp[ord(s[i])-ord('a')], count)
+        return sum(dp)
 
 =======
 Suggestion 7
 
-def uniqueSubstringInWraparoundString(s):
-    """
-    :type p: str
-    :rtype: int
-    """
-    if not s:
-        return 0
-
-    # Initialize the count of all unique substrings end with letter 'a', 'b', ..., 'z'.
-    # Use array instead of dictionary to make it run faster.
-    count = [0] * 26
-
-    # Store longest contiguous substring ends at current position.
-    maxLengthCur = 0
-
-    for i in range(len(s)):
-        # Check if the current character is continuation of s[i - 1]
-        if i > 0 and (ord(s[i]) - ord(s[i - 1]) == 1 or ord(s[i - 1]) - ord(s[i]) == 25):
-            maxLengthCur += 1
-        else:
-            maxLengthCur = 1
-
-        # Get the index of current character, e.g. 'a' -> 0, 'z' -> 25.
-        index = ord(s[i]) - ord('a')
-        count[index] = max(count[index], maxLengthCur)
-
-    # Sum to get result
-    return sum(count)
+def findSubstringInWraproundString(self, s: str) -> int:
+        # dp[i] - the max unique substring end with ith letter.
+        # We use set to avoid duplicate substrings.
+        # We can add all substring end with ith letter.
+        # For example: "abcd", the substrings end with 'd' are "abcd","bcd","cd","d",
+        # Then we add "abcd" and "d" to our result set.
+        dp = [0] * 26
+        #count consecutive substring end with ith letter
+        #dp[i] = 1 means letter 'a'+i occurs only once
+        maxLength = 1
+        for i in range(len(s)):
+            if i > 0 and (ord(s[i]) - ord(s[i-1]) == 1 or ord(s[i-1]) - ord(s[i]) == 25):
+                maxLength += 1
+            else:
+                maxLength = 1
+            index = ord(s[i]) - ord('a')
+            dp[index] = max(dp[index], maxLength)
+        return sum(dp)
 
 =======
 Suggestion 8
 
-def findSubstringInWraproundString(s):
-    """
-    :type p: str
-    :rtype: int
-    """
-    if len(s) == 1:
-        return 1
-    if len(s) == 0:
-        return 0
-    base = 'abcdefghijklmnopqrstuvwxyz'
-    temp = s[0]
-    result = 0
-    for i in range(1, len(s)):
-        if s[i] in base[base.index(temp[-1])+1:]:
-            temp += s[i]
-        else:
-            temp = s[i]
-        result = max(result, len(temp))
-    return result
-
-print(findSubstringInWraproundString('a'))
-print(findSubstringInWraproundString('cac'))
-print(findSubstringInWraproundString('zab'))
+def findSubstringInWraproundString(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+        if len(s) == 1:
+            return 1
+        dp = [1] * len(s)
+        dp[0] = 1
+        for i in range(1, len(s)):
+            if (ord(s[i]) - ord(s[i-1]) == 1) or (ord(s[i-1]) - ord(s[i]) == 25):
+                dp[i] = dp[i-1] + 1
+            else:
+                dp[i] = 1
+        print(dp)
+        return sum(dp)
 
 =======
 Suggestion 9
 
-def findSubstringInWraproundString(s: str) -> int:
-    if not s:
-        return 0
-    dp = [0] * 26
-    dp[ord(s[0]) - ord('a')] = 1
-    count = 1
-    for i in range(1, len(s)):
-        if (ord(s[i]) - ord(s[i - 1]) == 1) or (ord(s[i]) - ord(s[i - 1]) == -25):
-            count += 1
-        else:
-            count = 1
-        dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], count)
-    return sum(dp)
-
-print(findSubstringInWraproundString("zab"))
+def findSubstringInWraproundString(self, s: str) -> int:
+        n = len(s)
+        if n == 0:
+            return 0
+        dp = [0] * 26
+        dp[ord(s[0]) - ord('a')] = 1
+        count = 1
+        for i in range(1, n):
+            if ord(s[i]) - ord(s[i - 1]) == 1 or (ord(s[i - 1]) - ord(s[i]) == 25):
+                count += 1
+            else:
+                count = 1
+            dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], count)
+        return sum(dp)
 
 =======
 Suggestion 10
 
-def unique_substrings_in_wraparound_string(s):
-    """
-    :type s: str
-    :rtype: int
-    """
-    res = 0
-    count = [0] * 26
-    for i in range(len(s)):
-        if i > 0 and (ord(s[i]) - ord(s[i-1]) == 1 or ord(s[i-1]) - ord(s[i]) == 25):
-            res += 1
-        else:
-            res = 1
-        count[ord(s[i]) - ord('a')] = max(count[ord(s[i]) - ord('a')], res)
-    return sum(count)
+def findSubstringInWraproundString(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+        dp = [1] * 26
+        start = ord(s[0])
+        length = 1
+        for i in range(1, len(s)):
+            if ord(s[i]) - start == length or (ord(s[i]) - start == -25 and length == 1):
+                length += 1
+            else:
+                length = 1
+            dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], length)
+            start = ord(s[i])
+        return sum(dp)

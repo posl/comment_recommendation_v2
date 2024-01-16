@@ -1,199 +1,143 @@
-Synthesizing 10/10 solutions
+Synthesizing 10/10 solutions (Duplicates hidden)
 
 =======
 Suggestion 1
 
-def maxEnvelopes(envelopes):
-    """
-    :type envelopes: List[List[int]]
-    :rtype: int
-    """
-    if len(envelopes) == 0:
-        return 0
-    envelopes.sort(key = lambda x: (x[0], -x[1]))
-    dp = [1] * len(envelopes)
-    for i in range(1, len(envelopes)):
-        for j in range(i):
-            if envelopes[i][1] > envelopes[j][1]:
-                dp[i] = max(dp[i], dp[j] + 1)
-    return max(dp)
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        print(envelopes)
+        return self.lengthOfLIS([i[1] for i in envelopes])
 
 =======
 Suggestion 2
 
-def maxEnvelopes(envelopes):
-    envelopes.sort(key = lambda x: (x[0], -x[1]))
-    print(envelopes)
-    dp = [1] * len(envelopes)
-    for i in range(len(envelopes)):
-        for j in range(i):
-            if envelopes[i][1] > envelopes[j][1]:
-                dp[i] = max(dp[i], dp[j] + 1)
-    return max(dp)
-
-print(maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        print(envelopes)
+        dp = [1] * len(envelopes)
+        for i in range(len(envelopes)):
+            for j in range(i):
+                if envelopes[j][1] < envelopes[i][1]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        print(dp)
+        return max(dp)
 
 =======
 Suggestion 3
 
-def maxEnvelopes(envelopes):
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    print(envelopes)
-    tails = []
-    for _, h in envelopes:
-        l, r = 0, len(tails)
-        while l < r:
-            mid = (l + r) // 2
-            if tails[mid] < h:
-                l = mid + 1
-            else:
-                r = mid
-        if r == len(tails):
-            tails.append(h)
-        else:
-            tails[r] = h
-    return len(tails)
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        if len(envelopes)==0:
+            return 0
+        envelopes.sort(key=lambda x:(x[0],-x[1]))
+        dp=[1]*len(envelopes)
+        for i in range(1,len(envelopes)):
+            for j in range(i):
+                if envelopes[j][1]<envelopes[i][1] and envelopes[j][0]!=envelopes[i][0]:
+                    dp[i]=max(dp[i],dp[j]+1)
+        return max(dp)
 
 =======
 Suggestion 4
 
-def maxEnvelopes(envelopes):
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = [0] * len(envelopes)
-    for i in range(len(envelopes)):
-        dp[i] = 1
-        for j in range(i):
-            if envelopes[i][1] > envelopes[j][1]:
-                dp[i] = max(dp[i], dp[j] + 1)
-    return max(dp)
-
-print(maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
-print(maxEnvelopes([[1,1],[1,1],[1,1]]))
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        print(envelopes)
+        dp = [0 for i in range(len(envelopes))]
+        size = 0
+        for envelope in envelopes:
+            i, j = 0, size
+            while i != j:
+                mid = (i + j) // 2
+                if dp[mid] < envelope[1]:
+                    i = mid + 1
+                else:
+                    j = mid
+            dp[i] = envelope[1]
+            size = max(i + 1, size)
+        return size
 
 =======
 Suggestion 5
 
-def maxEnvelopes(envelopes):
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = []
-    for i in range(len(envelopes)):
-        low, high = 0, len(dp) - 1
-        while low <= high:
-            mid = (low + high) // 2
-            if envelopes[i][1] > dp[mid][1]:
-                low = mid + 1
-            else:
-                high = mid - 1
-        if low < len(dp):
-            dp[low] = envelopes[i]
-        else:
-            dp.append(envelopes[i])
-    return len(dp)
-
-print(maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
-print(maxEnvelopes([[1,1],[1,1],[1,1]]))
-print(maxEnvelopes([[4,5],[4,6],[6,7],[2,3],[1,1]]))
-print("The values above should be 3, 1, and 4.")
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        # sort the array based on the first element
+        envelopes.sort(key=lambda x: x[0])
+        # create a dp array
+        dp = [1] * len(envelopes)
+        # loop through the array
+        for i in range(len(envelopes)):
+            # loop through the array
+            for j in range(i):
+                # if the width and height of the current element is greater than the element in the dp array
+                if envelopes[i][0] > envelopes[j][0] and envelopes[i][1] > envelopes[j][1]:
+                    # set the element in the dp array to the max of the current element and the element in the dp array + 1
+                    dp[i] = max(dp[i], dp[j] + 1)
+        # return the max of the dp array
+        return max(dp)
 
 =======
 Suggestion 6
 
-def maxEnvelopes(envelopes):
-    """
-    :type envelopes: List[List[int]]
-    :rtype: int
-    """
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = [0] * len(envelopes)
-    size = 0
-    for _, h in envelopes:
-        i, j = 0, size
-        while i != j:
-            m = (i + j) // 2
-            if dp[m] < h:
-                i = m + 1
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        dp = []
+        for _, h in envelopes:
+            i = bisect_left(dp, h)
+            if i == len(dp):
+                dp.append(h)
             else:
-                j = m
-        dp[i] = h
-        size = max(size, i + 1)
-    return size
-
-print(maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
-print(maxEnvelopes([[1,1],[1,1],[1,1]]))
+                dp[i] = h
+        return len(dp)
 
 =======
 Suggestion 7
 
-def maxEnvelopes(envelopes):
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = []
-    for envelope in envelopes:
-        idx = bisect.bisect_left(dp, envelope[1])
-        if idx == len(dp):
-            dp.append(envelope[1])
-        else:
-            dp[idx] = envelope[1]
-    return len(dp)
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        dp = []
+        for _, h in envelopes:
+            left, right = 0, len(dp)
+            while left < right:
+                mid = (left + right) // 2
+                if dp[mid] < h:
+                    left = mid + 1
+                else:
+                    right = mid
+            if right >= len(dp):
+                dp.append(h)
+            else:
+                dp[right] = h
+        return len(dp)
 
 =======
 Suggestion 8
 
-def maxEnvelopes(envelopes):
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = []
-    for w, h in envelopes:
-        l, r = 0, len(dp)
-        while l < r:
-            mid = (l + r) // 2
-            if dp[mid][1] < h:
-                l = mid + 1
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        dp = []
+        for _, h in envelopes:
+            idx = bisect.bisect_left(dp, h)
+            if idx == len(dp):
+                dp.append(h)
             else:
-                r = mid
-        if r == len(dp):
-            dp.append([w, h])
-        else:
-            dp[r][1] = h
-    return len(dp)
-
-envelopes = [[5,4],[6,4],[6,7],[2,3]]
-print(maxEnvelopes(envelopes))
-envelopes = [[1,1],[1,1],[1,1]]
-print(maxEnvelopes(envelopes))
+                dp[idx] = h
+        return len(dp)
 
 =======
 Suggestion 9
 
-def maxEnvelopes(envelopes):
-    if not envelopes:
-        return 0
-    envelopes.sort(key = lambda x: (x[0], -x[1]))
-    dp = [1]*len(envelopes)
-    for i in range(1, len(envelopes)):
-        for j in range(i):
-            if envelopes[i][1] > envelopes[j][1]:
-                dp[i] = max(dp[i], dp[j]+1)
-    return max(dp)
-
-=======
-Suggestion 10
-
-def maxEnvelopes(envelopes):
-    """
-    :type envelopes: List[List[int]]
-    :rtype: int
-    """
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = []
-    for i in range(len(envelopes)):
-        low, high = 0, len(dp)
-        while low < high:
-            mid = (low + high) // 2
-            if dp[mid][1] < envelopes[i][1]:
-                low = mid + 1
-            else:
-                high = mid
-        if high == len(dp):
-            dp.append(envelopes[i])
-        else:
-            dp[high] = envelopes[i]
-    return len(dp)
+def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        dp = [0] * len(envelopes)
+        size = 0
+        for _, h in envelopes:
+            i, j = 0, size
+            while i != j:
+                m = (i + j) // 2
+                if dp[m] < h:
+                    i = m + 1
+                else:
+                    j = m
+            dp[i] = h
+            size = max(size, i + 1)
+        return size

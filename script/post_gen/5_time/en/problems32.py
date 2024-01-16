@@ -3,268 +3,198 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    words = set(words)
-    def dfs(word):
-        for i in range(1, len(word)):
-            prefix = word[:i]
-            suffix = word[i:]
-            if prefix in words and suffix in words:
-                return True
-            if prefix in words and dfs(suffix):
-                return True
-            if suffix in words and dfs(prefix):
-                return True
-        return False
-
-    res = []
-    for word in words:
-        if dfs(word):
-            res.append(word)
-    return res
-
-print(findAllConcatenatedWordsInADict(["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat","catdogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat","catdogcat","catdogcatdogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat","catdogcat","catdogcatdogcat","catdogcatdogcatdogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat","catdogcat","catdogcatdogcat","catdogcatdogcatdogcat","catdogcatdogcatdogcatdogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat","catdogcat","catdogcatdogcat","catdogcatdogcatdogcat","catdogcatdogcatdogcatdogcat","catdogcatdogcatdogcatdogcatdogcat"]))
-print(findAllConcatenatedWordsInADict(["cat","dog","catdog","dogcat","catdogcat","catdogcatdogcat","catdogcatdogcatdogcat","catdogcatdogcatdogcatdogcat","catdogcatdogcatdogcatdogcatdogcat","catdogcatdogcatdogcatdogcatdogcatdogcat"]))
-print("The arrays above should be [\"catsdog
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        words.sort(key=len)
+        wordDict = set()
+        result = []
+        for word in words:
+            if self.wordBreak(word, wordDict):
+                result.append(word)
+            wordDict.add(word)
+        return result
 
 =======
 Suggestion 2
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    def helper(word, wordSet, cache):
-        if word in cache:
-            return cache[word]
-        for i in range(1,len(word)):
-            prefix = word[:i]
-            suffix = word[i:]
-            if prefix in wordSet:
-                if suffix in wordSet or helper(suffix, wordSet, cache):
-                    cache[word] = True
-                    return True
-        cache[word] = False
-        return False
-    
-    wordSet = set(words)
-    cache = {}
-    res = []
-    for word in words:
-        if helper(word, wordSet, cache):
-            res.append(word)
-    return res
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        words.sort(key=len)
+        word_set = set()
+        result = []
+        for word in words:
+            if self.canForm(word, word_set):
+                result.append(word)
+            word_set.add(word)
+        return result
 
 =======
 Suggestion 3
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    res = []
-    wordSet = set(words)
-    
-    for word in words:
-        wordSet.remove(word)
-        if word:
-            if dfs(word, wordSet, {}):
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        def helper(word, words):
+            if len(word) == 0:
+                return True
+            for i in range(1, len(word) + 1):
+                if word[:i] in words and helper(word[i:], words):
+                    return True
+            return False
+        words.sort(key = len)
+        res = []
+        for word in words:
+            if helper(word, words):
                 res.append(word)
-        wordSet.add(word)
-    return res
+        return res
 
 =======
 Suggestion 4
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    words.sort(key=len)
-    result = []
-    wordDict = set()
-    for word in words:
-        if canForm(word, wordDict):
-            result.append(word)
-        wordDict.add(word)
-    return result
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        words = set(words)
+        def dfs(word):
+            for i in range(1, len(word)):
+                prefix = word[:i]
+                suffix = word[i:]
+                if prefix in words and suffix in words:
+                    return True
+                if prefix in words and dfs(suffix):
+                    return True
+            return False
+        res = []
+        for word in words:
+            if dfs(word):
+                res.append(word)
+        return res
 
 =======
 Suggestion 5
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    result = []
-    word_dict = set(words)
-    for word in words:
-        word_dict.remove(word)
-        if isConcatenated(word, word_dict):
-            result.append(word)
-        word_dict.add(word)
-    return result
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        def check(word, words):
+            if word in words:
+                return True
+            for i in range(1, len(word)):
+                if word[:i] in words and check(word[i:], words):
+                    return True
+            return False
+        
+        words = set(words)
+        return [word for word in words if check(word, words)]
 
 =======
 Suggestion 6
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    res = []
-    words = set(words)
-    for word in words:
-        words.remove(word)
-        if isConcatenated(word, words):
-            res.append(word)
-        words.add(word)
-    return res
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        words_set = set(words)
+        def dfs(word):
+            for idx in range(1, len(word)):
+                prefix = word[:idx]
+                suffix = word[idx:]
+                if prefix in words_set and suffix in words_set:
+                    return True
+                if prefix in words_set and dfs(suffix):
+                    return True
+            return False
+        
+        res = []
+        for word in words:
+            if dfs(word):
+                res.append(word)
+        return res
 
 =======
 Suggestion 7
 
-def findAllConcatenatedWordsInADict(words):
-	"""
-	:type words: List[str]
-	:rtype: List[str]
-	"""
-	words = set(words)
-	def dfs(word):
-		for i in range(1, len(word)):
-			prefix = word[:i]
-			suffix = word[i:]
-			if prefix in words and suffix in words:
-				return True
-			if prefix in words and dfs(suffix):
-				return True
-			if suffix in words and dfs(prefix):
-				return True
-		return False
-	res = []
-	for word in words:
-		if dfs(word):
-			res.append(word)
-	return res
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        def dfs(word, d, visited):
+            if word in visited:
+                return visited[word]
+            visited[word] = False
+            for i in range(1, len(word)):
+                prefix = word[:i]
+                suffix = word[i:]
+                if prefix in d and d[prefix] and dfs(suffix, d, visited):
+                    visited[word] = True
+                    return True
+            return False
 
-words = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
-print(findAllConcatenatedWordsInADict(words))
+        d = {}
+        for word in words:
+            d[word] = True
+        res = []
+        for word in words:
+            visited = {}
+            if dfs(word, d, visited):
+                res.append(word)
+        return res
 
 =======
 Suggestion 8
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    #Approach: Trie
-    #Time Complexity: O(n * k^2)
-    #Space Complexity: O(n * k^2)
-    #where, n is the number of words and k is the length of each word
-    
-    class Node:
-        def __init__(self):
-            self.isEnd = False
-            self.children = {}
-            
-    class Trie:
-        def __init__(self):
-            self.root = Node()
-            
-        def insert(self, word):
-            curr = self.root
-            for char in word:
-                if char not in curr.children:
-                    curr.children[char] = Node()
-                curr = curr.children[char]
-            curr.isEnd = True
-            
-        def search(self, word):
-            curr = self.root
-            for i in range(len(word)):
-                char = word[i]
-                if char not in curr.children:
-                    return False
-                curr = curr.children[char]
-                if curr.isEnd:
-                    if i == len(word) - 1:
-                        return True
-                    if self.search(word[i+1:]):
-                        return True
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        def dfs(word):
+            if word in cache:
+                return cache[word]
+            for i in range(1, len(word)):
+                if word[:i] in words and dfs(word[i:]) == True:
+                    cache[word] = True
+                    return True
+            cache[word] = False
             return False
-    
-    trie = Trie()
-    for word in words:
-        if word:
-            trie.insert(word)
-            
-    ans = []
-    for word in words:
-        if word:
-            if trie.search(word):
+
+        words.sort(key = len)
+        cache = {}
+        ans = []
+        for word in words:
+            if dfs(word) == True:
                 ans.append(word)
-    return ans
+        return ans
 
 =======
 Suggestion 9
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    def dfs(word, wordSet, memo):
-        if word in memo:
-            return memo[word]
-        for i in range(1, len(word)):
-            prefix = word[:i]
-            suffix = word[i:]
-            if prefix in wordSet and suffix in wordSet:
-                memo[word] = True
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        wordSet = set(words)
+        def dfs(word: str, count: int) -> bool:
+            if count > 1 and word in wordSet:
                 return True
-            if prefix in wordSet and dfs(suffix, wordSet, memo):
-                memo[word] = True
-                return True
-        memo[word] = False
-        return False
-
-    wordSet = set(words)
-    memo = {}
-    ans = []
-    for word in words:
-        if dfs(word, wordSet, memo):
-            ans.append(word)
-    return ans
+            for i in range(1, len(word)):
+                if word[:i] in wordSet and dfs(word[i:], count + 1):
+                    return True
+            return False
+        return [word for word in words if dfs(word, 0)]
 
 =======
 Suggestion 10
 
-def findAllConcatenatedWordsInADict(words):
-    """
-    :type words: List[str]
-    :rtype: List[str]
-    """
-    words.sort(key=len)
-    words_set, res = set(), []
-    for word in words:
-        if wordBreak(word, words_set):
-            res.append(word)
-        words_set.add(word)
-    return res
+def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:
+        #sort the words by length
+        words.sort(key=len)
+        #create a hashset to store the words
+        wordSet = set()
+        #create an empty list to store the result
+        result = []
+        #loop through the words
+        for word in words:
+            #if the word is empty or if the word is in the wordSet
+            if word == "" or word in wordSet:
+                #add the word to the result
+                result.append(word)
+                #continue to the next iteration
+                continue
+            #create a boolean variable to store if the word is concatenated
+            isConcatenated = False
+            #loop through the wordSet
+            for i in range(1, len(word)):
+                #if the word[:i] is in the wordSet and the word[i:] is in the wordSet
+                if word[:i] in wordSet and word[i:] in wordSet:
+                    #set isConcatenated to True
+                    isConcatenated = True
+                    #break out of the loop
+                    break
+            #if isConcatenated is True
+            if isConcatenated:
+                #add the word to the result
+                result.append(word)
+            #add the word to the wordSet
+            wordSet.add(word)
+        #return the result
+        return result

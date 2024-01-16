@@ -3,190 +3,125 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    if len(nums) == 1:
-        return 0
-    maxVal = 0
-    for i in range(len(nums)):
-        maxVal += i * nums[i]
-    maxValTemp = maxVal
-    for i in range(len(nums) - 1, 0, -1):
-        maxValTemp = maxValTemp + sum(nums) - len(nums) * nums[i]
-        maxVal = max(maxVal, maxValTemp)
-    return maxVal
+def maxRotateFunction(self, nums: list[int]) -> int:
+        if len(nums) == 1:
+            return 0
+        max_s
 
 =======
 Suggestion 2
 
-def rotateArray(nums, k):
-    if k == 0:
-        return nums
-    elif k > 0:
-        for i in range(k):
-            nums.insert(0, nums.pop())
-        return nums
-    else:
-        for i in range(abs(k)):
-            nums.append(nums.pop(0))
-        return nums
+def maxRotateFunction(self, nums: list[int]) -> int:
+        n = len(nums)
+        sum = 0
+        for i in range(n):
+            sum += i * nums[i]
+        max_sum = sum
+        for i in range(n):
+            sum += n * nums[i] - sum
+            if sum > max_sum:
+                max_sum = sum
+        return max_sum
 
 =======
 Suggestion 3
 
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    #F(k) = 0 * arr_k[0] + 1 * arr_k[1] + ... + (n - 1) * arr_k[n - 1].
-    #F(k+1) = 0 * arr_k[1] + 1 * arr_k[2] + ... + (n - 1) * arr_k[0].
-    #F(k+1) - F(k) = 0 * arr_k[1] + 1 * arr_k[2] + ... + (n - 1) * arr_k[0] - 0 * arr_k[0] - 1 * arr_k[1] - ... - (n - 1) * arr_k[n - 1] = 0 * (arr_k[1] - arr_k[0]) + 1 * (arr_k[2] - arr_k[1]) + ... + (n - 1) * (arr_k[0] - arr_k[n - 1])
-    #F(k+1) - F(k) = arr_k[1] - arr_k[0] + arr_k[2] - arr_k[1] + ... + arr_k[0] - arr_k[n - 1] = arr_k[0] - arr_k[n - 1]
-    #F(k+1) = F(k) + sum(arr) - n * arr_k[n - 1]
-    if not nums:
-        return 0
-    n = len(nums)
-    f0 = sum(i * nums[i] for i in range(n))
-    s = sum(nums)
-    res = f0
-    for i in range(1, n):
-        f0 += s - n * nums[n - i]
-        res = max(res, f0)
-    return res
+def maxRotateFunction(self, nums: list[int]) -> int:
+        n = len(nums)
+        sum_all = sum(nums)
+        f = 0
+        for i in range(n):
+            f += i * nums[i]
+        max_f = f
+        for i in range(1, n):
+            f += sum_all - n * nums[n - i]
+            if f > max_f:
+                max_f = f
+        return max_f
 
 =======
 Suggestion 4
 
-def rotate(nums, k):
-    """
-    Do not return anything, modify nums in-place instead.
-    """
-    if k == 0 or len(nums) == 1:
-        return
-    k = k % len(nums)
-    nums[:] = nums[-k:] + nums[:-k]
+def maxRotateFunction(self, nums: list[int]) -> int:
+        max = 0
+        for i in range(len(nums)):
+            sum = 0
+            for j in range(len(nums)):
+                sum += j * nums[j - i]
+            if sum > max:
+                max = sum
+        return max
 
 =======
 Suggestion 5
 
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    n = len(nums)
-    sum_n = sum(nums)
-    f0 = 0
-    for i in range(n):
-        f0 += i * nums[i]
-    max_f = f0
-    for i in range(1,n):
-        f0 += sum_n - n * nums[n-i]
-        max_f = max(max_f,f0)
-    return max_f
+def maxRotateFunction(self, nums: list[int]) -> int:
+        return 0
 
 =======
 Suggestion 6
 
-def rotate(nums, k):
-    """
-    Do not return anything, modify nums in-place instead.
-    """
-    temp = [0]*len(nums)
-    for i in range(len(nums)):
-        temp[(i+k)%len(nums)] = nums[i]
-    for i in range(len(nums)):
-        nums[i] = temp[i]
+def maxRotateFunction(self, nums: list[int]) -> int:
+        n = len(nums)
+        s = sum(nums)
+        f = sum(i * nums[i] for i in range(n))
+        ans = f
+        for i in range(n - 1, 0, -1):
+            f += s - n * nums[i]
+            ans = max(ans, f)
+        return ans
 
 =======
 Suggestion 7
 
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    n = len(nums)
-    sm = sum(nums)
-    F = [0]*n
-    F[0] = sum([i*nums[i] for i in range(n)])
-    for i in range(1,n):
-        F[i] = F[i-1] + sm - n*nums[n-i]
-    return max(F)
-
-print(maxRotateFunction([4,3,2,6]))
-print(maxRotateFunction([100]))
+def maxRotateFunction(self, nums: list[int]) -> int:
+        n = len(nums)
+        sum_ = sum(nums)
+        f = sum([i * nums[i] for i in range(n)])
+        res = f
+        for i in range(n - 1, 0, -1):
+            f += sum_ - n * nums[i]
+            res = max(res, f)
+        return res
 
 =======
 Suggestion 8
 
-def maxRotateFunction(nums):
-    n = len(nums)
-    sum_all = sum(nums)
-    F = 0
-    for i in range(n):
-        F += i*nums[i]
-    max_F = F
-    for i in range(1, n):
-        F = F + sum_all - n*nums[n-i]
-        if F > max_F:
-            max_F = F
-    return max_F
-
-print(maxRotateFunction([4,3,2,6]))
-print(maxRotateFunction([100]))
-print(maxRotateFunction([1,2,3,4,5,6,7,8,9,10]))
+def maxRotateFunction(self, nums: list[int]) -> int:
+        if len(nums) == 1:
+            return 0
+        max_sum = 0
+        for i in range(len(nums)):
+            sum = 0
+            for j in range(len(nums)):
+                sum += j * nums[j]
+            if sum > max_sum:
+                max_sum = sum
+            nums.insert(0, nums.pop())
+        return max_sum
 
 =======
 Suggestion 9
 
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    n = len(nums)
-    if n == 1:
-        return 0
-    max_sum = 0
-    for i in range(n):
-        max_sum += i * nums[i]
-    sum_prev = max_sum
-    for i in range(1, n):
-        sum_prev -= n * nums[n-i]
-        sum_prev += sum(nums[:i])
-        max_sum = max(max_sum, sum_prev)
-    return max_sum
+def maxRotateFunction(self, nums: list[int]) -> int:
+        n = len(nums)
+        s = sum(nums)
+        cur = sum(i * nums[i] for i in range(n))
+        ans = cur
+        for i in range(n-1, 0, -1):
+            cur += s - n * nums[i]
+            ans = max(ans, cur)
+        return ans
 
 =======
 Suggestion 10
 
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    maxVal = 0
-    for i in range(len(nums)):
-        maxVal += i * nums[i]
-    sumVal = maxVal
-    for i in range(len(nums)-1,0,-1):
-        sumVal += sum(nums) - len(nums) * nums[i]
-        maxVal = max(maxVal, sumVal)
-    return maxVal
-print(maxRotateFunction([4,3,2,6])) #26
-print(maxRotateFunction([100])) #0
-print(maxRotateFunction([1,2,3,4,5,6,7,8,9,10])) #330
-print(maxRotateFunction([-2147483648,-2147483648])) #0
-print(maxRotateFunction([2147483647,2147483647])) #0
-print(maxRotateFunction([2147483647,-2147483648])) #0
-print(maxRotateFunction([2147483647,-2147483648,2147483647])) #2147483647
-print(maxRotateFunction([2147483647,-2147483648,2147483647,-2147483648])) #2147483647
-print(maxRotateFunction([2147483647,-2147483648,2147483647,-2147483648,2147483647])) #2147483647
-print(maxRotateFunction([2147483647,-2147483648,2147483647,-2147483648,2147483647,-2147483648])) #2147483647
-print(maxRotateFunction([2147483647,-2147483648,2147483647,-2147483648,2147483647,-2147483648,2147483647])) #2147483647
-print
+def maxRotateFunction(self, nums: list[int]) -> int:
+        max = 0
+        for i in range(len(nums)):
+            F = 0
+            for j in range(len(nums)):
+                F += j * nums[j - i]
+            if F > max:
+                max = F
+        return max

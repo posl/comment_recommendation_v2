@@ -34,13 +34,15 @@ class TextToScript:
             source_file_l = f.readlines()
             source_file_l = list(map(lambda x: '#' + x, source_file_l))
             #source_file_l.append('\n\ndef ')
-            self.add_class(source_file_l, Problem)
+            class_l = self.add_class(Problem)
+            source_file_l.extend(class_l)
 
         with open(Output, 'w') as f:
             for line in source_file_l:
                 f.write(line)
     
-    def add_class(self, source_file_l, Problem):
+    def add_class(self, Problem):
+        source_file_l = []
         if Problem != '15':
             source_file_l.append('\nclass Solution:\n')
 
@@ -122,6 +124,7 @@ class TextToScript:
             source_file_l.append('    def findAllConcatenatedWordsInADict(self, words: list[str]) -> list[str]:')
         elif Problem == '33':
             source_file_l.append('    def numberOfArithmeticSlices(self, nums: list[int]) -> int:')
+        return source_file_l
 
 if __name__ == '__main__':
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

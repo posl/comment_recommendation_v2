@@ -1,214 +1,170 @@
-Synthesizing 10/10 solutions
+Synthesizing 10/10 solutions (Duplicates hidden)
 
 =======
 Suggestion 1
 
-def generate(numRows):
-    if numRows == 0:
-        return []
-    if numRows == 1:
-        return [[1]]
-    if numRows == 2:
-        return [[1], [1, 1]]
-    if numRows >= 3:
-        pascal = [[1], [1, 1]]
-        for i in range(2, numRows):
-            row = [1]
-            for j in range(1, i):
-                row.append(pascal[i-1][j-1] + pascal[i-1][j])
-            row.append(1)
-            pascal.append(row)
+def generate(self, numRows: int) -> list[list[int]]:
+        pascal = []
+        for i in range(numRows):
+            pascal.append([1]*(i+1))
+            for j in range(1,i):
+                pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j]
         return pascal
 
 =======
 Suggestion 2
 
-def generate(numRows):
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1],[1,1]]
-    else:
-        pascal = [[1],[1,1]]
-        for i in range(2,numRows):
-            pascal.append([1])
-            for j in range(1,i):
-                pascal[i].append(pascal[i-1][j-1]+pascal[i-1][j])
-            pascal[i].append(1)
-    return pascal
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1], [1,1]]
+        else:
+            result = [[1], [1,1]]
+            for i in range(3, numRows+1):
+                row = [1]
+                for j in range(1, i-1):
+                    row.append(result[i-2][j-1] + result[i-2][j])
+                row.append(1)
+                result.append(row)
+            return result
 
 =======
 Suggestion 3
 
-def generate(numRows):
-    #create a variable to store the list
-    triangle = []
-    #loop through the range of the number of rows
-    for row_num in range(numRows):
-        #create a row list to store the values for each row
-        row = []
-        #loop through the range of the row number
-        for col_num in range(row_num+1):
-            #if the column number is 0 or the column number is equal to the row number
-            if col_num == 0 or col_num == row_num:
-                #append 1 to the row list
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1],[1,1]]
+        else:
+            result = [[1],[1,1]]
+            for i in range(2,numRows):
+                row = [1]
+                for j in range(1,i):
+                    row.append(result[i-1][j-1] + result[i-1][j])
                 row.append(1)
-            else:
-                #if not, append the value of the row above and the column number -1 and the value of the row above and the column number
-                row.append(triangle[row_num-1][col_num-1] + triangle[row_num-1][col_num])
-        #append the row list to the triangle list
-        triangle.append(row)
-    #return the triangle list
-    return triangle
+                result.append(row)
+            return result
 
 =======
 Suggestion 4
 
-def generate(numRows):
-    """
-    :type numRows: int
-    :rtype: List[List[int]]
-    """
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1],[1,1]]
-    else:
-        list = [[1],[1,1]]
-        for i in range(2, numRows):
-            newList = [1]
-            for j in range(1, i):
-                newList.append(list[i-1][j-1] + list[i-1][j])
-            newList.append(1)
-            list.append(newList)
-        return list
-
-print(generate(5))
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1],[1,1]]
+        else:
+            result = [[1],[1,1]]
+            for i in range(2,numRows):
+                temp = [1]
+                for j in range(1,i):
+                    temp.append(result[i-1][j-1]+result[i-1][j])
+                temp.append(1)
+                result.append(temp)
+            return result
 
 =======
 Suggestion 5
 
-def generate(numRows):
-    """
-    :type numRows: int
-    :rtype: List[List[int]]
-    """
-    triangle = []
-    for row_num in range(numRows):
-        # The first and last row elements are always 1.
-        row = [None for _ in range(row_num+1)]
-        row[0], row[-1] = 1, 1
-        # Each triangle element is equal to the sum of the elements
-        # above-and-to-the-left and above-and-to-the-right.
-        for j in range(1, len(row)-1):
-            row[j] = triangle[row_num-1][j-1] + triangle[row_num-1][j]
-        triangle.append(row)
-    return triangle
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1], [1, 1]]
+        else:
+            ans = [[1], [1, 1]]
+            for i in range(2, numRows):
+                temp = [1]
+                for j in range(1, i):
+                    temp.append(ans[i-1][j-1] + ans[i-1][j])
+                temp.append(1)
+                ans.append(temp)
+            return ans
 
 =======
 Suggestion 6
 
-def generate(numRows):
-    """
-    :type numRows: int
-    :rtype: List[List[int]]
-    """
-    triangle = []
-    for row_num in range(numRows):
-        # The first and last row elements are always 1.
-        row = [None for _ in range(row_num+1)]
-        row[0], row[-1] = 1, 1
-        # Each triangle element is equal to the sum of the elements
-        # above-and-to-the-left and above-and-to-the-right.
-        for j in range(1, len(row)-1):
-            row[j] = triangle[row_num-1][j-1] + triangle[row_num-1][j]
-        triangle.append(row)
-    return triangle
-
-print(generate(5))
-print(generate(1))
-print(generate(3))
-print(generate(10))
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1], [1,1]]
+        else:
+            result = [[1], [1,1]]
+            for i in range(2, numRows):
+                result.append([1])
+                for j in range(1, i):
+                    result[i].append(result[i-1][j-1] + result[i-1][j])
+                result[i].append(1)
+            return result
 
 =======
 Suggestion 7
 
-def generate(numRows):
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1], [1,1]]
-    elif numRows == 3:
-        return [[1], [1,1], [1,2,1]]
-    elif numRows == 4:
-        return [[1], [1,1], [1,2,1], [1,3,3,1]]
-    elif numRows == 5:
-        return [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
-
-print(generate(5))
+def generate(self, numRows: int) -> list[list[int]]:
+        # if numRows is 1, return [[1]]
+        if numRows == 1:
+            return [[1]]
+        # if numRows is 2, return [[1], [1, 1]]
+        elif numRows == 2:
+            return [[1], [1, 1]]
+        # if numRows is 3, return [[1], [1, 1], [1, 2, 1]]
+        elif numRows == 3:
+            return [[1], [1, 1], [1, 2, 1]]
+        # if numRows is greater than 3
+        elif numRows > 3:
+            # create a list to store the result
+            result = [[1], [1, 1], [1, 2, 1]]
+            # create a loop from 3 to numRows
+            for i in range(3, numRows):
+                # create a list to store the row
+                row = [1]
+                # create a loop from 0 to i - 2
+                for j in range(i - 1):
+                    # append to row the sum of result[i - 1][j] and result[i - 1][j + 1]
+                    row.append(result[i - 1][j] + result[i - 1][j + 1])
+                # append to row 1
+                row.append(1)
+                # append to result row
+                result.append(row)
+            # return result
+            return result
 
 =======
 Suggestion 8
 
-def generate(numRows):
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1], [1,1]]
-    else:
-        result = [[1], [1,1]]
-        for i in range(2, numRows):
-            result.append([1])
-            for j in range(1, i):
-                result[i].append(result[i-1][j-1] + result[i-1][j])
-            result[i].append(1)
-        return result
-
-print(generate(5))
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1],[1,1]]
+        else:
+            triangle = [[1],[1,1]]
+            for i in range(2,numRows):
+                row = [1]
+                for j in range(1,i):
+                    row.append(triangle[i-1][j-1]+triangle[i-1][j])
+                row.append(1)
+                triangle.append(row)
+            return triangle
 
 =======
 Suggestion 9
 
-def generate(numRows):
-    """
-    :type numRows: int
-    :rtype: List[List[int]]
-    """
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1], [1,1]]
-    else:
-        result = [[1], [1,1]]
-        for i in range(2, numRows):
-            row = [1]
-            for j in range(1, i):
-                row.append(result[i-1][j-1] + result[i-1][j])
-            row.append(1)
-            result.append(row)
-        return result
-
-print(generate(5))
-print(generate(1))
-print(generate(2))
-print(generate(3))
-print(generate(4))
-print(generate(30))
-
-=======
-Suggestion 10
-
-def generate(numRows):
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1],[1,1]]
-    else:
-        triangle = [[1],[1,1]]
-        for i in range(2,numRows):
-            temp = [1]
-            for j in range(1,i):
-                temp.append(triangle[i-1][j-1]+triangle[i-1][j])
-            temp.append(1)
-            triangle.append(temp)
-        return triangle
+def generate(self, numRows: int) -> list[list[int]]:
+        if numRows == 1:
+            return [[1]]
+        if numRows == 2:
+            return [[1],[1,1]]
+        if numRows > 2:
+            triangle = [[1],[1,1]]
+            for i in range(2,numRows):
+                row = [1]
+                for j in range(1,i):
+                    row.append(triangle[i-1][j-1]+triangle[i-1][j])
+                row.append(1)
+                triangle.append(row)
+            return triangle
+        return []

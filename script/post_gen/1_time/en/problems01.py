@@ -3,138 +3,153 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def twoSum(nums, target):
-    """
-    :type nums: List[int]
-    :type target: int
-    :rtype: List[int]
-    """    
-    #Brute Force
-    #Time Complexity: O(n^2)
-    #Space Complexity: O(1)
-    #for i in range(len(nums)):
-    #    for j in range(i+1,len(nums)):
-    #        if nums[i] + nums[j] == target:
-    #            return [i,j]
-    #return []
-    
-    #Hash Table
-    #Time Complexity: O(n)
-    #Space Complexity: O(n)
-    hashTable = {}
-    for i in range(len(nums)):
-        if target - nums[i] in hashTable:
-            return [hashTable[target-nums[i]],i]
-        hashTable[nums[i]] = i
-    return []
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
 
 =======
 Suggestion 2
 
-def twoSum(nums, target):
-    for i in range(0, len(nums)):
-        for j in range(i+1, len(nums)):
-            if (nums[i]+nums[j] == target):
-                return [i, j]
-    return []
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i != j and nums[i]+nums[j] == target:
+                    return [i,j]
+        return []
 
 =======
 Suggestion 3
 
-def twoSum(nums, target):
-    for i in range(0, len(nums)):
-        for j in range(i+1, len(nums)):
-            if (nums[i] + nums[j] == target):
-                return [i, j]
-
-print(twoSum([2,7,11,15], 9))
-print(twoSum([3,2,4], 6))
-print(twoSum([3,3], 6))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(0, len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[j] == target - nums[i]:
+                    return [i,j]
+        return []
 
 =======
 Suggestion 4
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1,len(nums)):
-            if nums[i] + nums[j] == target:
-                print(i,j)
-
-twoSum([2,7,11,15],9)
-twoSum([3,2,4],6)
-twoSum([3,3],6)
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        #Brute force
+        #for i in range(0,len(nums)):
+        #    for j in range(i+1,len(nums)):
+        #        if(nums[i]+nums[j]==target):
+        #            return [i,j]
+        #return [-1,-1]
+        
+        #Hash table
+        #hashmap = {}
+        #for i in range(0,len(nums)):
+        #    if(target-nums[i] in hashmap):
+        #        return [hashmap.get(target-nums[i]),i]
+        #    hashmap[nums[i]]=i
+        #return [-1,-1]
+        
+        #Two pointer
+        nums = [(v,i) for i,v in enumerate(nums)]
+        nums.sort()
+        i = 0
+        j = len(nums)-1
+        while(i<j):
+            if(nums[i][0]+nums[j][0]==target):
+                return [nums[i][1],nums[j][1]]
+            elif(nums[i][0]+nums[j][0]<target):
+                i+=1
+            else:
+                j-=1
+        return [-1,-1]
 
 =======
 Suggestion 5
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(len(nums)):
-            if nums[i] + nums[j] == target:
-                return [i,j]
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        # Brute force solution
+        # for i in range(len(nums)):
+        #     for j in range(i+1, len(nums)):
+        #         if nums[i] + nums[j] == target:
+        #             return [i, j]
+        
+        # Hashmap solution
+        # nums_map = {}
+        # for i, num in enumerate(nums):
+        #     nums_map[num] = i
+        
+        # for i, num in enumerate(nums):
+        #     if target - num in nums_map and i != nums_map[target - num]:
+        #         return [i, nums_map[target - num]]
+        
+        # One-pass Hash Table
+        nums_map = {}
+        for i, num in enumerate(nums):
+            if target - num in nums_map:
+                return [i, nums_map[target - num]]
+            
+            nums_map[num] = i
+        
+        return []
 
 =======
 Suggestion 6
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(len(nums)):
-            if nums[i] + nums[j] == target and i != j:
-                return [i, j]
-    return None
-
-print(twoSum([2,7,11,15], 9))
-print(twoSum([3,2,4], 6))
-print(twoSum([3,3], 6))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i != j and nums[i] + nums[j] == target:
+                    return [i, j]
 
 =======
 Suggestion 7
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(len(nums)):
-            if i != j:
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        #print("nums: ", nums)
+        #print("target: ", target)
+        for i in range(0, len(nums)):
+            #print("i: ", i)
+            for j in range(i+1, len(nums)):
+                #print("j: ", j)
                 if nums[i] + nums[j] == target:
-                    return [i,j]
+                    #print("nums[i]: ", nums[i])
+                    #print("nums[j]: ", nums[j])
+                    #print("nums[i]+nums[j]: ", nums[i]+nums[j])
+                    return [i, j]
+        return []
 
 =======
 Suggestion 8
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1, len(nums)):
-            if nums[i]+nums[j] == target:
-                return [i,j]
-
-print(twoSum([2,7,11,15], 9))
-print(twoSum([3,2,4], 6))
-print(twoSum([3,3], 6))
-print(twoSum([3,2,3], 6))
-print(twoSum([3,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17], 26))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[j] == target - nums[i]:
+                    return [i,j]
+        return []
 
 =======
 Suggestion 9
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1,len(nums)):
-            if nums[i] + nums[j] == target:
-                return [i,j]
-    return []
-
-print(twoSum([2,7,11,15], 9))
-print(twoSum([3,2,4], 6))
-print(twoSum([3,3], 6))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
+                else:
+                    continue
+        return []
 
 =======
 Suggestion 10
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1, len(nums)):
-            if nums[j] == target - nums[i]:
-                return [i, j]
-
-nums = [2,7,11,15]
-target = 9
-print(twoSum(nums, target))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i == j:
+                    continue
+                else:
+                    if nums[i] + nums[j] == target:
+                        return [i, j]
+                    else:
+                        continue
+        return []

@@ -3,207 +3,188 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        count = 0
+        for i in range(len(nums) - 2):
+            for j in range(i + 1, len(nums) - 1):
+                diff = nums[j] - nums[i]
+                for k in range(j + 1, len(nums)):
+                    if nums[k] - nums[j] == diff:
+                        count += 1
+                    elif nums[k] - nums[j] > diff:
+                        break
+        return count
 
 =======
 Suggestion 2
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    n = len(nums)
-    dp = [{} for _ in range(n)]
-    ans = 0
-    for i in range(n):
-        for j in range(i):
-            d = nums[i] - nums[j]
-            c1 = dp[j].get(d, 0)
-            c2 = dp[i].get(d, 0)
-            ans += c1
-            dp[i][d] = c1 + c2 + 1
-    return ans
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        if len(nums) < 3:
+            return 0
+        ans = 0
+        dp = [defaultdict(int) for i in range(len(nums))]
+        for i in range(len(nums)):
+            for j in range(i):
+                dp[i][nums[i] - nums[j]] += 1
+                if nums[i] - nums[j] in dp[j]:
+                    dp[i][nums[i] - nums[j]] += dp[j][nums[i] - nums[j]]
+                    ans += dp[j][nums[i] - nums[j]]
+        return ans
 
 =======
 Suggestion 3
 
-def arithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    res = 0
-    dp = [{} for i in range(len(nums))]
-    for i in range(1, len(nums)):
-        for j in range(i):
-            diff = nums[i] - nums[j]
-            dp[i][diff] = dp[i].get(diff, 0) + dp[j].get(diff, 0) + 1
-            res += dp[j].get(diff, 0)
-    return res
-
-nums = [2,4,6,8,10]
-print(arithmeticSlices(nums))
-nums = [7,7,7,7,7]
-print(arithmeticSlices(nums))
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        # dp[i][d] -> number of subsequences ending at i with difference d
+        # dp[i][d] = sum(dp[j][d]) for all j < i
+        # ans = sum(dp[i][d]) for all i
+        n = len(nums)
+        dp = [collections.defaultdict(int) for _ in range(n)]
+        ans = 0
+        for i in range(1, n):
+            for j in range(i):
+                d = nums[i] - nums[j]
+                dp[i][d] += 1
+                if d in dp[j]:
+                    dp[i][d] += dp[j][d]
+                    ans += dp[j][d]
+        return ans
 
 =======
 Suggestion 4
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    result = 0
-    n = len(nums)
-    for i in range(n):
-        for j in range(i+1, n):
-            diff = nums[j] - nums[i]
-            count = 2
-            for k in range(j+1, n):
-                if nums[k] - nums[j] == diff:
-                    count += 1
-            if count >= 3:
-                result += 1
-    return result
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        n = len(nums)
+        ans = 0
+        dp = [defaultdict(int) for _ in range(n)]
+        for i in range(n):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                dp[i][diff] += 1
+                if diff in dp[j]:
+                    dp[i][diff] += dp[j][diff]
+                    ans += dp[j][diff]
+        return ans
 
 =======
 Suggestion 5
 
-def numberOfArithmeticSlices(nums):
-    n = len(nums)
-    dp = [{} for _ in range(n)]
-    ans = 0
-    for i in range(n):
-        for j in range(i):
-            diff = nums[i] - nums[j]
-            dp[i][diff] = dp[i].get(diff, 0) + dp[j].get(diff, 0) + 1
-            ans += dp[j].get(diff, 0)
-    return ans
-
-print(numberOfArithmeticSlices([2,4,6,8,10]))
-print(numberOfArithmeticSlices([7,7,7,7,7]))
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        count = 0
+        for i in range(1, len(nums) - 1):
+            left = i - 1
+            right = i + 1
+            while left >= 0 and right < len(nums):
+                if nums[left] + nums[right] == 2 * nums[i]:
+                    left -= 1
+                    right += 1
+                    count += 1
+                elif nums[left] + nums[right] > 2 * nums[i]:
+                    left -= 1
+                else:
+                    right += 1
+        return count
 
 =======
 Suggestion 6
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    count = 0
-    for i in range(1, len(nums) - 1):
-        for j in range(i + 1, len(nums)):
-            if nums[j] - nums[i] == nums[i] - nums[i - 1]:
-                count += 1
-            else:
-                break
-    return count
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        def numSlices(n):
+            return (n * (n - 1)) // 2
+
+        def numSlicesWithLength(n):
+            return (n * (n - 1)) // 2 - (n - 1)
+
+        if len(nums) < 3:
+            return 0
+
+        dp = [{} for _ in range(len(nums))]
+        ans = 0
+        for i in range(1, len(nums)):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                if diff in dp[j]:
+                    dp[i][diff] = dp[j][diff] + 1
+                else:
+                    dp[i][diff] = 1
+                if dp[j][diff] >= 2:
+                    ans += dp[j][diff] - 1
+        return ans
 
 =======
 Suggestion 7
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    res = 0
-    dp = [{} for i in range(len(nums))]
-    for i in range(1, len(nums)):
-        for j in range(i):
-            diff = nums[i] - nums[j]
-            dp[i][diff] = dp[i].get(diff, 0) + dp[j].get(diff, 0) + 1
-            res += dp[j].get(diff, 0)
-    return res
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        n = len(nums)
+        dp = [defaultdict(int) for _ in range(n)]
+        ans = 0
+        for i in range(n):
+            for j in range(i):
+                d = nums[i] - nums[j]
+                ans += dp[j][d]
+                dp[i][d] += dp[j][d] + 1
+        return ans
 
 =======
 Suggestion 8
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    count = 0
-    for i in range(len(nums)):
-        for j in range(i+1,len(nums)):
-            diff = nums[j] - nums[i]
-            prev = nums[j]
-            for k in range(j+1,len(nums)):
-                if nums[k] - prev == diff:
-                    count += 1
-                    prev = nums[k]
-    return count
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        n = len(nums)
+        dp = [defaultdict(int) for _ in range(n)]
+        ans = 0
+        for i in range(n):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                ans += dp[j][diff]
+                dp[i][diff] += dp[j][diff] + 1
+        return ans
 
 =======
 Suggestion 9
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    if len(nums) < 3:
-        return 0
-    dp = [{} for _ in range(len(nums))]
-    res = 0
-    for i in range(1, len(nums)):
-        for j in range(i):
-            diff = nums[i] - nums[j]
-            if diff in dp[i]:
-                dp[i][diff] += 1
-            else:
-                dp[i][diff] = 1
-            if diff in dp[j]:
-                dp[i][diff] += dp[j][diff]
-                res += dp[j][diff]
-    return res
-
-print(numberOfArithmeticSlices([2,4,6,8,10]))
-print(numberOfArithmeticSlices([7,7,7,7,7]))
-print(numberOfArithmeticSlices([1,2,3,4,5,6]))
-print("The values above should be 7, 16, and 10.")
+class Solution:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        # 1. Brute Force
+        # 2. DP
+        # 3. DP with 2D matrix
+        # 4. DP with 1D matrix
+        # 5. DP with 1D matrix and constant space
+        # 6. Math
+        # 7. Two Pointers
+        # 8. Set
+        # 9. Recursion
+        # 10. Recursion with memorization
+        # 11. Bitmask
+        # 12. Bitmask with memorization
+        # 13. Sliding Window
+        # 14. Sliding Window with set
+        # 15. Sliding Window with set and memorization
+        # 16. Sliding Window with 2 pointers
+        # 17. Sliding Window with 2 pointers and set
+        # 18. Sliding Window with 2 pointers and set and memorization
+        # 19. Sliding Window with 2 pointers and set and memorization and binary search
+        # 20. Sliding Window with 2 pointers and set and memorization and binary search and bitmask
+        # 21. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion
+        # 22. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion and math
+        # 23. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion and math and DP
+        # 24. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion and math and DP and 1D DP
+        # 25. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion and math and DP and 1D DP and 2D DP
+        # 26. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion and math and DP and 1D DP and 2D DP and 2D DP with bitmask
+        # 27. Sliding Window with 2 pointers and set and memorization and binary search and bitmask and recursion and math and DP and 1D DP and 2D DP and 2D DP with bitmask and 2D DP with bitmask and recursion
+        # 28
 
 =======
 Suggestion 10
 
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    if len(nums) < 3:
-        return 0
-
-    # dp[i][j] stores the number of arithmetic slices ending at index i with difference j
-    dp = [{} for _ in range(len(nums))]
-    res = 0
-
-    for i in range(1, len(nums)):
-        for j in range(i):
-            diff = nums[i] - nums[j]
-            dp[i][diff] = dp[i].get(diff, 0) + dp[j].get(diff, 0) + 1
-            res += dp[j].get(diff, 0)
-
-    return res
-
-print(numberOfArithmeticSlices([2,4,6,8,10]))
-print(numberOfArithmeticSlices([7,7,7,7,7]))
-print(numberOfArithmeticSlices([1,2,3,4,5,6]))
-print(numberOfArithmeticSlices([1,1,1,1,1]))
-print(numberOfArithmeticSlices([1,2,3,4,5,6,7,8,9,10]))
-print(numberOfArithmeticSlices([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]))
-print(numberOfArithmeticSlices([1,3,5,7,9]))
-print(numberOfArithmeticSlices([7,3,5,1,9]))
-print(numberOfArithmeticSlices([1,3,5,7,9,11,13,15,17,19]))
-print(numberOfArithmeticSlices([1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]))
-print(numberOfArithmeticSlices([1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35]))
-print(numberOfArithmeticSlices([1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37]))
-print(numberOfArithmeticSlices([1,3,5,7,
+def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        # dp[i][j] = number of arithmetic subsequences ending at i with difference j
+        # dp[i][j] = sum(dp[k][j] + 1) for k < i and nums[k] + j == nums[i]
+        # ans = sum(dp[i][j] for i in range(len(nums)) for j in range(nums[i] - nums[0] + 1))
+        dp = [Counter() for _ in nums]
+        ans = 0
+        for i in range(len(nums)):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                dp[i][diff] += dp[j][diff] + 1
+                ans += dp[j][diff]
+        return ans

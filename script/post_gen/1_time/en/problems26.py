@@ -3,248 +3,207 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    def isValid(nums, mid, k):
-        count = 1
-        currSum = 0
-        for num in nums:
-            currSum += num
-            if currSum > mid:
-                count += 1
-                currSum = num
-        return count <= k
-    
-    left = max(nums)
-    right = sum(nums)
-    while left < right:
-        mid = (left + right) // 2
-        if isValid(nums, mid, k):
-            right = mid
+def splitArray(self, nums: list[int], k: int) -> int:
+        #print(nums, k)
+        if len(nums) == 1: return nums[0]
+        if k == 1: return sum(nums)
+        if k == len(nums): return max(nums)
+        if k == 2:
+            return max(sum(nums[:i]) for i in range(1, len(nums)))
         else:
-            left = mid + 1
-    return left
-
-print(splitArray([7,2,5,10,8], 2))
-print(splitArray([1,2,3,4,5], 2))
-print(splitArray([1,4,4], 3))
+            for i in range(1, len(nums)):
+                if self.splitArray(nums[i:], k - 1) < self.splitArray(nums[i:], k):
+                    return self.splitArray(nums[i:], k - 1)
+            return self.splitArray(nums, k - 1)
 
 =======
 Suggestion 2
 
-def splitArray(nums, k):
-    left, right = max(nums), sum(nums)
-    while left < right:
-        mid = (left + right) // 2
-        if valid(nums, k, mid):
-            right = mid
-        else:
-            left = mid + 1
-    return left
+def splitArray(self, nums: list[int], k: int) -> int:
+        dp = [[0 for _ in range(len(nums))] for _ in range(k)]
+        dp[0][0] = nums[0]
+        for i in range(1, len(nums)):
+            dp[0][i] = dp[0][i - 1] + nums[i]
+        for i in range(1, k):
+            for j in range(i, len(nums)):
+                dp[i][j] = min(max(dp[i - 1][k - 1], dp[0][j] - dp[0][k]) for k in range(i, j + 1))
+        return dp[-1][-1]
 
 =======
 Suggestion 3
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    def valid(mid):
-        count = 1
-        total = 0
-        for num in nums:
-            total += num
-            if total > mid:
-                total = num
-                count += 1
-                if count > k:
-                    return False
-        return True
+def splitArray(self, nums: list[int], k: int) -> int:
+        def isPossible(maximum: int) -> bool:
+            curr = 0
+            count = 1
+            for num in nums:
+                if curr + num > maximum:
+                    count += 1
+                    curr = num
+                else:
+                    curr += num
+            return count <= k
         
-    l, r = max(nums), sum(nums)
-    while l < r:
-        mid = l + (r-l)//2
-        if valid(mid):
-            r = mid
-        else:
-            l = mid + 1
-    return l
-
-print(splitArray([7,2,5,10,8], 2))
-print(splitArray([1,2,3,4,5], 2))
-print(splitArray([1,4,4], 3))
+        left, right = max(nums), sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if isPossible(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
 =======
 Suggestion 4
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    def valid(mid):
-        count = 1
-        total = 0
-        for num in nums:
-            total += num
-            if total > mid:
-                total = num
-                count += 1
-                if count > k:
-                    return False
-        return True
-    left = max(nums)
-    right = sum(nums)
-    while left < right:
-        mid = left + (right - left) // 2
-        if valid(mid):
-            right = mid
-        else:
-            left = mid + 1
-    return left
-
-print(splitArray([7,2,5,10,8], 2))
+def splitArray(self, nums: list[int], k: int) -> int:
+        def can_split(mid: int) -> bool:
+            count = 1
+            total = 0
+            for num in nums:
+                total += num
+                if total > mid:
+                    count += 1
+                    total = num
+            return count <= k
+        
+        left = max(nums)
+        right = sum(nums)
+        while left < right:
+            mid = left + (right - left) // 2
+            if can_split(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
 =======
 Suggestion 5
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    l = max(nums)
-    r = sum(nums)
-    while l < r:
-        mid = (l + r) // 2
-        if check(nums, mid, k):
-            r = mid
-        else:
-            l = mid + 1
-    return l
+def splitArray(self, nums: list[int], k: int) -> int:
+        def check(mid):
+            cuts, curr = 0, 0
+            for num in nums:
+                curr += num
+                if curr > mid:
+                    cuts += 1
+                    curr = num
+            return cuts + 1
+        
+        left, right = max(nums), sum(nums)
+        
+        while left < right:
+            mid = left + (right - left) // 2
+            if check(mid) <= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
 =======
 Suggestion 6
 
-def splitArray(nums, k):
-    def canSplit(nums, k, x):
-        count = 0
-        curr = 0
-        for i in range(len(nums)):
-            curr += nums[i]
-            if curr > x:
-                curr = nums[i]
-                count += 1
-                if count >= k:
-                    return False
-        return True
-    
-    l, r = max(nums), sum(nums)
-    while l < r:
-        mid = l + (r - l) // 2
-        if canSplit(nums, k, mid):
-            r = mid
-        else:
-            l = mid + 1
-    return l
-
-print(splitArray([7,2,5,10,8], 2))
-print(splitArray([1,2,3,4,5], 2))
+def splitArray(self, nums: list[int], k: int) -> int:
+        def canSplit(nums, k, target):
+            count = 1
+            total = 0
+            for num in nums:
+                total += num
+                if total > target:
+                    count += 1
+                    total = num
+            return count <= k
+        
+        left, right = max(nums), sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if canSplit(nums, k, mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
 =======
 Suggestion 7
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    pass
+def splitArray(self, nums: list[int], k: int) -> int:
+        def check(mid):
+            count = 1
+            current_sum = 0
+            for num in nums:
+                current_sum += num
+                if current_sum > mid:
+                    count += 1
+                    current_sum = num
+            return count <= k
+
+        left, right = max(nums), sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if check(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
 =======
 Suggestion 8
 
-def splitArray(nums, k):
-    n = len(nums)
-    dp = [[float('inf')] * (k + 1) for _ in range(n + 1)]
-    dp[0][0] = 0
-    sub = [0]
-    for num in nums:
-        sub.append(sub[-1] + num)
-    for i in range(1, n + 1):
-        for j in range(1, min(i, k) + 1):
-            for p in range(i):
-                dp[i][j] = min(dp[i][j], max(dp[p][j - 1], sub[i] - sub[p]))
-    return dp[n][k]
-
-nums = [7,2,5,10,8]
-k = 2
-result = splitArray(nums, k)
-print(result)
+def splitArray(self, nums: list[int], k: int) -> int:
+        # dp[i][j] = min(max(dp[i][j], dp[i][j-k], sum(nums[j-k:j])))
+        dp = [[float('inf') for _ in range(len(nums)+1)] for _ in range(k+1)]
+        dp[0][0] = 0
+        for i in range(1, k+1):
+            for j in range(1, len(nums)+1):
+                for l in range(j):
+                    dp[i][j] = min(dp[i][j], max(dp[i-1][l], sum(nums[l:j])))
+        return dp[k][len(nums)]
 
 =======
 Suggestion 9
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    # The idea is to use binary search to search the answer.
-    # The answer is between max(nums) and sum(nums)
-    # We use binary search to find the smallest sum that is 
-    # greater than max(nums) and less than sum(nums)
-    def is_valid(nums, k, mid):
-        # This function checks if we can split nums into k subarrays
-        # such that the sum of each subarray is less than or equal to mid
-        # If we can, return True
-        # Else, return False
-        subarray_sum = 0
-        num_subarrays = 1
-        for num in nums:
-            subarray_sum += num
-            if subarray_sum > mid:
-                # We have to start a new subarray
-                num_subarrays += 1
-                subarray_sum = num
-                if num_subarrays > k:
-                    # We can't split nums into k subarrays
-                    return False
-        return True
-    
-    # Initialize the left and right pointers
-    left = max(nums)
-    right = sum(nums)
-    # Binary search
-    while left < right:
-        mid = left + (right - left) // 2
-        if is_valid(nums, k, mid):
-            right = mid
-        else:
-            left = mid + 1
-    return left
+def splitArray(self, nums: list[int], k: int) -> int:
+        if k == 1:
+            return sum(nums)
+        if k == len(nums):
+            return max(nums)
+        def isPossible(maxSum):
+            count = 1
+            currentSum = 0
+            for num in nums:
+                currentSum += num
+                if currentSum > maxSum:
+                    currentSum = num
+                    count += 1
+                    if count > k:
+                        return False
+            return True
+        left = max(nums)
+        right = sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if isPossible(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
 =======
 Suggestion 10
 
-def splitArray(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    #print(nums, k)
-    #print("----------")
-    #print("----------")
-    #print("----------")
-    #print("----------")
+def splitArray(self, nums: list[int], k: int) -> int:
+        def check(m):
+            cuts, curr_sum = 0, 0
+            for num in nums:
+                curr_sum += num
+                if curr_sum > m:
+                    cuts, curr_sum = cuts + 1, num
+            return cuts + 1 <= k
+        left, right = max(nums), sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if check(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left

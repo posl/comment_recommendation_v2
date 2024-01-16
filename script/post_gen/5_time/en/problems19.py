@@ -3,261 +3,133 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if (maxChoosableInteger * (maxChoosableInteger + 1) / 2) < desiredTotal:
-        return False
-    if maxChoosableInteger >= desiredTotal:
-        return True
-    memo = {}
-    def dfs(nums, total):
-        if nums[-1] >= total:
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if (maxChoosableInteger*(maxChoosableInteger+1)/2) < desiredTotal:
+            return False
+        if desiredTotal<=0:
             return True
-        key = tuple(nums)
-        if key in memo:
-            return memo[key]
-        for i in range(len(nums)):
-            if not dfs(nums[:i] + nums[i+1:], total - nums[i]):
-                memo[key] = True
-                return True
-        memo[key] = False
-        return False
-    return dfs(list(range(1, maxChoosableInteger + 1)), desiredTotal)
-
-print(canIWin(10, 11))
-print(canIWin(10, 0))
-print(canIWin(10, 1))
-print(canIWin(10, 40))
+        self.cache = {}
+        return self.helper(list(range(1,maxChoosableInteger+1)),desiredTotal)
 
 =======
 Suggestion 2
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if desiredTotal == 0:
-        return True
-    if (maxChoosableInteger * (maxChoosableInteger + 1) / 2) < desiredTotal:
-        return False
-    return canIWinHelper(maxChoosableInteger, desiredTotal, 0, {})
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if desiredTotal == 0:
+            return True
+        if (maxChoosableInteger * (maxChoosableInteger + 1)) // 2 < desiredTotal:
+            return False
+        self.memo = {}
+        return self.dfs(tuple(range(1, maxChoosableInteger + 1)), desiredTotal)
 
 =======
 Suggestion 3
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if maxChoosableInteger >= desiredTotal: return True
-    if (maxChoosableInteger + 1) * maxChoosableInteger / 2 < desiredTotal: return False
-    def helper(nums, desiredTotal):
-        if nums[-1] >= desiredTotal: return True
-        for i in range(len(nums)):
-            if not helper(nums[:i] + nums[i + 1:], desiredTotal - nums[i]): return True
-        return False
-    return helper(list(range(1, maxChoosableInteger + 1)), desiredTotal)
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if (maxChoosableInteger * (maxChoosableInteger + 1) // 2) < desiredTotal:
+            return False
+        if desiredTotal <= 0:
+            return True
+        self.memo = {}
+        return self.helper(list(range(1, maxChoosableInteger + 1)), desiredTotal)
 
 =======
 Suggestion 4
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    return True
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if desiredTotal <= maxChoosableInteger:
+            return True
+        if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal:
+            return False
+        self.memo = {}
+        return self.dfs(range(1, maxChoosableInteger + 1), desiredTotal)
 
 =======
 Suggestion 5
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if maxChoosableInteger >= desiredTotal:
-        return True
-    if (maxChoosableInteger * (maxChoosableInteger + 1) / 2) < desiredTotal:
-        return False
-    memo = {}
-    def dfs(used, total):
-        if total <= 0:
-            return False
-        key = str(used)
-        if key in memo:
-            return memo[key]
-        for i in range(1, maxChoosableInteger + 1):
-            if used & (1 << i) == 0:
-                if not dfs(used | (1 << i), total - i):
-                    memo[key] = True
-                    return True
-        memo[key] = False
-        return False
-    return dfs(0, desiredTotal)
-
-print(canIWin(10, 11))
-print(canIWin(10, 0))
-print(canIWin(10, 1))
-print(canIWin(18, 79))
-print(canIWin(4, 6))
-print(canIWin(20, 210))
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if (maxChoosableInteger + 1) * maxChoosableInteger / 2 < desiredTotal: return False
+        if desiredTotal <= 0: return True
+        self.memo = {}
+        return self.canWin(tuple(range(1, maxChoosableInteger + 1)), desiredTotal)
 
 =======
 Suggestion 6
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if desiredTotal == 0:
-        return True
-    if maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal:
-        return False
-    def helper(nums, desiredTotal, memo):
-        if nums[-1] >= desiredTotal:
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if desiredTotal == 0:
             return True
-        if tuple(nums) in memo:
-            return memo[tuple(nums)]
-        for i in range(len(nums)):
-            if not helper(nums[:i] + nums[i + 1:], desiredTotal - nums[i], memo):
-                memo[tuple(nums)] = True
-                return True
-        memo[tuple(nums)] = False
-        return False
-    return helper(list(range(1, maxChoosableInteger + 1)), desiredTotal, {})
-
-print(canIWin(10, 11))
-print(canIWin(10, 0))
-print(canIWin(10, 1))
-print(canIWin(10, 2))
-print(canIWin(10, 3))
-print(canIWin(10, 4))
-print(canIWin(10, 5))
-print(canIWin(10, 6))
-print(canIWin(10, 7))
-print(canIWin(10, 8))
-print(canIWin(10, 9))
-print(canIWin(10, 10))
-print(canIWin(10, 11))
-print(canIWin(10, 12))
-print(canIWin(10, 13))
-print(canIWin(10, 14))
-print(canIWin(10, 15))
-print(canIWin(10, 16))
-print(canIWin(10, 17))
-print(canIWin(10, 18))
-print(canIWin(10, 19))
-print(canIWin(10, 20))
-print(canIWin(10, 21))
-print(canIWin(10, 22))
-print(canIWin(10, 23))
-print(canIWin(10, 24))
-print(canIWin(10, 25))
-print(canIWin(10, 26))
-print(canIWin(10, 27))
-print(canIWin(10, 28))
-print(canIWin(10, 29))
-print(canIWin(10, 30))
-print(canIWin(10, 31
+        elif maxChoosableInteger*(maxChoosableInteger+1)//2 < desiredTotal:
+            return False
+        elif maxChoosableInteger*(maxChoosableInteger+1)//2 == desiredTotal:
+            return maxChoosableInteger%2 == 1
+        else:
+            memo = {}
+            return self.canWin(maxChoosableInteger, desiredTotal, 0, memo)
 
 =======
 Suggestion 7
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    """
-    :type maxChoosableInteger: int
-    :type desiredTotal: int
-    :rtype: bool
-    """
-    if maxChoosableInteger >= desiredTotal: return True
-    if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal: return False
-    def can_win(choices, desiredTotal, cache):
-        if choices[-1] >= desiredTotal: return True
-        key = str(choices)
-        if key in cache: return cache[key]
-        for i in range(len(choices)):
-            if not can_win(choices[:i] + choices[i+1:], desiredTotal - choices[i], cache):
-                cache[key] = True
-                return True
-        cache[key] = False
-        return False
-    return can_win(list(range(1, maxChoosableInteger + 1)), desiredTotal, {})
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if (maxChoosableInteger * (maxChoosableInteger + 1)) // 2 < desiredTotal: return False
+        if desiredTotal <= 0: return True
+        def can_win(choosable, desiredTotal, cache):
+            if choosable in cache: return cache[choosable]
+            if choosable[-1] >= desiredTotal: return True
+            for i in range(len(choosable)):
+                if not can_win(choosable[:i] + choosable[i+1:], desiredTotal - choosable[i], cache):
+                    cache[choosable] = True
+                    return True
+            cache[choosable] = False
+            return False
+        return can_win(tuple(range(1, maxChoosableInteger + 1)), desiredTotal, dict())
 
 =======
 Suggestion 8
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if desiredTotal == 0 or maxChoosableInteger >= desiredTotal:
-        return True
-    if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal:
-        return False
-
-    def helper(nums, desiredTotal, memo):
-        if memo[nums] != None:
-            return memo[nums]
-        if nums[-1] >= desiredTotal:
-            return True
-        for i in range(len(nums)):
-            if not helper(nums[:i] + nums[i+1:], desiredTotal - nums[i], memo):
-                memo[nums] = True
-                return True
-        memo[nums] = False
-        return False
-
-    memo = {}
-    nums = [i for i in range(1, maxChoosableInteger + 1)]
-    return helper(tuple(nums), desiredTotal, memo)
-
-print(canIWin(10, 11))
-print(canIWin(10, 0))
-print(canIWin(10, 1))
-print(canIWin(10, 2))
-print(canIWin(10, 3))
-print(canIWin(10, 4))
-print(canIWin(10, 5))
-print(canIWin(10, 6))
-print(canIWin(10, 7))
-print(canIWin(10, 8))
-print(canIWin(10, 9))
-print(canIWin(10, 10))
-print(canIWin(10, 11))
-print(canIWin(10, 12))
-print(canIWin(10, 13))
-print(canIWin(10, 14))
-print(canIWin(10, 15))
-print(canIWin(10, 16))
-print(canIWin(10, 17))
-print(canIWin(10, 18))
-print(canIWin(10, 19))
-print(canIWin(10, 20))
-print(canIWin(10, 21))
-print(canIWin(10, 22))
-print(canIWin(10, 23))
-print(canIWin(10, 24))
-print(canIWin(10, 25))
-print(canIWin(10, 26))
-print(canIWin(10, 27))
-print(canIWin(10, 28))
-print(canIWin(10, 29))
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if desiredTotal <= maxChoosableInteger: return True
+        if (maxChoosableInteger + 1) * maxChoosableInteger / 2 < desiredTotal: return False
+        def dfs(nums, target):
+            if nums[-1] >= target: return True
+            for i in range(len(nums)):
+                if not dfs(nums[:i] + nums[i + 1:], target - nums[i]): return True
+            return False
+        return dfs(list(range(1, maxChoosableInteger + 1)), desiredTotal)
 
 =======
 Suggestion 9
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    if desiredTotal <= maxChoosableInteger:
-        return True
-    if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal:
-        return False
-    if (1 + maxChoosableInteger) * maxChoosableInteger / 2 == desiredTotal:
-        return maxChoosableInteger % 2 == 1
-    return helper(desiredTotal, [False] * (maxChoosableInteger + 1), {})
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if desiredTotal <= maxChoosableInteger:
+            return True
+        if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal:
+            return False
+        def dfs(used, desiredTotal, cache):
+            if used in cache:
+                return cache[used]
+            for i in range(maxChoosableInteger):
+                cur = (1 << i)
+                if cur & used == 0:
+                    if desiredTotal <= i + 1 or not dfs(cur | used, desiredTotal - (i + 1), cache):
+                        cache[used] = True
+                        return True
+            cache[used] = False
+            return False
+        return dfs(0, desiredTotal, {})
 
 =======
 Suggestion 10
 
-def canIWin(maxChoosableInteger, desiredTotal):
-    """
-    :type maxChoosableInteger: int
-    :type desiredTotal: int
-    :rtype: bool
-    """
-    if maxChoosableInteger >= desiredTotal:
-        return True
-    if (maxChoosableInteger+1)*maxChoosableInteger < desiredTotal*2:
-        return False
-    def helper(nums, desiredTotal, cache):
-        if nums[-1] >= desiredTotal:
-            return True
-        key = tuple(nums)
-        if key in cache:
-            return cache[key]
-        for i in range(len(nums)):
-            if not helper(nums[:i]+nums[i+1:], desiredTotal-nums[i], cache):
-                cache[key] = True
-                return True
-        cache[key] = False
-        return False
-    return helper(list(range(1, maxChoosableInteger+1)), desiredTotal, {})
+def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if desiredTotal <= maxChoosableInteger: return True
+        if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal: return False
+        @lru_cache(None)
+        def dfs(used, total):
+            if total <= 0: return False
+            for i in range(maxChoosableInteger):
+                cur = 1 << i
+                if cur & used == 0 and not dfs(cur | used, total - i - 1):
+                    return True
+            return False
+        return dfs(0, desiredTotal)

@@ -3,231 +3,185 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def combinationSum4(nums, target):
-    dp = [0] * (target+1)
-    dp[0] = 1
-    for i in range(1, target+1):
-        for num in nums:
-            if i - num >= 0:
-                dp[i] += dp[i-num]
-
-    return dp[target]
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        # DP
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        for i in range(1, len(dp)):
+            for num in nums:
+                if i - num >= 0:
+                    dp[i] += dp[i - num]
+        return dp[-1]
 
 =======
 Suggestion 2
 
-def combinationSum4(nums, target):
-    dp = [0] * (target + 1)
-    dp[0] = 1
-    for i in range(1, target + 1):
-        for j in range(len(nums)):
-            if nums[j] <= i:
-                dp[i] += dp[i - nums[j]]
-    return dp[-1]
-
-nums = [1,2,3]
-target = 4
-print(combinationSum4(nums, target))
-
-nums = [9]
-target = 3
-print(combinationSum4(nums, target))
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        nums = sorted(nums)
+        for i in range(1, target + 1):
+            for j in nums:
+                if j > i:
+                    break
+                dp[i] += dp[i - j]
+        return dp[-1]
 
 =======
 Suggestion 3
 
-def combinationSum4(nums, target):
-    dp = [0 for _ in range(target + 1)]
-    dp[0] = 1
-    for i in range(1, target + 1):
-        for num in nums:
-            if i - num >= 0:
-                dp[i] += dp[i - num]
-    return dp[-1]
-
-print(combinationSum4([1,2,3], 4))
-print(combinationSum4([9], 3))
-print(combinationSum4([1,2,3], 5))
-print(combinationSum4([1,2,3], 6))
-print(combinationSum4([1,2,3], 7))
-print(combinationSum4([1,2,3], 8))
-print(combinationSum4([1,2,3], 9))
-print(combinationSum4([1,2,3], 10))
-print(combinationSum4([1,2,3], 11))
-print(combinationSum4([1,2,3], 12))
-print(combinationSum4([1,2,3], 13))
-print(combinationSum4([1,2,3], 14))
-print(combinationSum4([1,2,3], 15))
-print(combinationSum4([1,2,3], 16))
-print(combinationSum4([1,2,3], 17))
-print(combinationSum4([1,2,3], 18))
-print(combinationSum4([1,2,3], 19))
-print(combinationSum4([1,2,3], 20))
-print(combinationSum4([1,2,3], 21))
-print(combinationSum4([1,2,3], 22))
-print(combinationSum4([1,2,3], 23))
-print(combinationSum4([1,2,3], 24))
-print(combinationSum4([1,2,3], 25))
-print(combinationSum4([1,2,3], 26))
-print(combinationSum4([1,2,3], 27))
-print(combinationSum4([1,2,3], 28))
-print(combinationSum4([1,2,3], 29))
-print(combinationSum4([1,2,3], 30))
-print(combinationSum4([1,2,
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        
+        for i in range(1, target + 1):
+            for num in nums:
+                if i - num >= 0:
+                    dp[i] += dp[i - num]
+        
+        return dp[target]
 
 =======
 Suggestion 4
 
-def combinationSum4(nums, target):
-    dp = [0] * (target + 1)
-    dp[0] = 1
-    for i in range(target + 1):
-        for j in range(len(nums)):
-            if i - nums[j] >= 0:
-                dp[i] += dp[i - nums[j]]
-    return dp[target]
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        if not nums:
+            return 0
+        dp = [0] * (target+1)
+        dp[0] = 1
+        for i in range(1, target+1):
+            for j in nums:
+                if i-j >= 0:
+                    dp[i] += dp[i-j]
+        return dp[-1]
 
 =======
 Suggestion 5
 
-def combinationSum4(nums, target):
-    dp = [0] * (target+1)
-    dp[0] = 1
-    for i in range(1, target+1):
-        for num in nums:
-            if i-num >= 0:
-                dp[i] += dp[i-num]
-    return dp[target]
-
-nums = [1,2,3]
-target = 4
-print(combinationSum4(nums, target))
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        # Dynamic programming
+        nums.sort()
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        for i in range(target + 1):
+            for num in nums:
+                if i - num < 0:
+                    break
+                dp[i] += dp[i - num]
+        return dp[target]
 
 =======
 Suggestion 6
 
-def combinationSum4(nums, target):
-    dp = [0] * (target + 1)
-    dp[0] = 1
-    for i in range(1, target + 1):
-        for num in nums:
-            if i - num >= 0:
-                dp[i] += dp[i - num]
-    return dp[-1]
-
-print(combinationSum4([1, 2, 3], 4))
-print(combinationSum4([9], 3))
-print(combinationSum4([1, 2, 3, 4], 5))
-print(combinationSum4([1, 2, 3, 4], 8))
-print(combinationSum4([1, 2, 3, 4], 12))
-print(combinationSum4([1, 2, 3, 4], 16))
-print(combinationSum4([1, 2, 3, 4], 20))
-print(combinationSum4([1, 2, 3, 4], 24))
-print(combinationSum4([1, 2, 3, 4], 28))
-print(combinationSum4([1, 2, 3, 4], 32))
-print(combinationSum4([1, 2, 3, 4], 36))
-print(combinationSum4([1, 2, 3, 4], 40))
-print(combinationSum4([1, 2, 3, 4], 44))
-print(combinationSum4([1, 2, 3, 4], 48))
-print(combinationSum4([1, 2, 3, 4], 52))
-print(combinationSum4([1, 2, 3, 4], 56))
-print(combinationSum4([1, 2, 3, 4], 60))
-print(combinationSum4([1, 2, 3, 4], 64))
-print(combinationSum4([1, 2, 3, 4], 68))
-print(combinationSum4([1, 2, 3, 4], 72))
-print(combinationSum4([1, 2, 3, 4], 76))
-print(combinationSum4([1, 2, 3, 4], 80
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0 for i in range(target + 1)]
+        dp[0] = 1
+        for i in range(1, target + 1):
+            for num in nums:
+                if i - num >= 0:
+                    dp[i] += dp[i - num]
+        return dp[target]
 
 =======
 Suggestion 7
 
-def combinationSum4(nums, target):
-    nums.sort()
-    dp = [0 for i in range(target+1)]
-    dp[0] = 1
-    for i in range(1, target+1):
-        for n in nums:
-            if n > i:
-                break
-            dp[i] += dp[i-n]
-    return dp[-1]
-
-print(combinationSum4([1,2,3], 4))
-print(combinationSum4([9], 3))
-print(combinationSum4([1,2,3], 32))
-print(combinationSum4([1,2,3], 0))
-print(combinationSum4([1,2,3], 1))
-print(combinationSum4([1,2,3], 2))
-print(combinationSum4([1,2,3], 3))
-print(combinationSum4([1,2,3], 5))
-print(combinationSum4([1,2,3], 6))
-print(combinationSum4([1,2,3], 7))
-print(combinationSum4([1,2,3], 8))
-print(combinationSum4([1,2,3], 9))
-print(combinationSum4([1,2,3], 10))
-print(combinationSum4([1,2,3], 11))
-print(combinationSum4([1,2,3], 12))
-print(combinationSum4([1,2,3], 13))
-print(combinationSum4([1,2,3], 14))
-print(combinationSum4([1,2,3], 15))
-print(combinationSum4([1,2,3], 16))
-print(combinationSum4([1,2,3], 17))
-print(combinationSum4([1,2,3], 18))
-print(combinationSum4([1,2,3], 19))
-print(combinationSum4([1,2,3], 20))
-print(combinationSum4([1,2,3], 21))
-print(combinationSum4([1,2,3], 22))
-print(combinationSum4([1,2,3], 23))
-print(combinationSum4([1,2,3], 24))
-print(combinationSum4([1,2,3], 25))
-print(combinationSum4([1,2
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0] * (target+1)
+        dp[0] = 1
+        for i in range(1, target+1):
+            for j in nums:
+                if i >= j:
+                    dp[i] += dp[i-j]
+        return dp[target]
 
 =======
 Suggestion 8
 
-def combinationSum4(nums, target):
-    dp = [0] * (target + 1)
-    dp[0] = 1
-    for i in range(1, target + 1):
-        for num in nums:
-            if i - num >= 0:
-                dp[i] += dp[i - num]
-    return dp[-1]
-
-print(combinationSum4([1,2,3], 4))
-print(combinationSum4([9], 3))
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        
+        for i in range(target + 1):
+            for num in nums:
+                if i - num >= 0:
+                    dp[i] += dp[i - num]
+        
+        return dp[target]
 
 =======
 Suggestion 9
 
-def combinationSum4(nums, target):
-    dp = [0] * (target+1)
-    dp[0] = 1
-    for i in range(1, target+1):
-        for num in nums:
-            if i - num >= 0:
-                dp[i] += dp[i-num]
-    return dp[target]
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        # 1. DP
+        # dp[i] = dp[i - nums[0]] + dp[i - nums[1]] + dp[i - nums[2]] + ... + dp[i - nums[n]]
+        # dp[i] = sum(dp[i - nums[j]]), j = 0, 1, 2, ..., n
+        # dp[0] = 1
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        for i in range(target):
+            for num in nums:
+                if i + num <= target:
+                    dp[i + num] += dp[i]
+        return dp[target]
 
-print(combinationSum4([1,2,3], 4))
-print(combinationSum4([9], 3))
-print(combinationSum4([1,2,3], 32))
-print(combinationSum4([1,2,3], 32))
+        # 2. Recursion + Memoization
+        # memo = {}
+        # def dfs(remain):
+        #     if remain in memo:
+        #         return memo[remain]
+        #     if not remain:
+        #         return 1
+        #     res = 0
+        #     for num in nums:
+        #         if remain >= num:
+        #             res += dfs(remain - num)
+        #     memo[remain] = res
+        #     return res
+        # return dfs(target)
+
+        # 3. Recursion + Memoization
+        # memo = {}
+        # def dfs(remain):
+        #     if remain in memo:
+        #         return memo[remain]
+        #     if not remain:
+        #         return 1
+        #     res = 0
+        #     for num in nums:
+        #         if remain >= num:
+        #             res += dfs(remain - num)
+        #     memo[remain] = res
+        #     return res
+        # return dfs(target)
+
+        # 4. Recursion
+        # if not target:
+        #     return 1
+        # res = 0
+        # for num in nums:
+        #     if target >= num:
+        #         res += self.combinationSum4(nums, target - num)
+        # return res
+
+        # 5. Recursion + Memoization
+        # memo = {}
+        # def dfs(remain):
+        #     if remain in memo:
+        #         return memo[remain]
+        #     if not remain:
+        #         return 1
+        #     res = 0
+        #     for num in nums:
+        #         if
 
 =======
 Suggestion 10
 
-def combinationSum4(nums, target):
-    dp = [0] * (target + 1)
-    dp[0] = 1
-    for i in range(1,target+1):
-        for j in range(len(nums)):
-            if i - nums[j] >= 0:
-                dp[i] += dp[i - nums[j]]
-    return dp[target]
-
-print(combinationSum4([1,2,3],4))
-print(combinationSum4([9],3))
-print(combinationSum4([1,2,3],32))
-print(combinationSum4([1,2,3],32))
-print(combinationSum4([1,2,3],32
+def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0] * (target+1)
+        dp[0] = 1
+        for i in range(1, target+1):
+            for num in nums:
+                if i >= num:
+                    dp[i] += dp[i-num]
+        return dp[-1]

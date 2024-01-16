@@ -3,281 +3,211 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    global_max = float('-inf')
-    for i in range(len(matrix[0])):
-        row_sum = [0 for _ in range(len(matrix))]
-        for j in range(i, len(matrix[0])):
-            for row in range(len(matrix)):
-                row_sum[row] += matrix[row][j]
-            global_max = max(global_max, kadane(row_sum, k))
-    return global_max
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        if not matrix: return 0
+        m, n = len(matrix), len(matrix[0])
+        ans = float('-inf')
+        for i in range(m):
+            total = [0] * n
+            for j in range(i, m):
+                for c in range(n):
+                    total[c] += matrix[j][c]
+                ans = max(ans, self.maxSumSubarray(total, k))
+        return ans
 
 =======
 Suggestion 2
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    def maxSumSubarray(arr, k):
-        max_sum = float('-inf')
-        prefix_sum = 0
-        prefix_sums = [float('inf')]
-        for num in arr:
-            bisect.insort(prefix_sums, prefix_sum)
-            prefix_sum += num
-            i = bisect.bisect_left(prefix_sums, prefix_sum - k)
-            max_sum = max(max_sum, prefix_sum - prefix_sums[i])
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m = len(matrix)
+        n = len(matrix[0])
+        max_sum = -float('inf')
+        for i in range(m):
+            sums = [0] * n
+            for j in range(i, m):
+                for c in range(n):
+                    sums[c] += matrix[j][c]
+                max_sum = max(max_sum, self.maxSumSubarray(sums, k))
         return max_sum
-
-    max_sum = float('-inf')
-    for i in range(len(matrix[0])):
-        arr = [0] * len(matrix)
-        for j in range(i, len(matrix[0])):
-            for k in range(len(matrix)):
-                arr[k] += matrix[k][j]
-            max_sum = max(max_sum, maxSumSubarray(arr, k))
-    return max_sum
 
 =======
 Suggestion 3
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    if not matrix:
-        return 0
-    rows, cols = len(matrix), len(matrix[0])
-    result = float("-inf")
-    for left in range(cols):
-        rowSum = [0] * rows
-        for right in range(left, cols):
-            for i in range(rows):
-                rowSum[i] += matrix[i][right]
-            result = max(result, maxSumSubArray(rowSum, k))
-            if result == k:
-                return k
-    return result
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        rows, cols = len(matrix), len(matrix[0])
+        res = float('-inf')
+
+        for left in range(cols):
+            row_sum = [0] * rows
+            for right in range(left, cols):
+                for row in range(rows):
+                    row_sum[row] += matrix[row][right]
+                res = max(res, self.maxSumSubArray(row_sum, k))
+                if res == k: return res
+        return res
 
 =======
 Suggestion 4
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    m = len(matrix)
-    n = len(matrix[0])
-    ans = -float('inf')
-    for l in range(n):
-        rowSum = [0] * m
-        for r in range(l, n):
-            for i in range(m):
-                rowSum[i] += matrix[i][r]
-            ans = max(ans, maxSumSubArray(rowSum, k))
-            if ans == k:
-                return k
-    return ans
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m = len(matrix)
+        n = len(matrix[0])
+        maxSum = float('-inf')
+        # O(n^2) time complexity
+        for left in range(n):
+            temp = [0] * m
+            for right in range(left, n):
+                for i in range(m):
+                    temp[i] += matrix[i][right]
+                maxSum = max(maxSum, self.maxSumSubArray(temp, k))
+        return maxSum
 
 =======
 Suggestion 5
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    m = len(matrix)
-    n = len(matrix[0])
-
-    max_sum = -float('inf')
-
-    for i in range(m):
-        cum_sum = [0] * n
-        for j in range(i, m):
-            for col in range(n):
-                cum_sum[col] += matrix[j][col]
-
-            max_sum = max(max_sum, maxSumSubarray(cum_sum, k))
-
-    return max_sum
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m = len(matrix)
+        n = len(matrix[0])
+        ans = float('-inf')
+        for left in range(n):
+            row_sum = [0] * m
+            for right in range(left, n):
+                for i in range(m):
+                    row_sum[i] += matrix[i][right]
+                #print(row_sum)
+                ans = max(ans, self.maxSumSubArray(row_sum, k))
+                if ans == k:
+                    return ans
+        return ans
 
 =======
 Suggestion 6
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    m = len(matrix)
-    n = len(matrix[0])
-    max_sum = -float('inf')
-    for i in range(n):
-        sums = [0]*m
-        for j in range(i, n):
-            for r in range(m):
-                sums[r] += matrix[r][j]
-            max_sum = max(max_sum, maxSumSubarray(sums, k))
-    return max_sum
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        if matrix is None or len(matrix) == 0:
+            return 0
+        m = len(matrix)
+        n = len(matrix[0])
+        maxSum = -math.inf
+        for left in range(n):
+            sums = [0 for i in range(m)]
+            for right in range(left, n):
+                for i in range(m):
+                    sums[i] += matrix[i][right]
+                maxSum = max(maxSum, self.maxSumSubarray(sums, k))
+                if maxSum == k:
+                    return maxSum
+        return maxSum
 
 =======
 Suggestion 7
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    def maxSumSubarray(arr):
-        maxSum = float("-inf")
-        prefixSum = 0
-        prefixSums = [float("inf")]
-        for num in arr:
-            bisect.insort(prefixSums, prefixSum)
-            prefixSum += num
-            i = bisect.bisect_left(prefixSums, prefixSum - k)
-            maxSum = max(maxSum, prefixSum - prefixSums[i])
-        return maxSum
-    maxSum = float("-inf")
-    for left in range(len(matrix[0])):
-        rowSums = [0] * len(matrix)
-        for right in range(left, len(matrix[0])):
-            for i in range(len(matrix)):
-                rowSums[i] += matrix[i][right]
-            maxSum = max(maxSum, maxSumSubarray(rowSums))
-    return maxSum
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m, n = len(matrix), len(matrix[0])
+        ans = float('-inf')
+
+        for left in range(n):
+            row_sum = [0] * m
+            for right in range(left, n):
+                for i in range(m):
+                    row_sum[i] += matrix[i][right]
+
+                cur_sum = 0
+                cur_max = float('-inf')
+
+                for v in row_sum:
+                    cur_sum = max(cur_sum + v, v)
+                    cur_max = max(cur_max, cur_sum)
+                    if cur_max == k:
+                        return k
+
+                if cur_max < k:
+                    ans = max(ans, cur_max)
+                    continue
+
+                pre_sum = 0
+                s = set([0])
+                for v in row_sum:
+                    pre_sum += v
+                    x = bisect.bisect_left(s, pre_sum - k)
+                    if x < len(s):
+                        ans = max(ans, pre_sum - s[x])
+                    bisect.insort(s, pre_sum)
+
+        return ans
 
 =======
 Suggestion 8
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    m = len(matrix)
-    n = len(matrix[0])
-    maxSum = float('-inf')
-    for i in range(m):
-        for j in range(n):
-            if i > 0:
-                matrix[i][j] += matrix[i-1][j]
-            if j > 0:
-                matrix[i][j] += matrix[i][j-1]
-            if i > 0 and j > 0:
-                matrix[i][j] -= matrix[i-1][j-1]
-            for r in range(i+1):
-                for c in range(j+1):
-                    subRect = matrix[i][j]
-                    if r > 0:
-                        subRect -= matrix[r-1][j]
-                    if c > 0:
-                        subRect -= matrix[i][c-1]
-                    if r > 0 and c > 0:
-                        subRect += matrix[r-1][c-1]
-                    if subRect <= k:
-                        maxSum = max(maxSum, subRect)
-    return maxSum
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m, n = len(matrix), len(matrix[0])
+        ans = float("-inf")
 
-matrix = [[1,0,1],[0,-2,3]]
-k = 2
-print(maxSumSubmatrix(matrix, k))
+        for left in range(n):
+            row_sum = [0] * m
+            for right in range(left, n):
+                for i in range(m):
+                    row_sum[i] += matrix[i][right]
 
-matrix = [[2,2,-1]]
-k = 3
-print(maxSumSubmatrix(matrix, k))
+                prefix_sum = [0]
+                cur = 0
+                for num in row_sum:
+                    cur += num
+                    idx = bisect.bisect_left(prefix_sum, cur - k)
+                    if idx < len(prefix_sum):
+                        ans = max(ans, cur - prefix_sum[idx])
+                    bisect.insort(prefix_sum, cur)
+
+        return ans
 
 =======
 Suggestion 9
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    m = len(matrix)
-    n = len(matrix[0])
-    max_sum = -float('inf')
-    for i in range(m):
-        for j in range(n):
-            for p in range(i, m):
-                for q in range(j, n):
-                    curr_sum = 0
-                    for x in range(i, p+1):
-                        for y in range(j, q+1):
-                            curr_sum += matrix[x][y]
-                    if curr_sum <= k:
-                        if curr_sum > max_sum:
-                            max_sum = curr_sum
-    return max_sum
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        m, n = len(matrix), len(matrix[0])
+        ans = float('-inf')
+        for l in range(n):
+            row_sum = [0] * m
+            for r in range(l, n):
+                for i in range(m):
+                    row_sum[i] += matrix[i][r]
+                cur_sum = 0
+                cur_max = float('-inf')
+                for val in row_sum:
+                    cur_sum = max(cur_sum + val, val)
+                    cur_max = max(cur_max, cur_sum)
+                    if cur_max == k:
+                        return k
+                if cur_max < k:
+                    ans = max(ans, cur_max)
+                else:
+                    for i in range(m):
+                        sum_i = 0
+                        for j in range(i, m):
+                            sum_i += row_sum[j]
+                            if sum_i <= k:
+                                ans = max(ans, sum_i)
+        return ans
 
 =======
 Suggestion 10
 
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    # Solution 1
-    # Time Complexity: O(n^4)
-    # Space Complexity: O(1)
-    #for i in range(len(matrix)):
-    #    for j in range(len(matrix[0])):
-    #        if i > 0:
-    #            matrix[i][j] += matrix[i - 1][j]
-    #        if j > 0:
-    #            matrix[i][j] += matrix[i][j - 1]
-    #        if i > 0 and j > 0:
-    #            matrix[i][j] -= matrix[i - 1][j - 1]
-    #res = float('-inf')
-    #for i in range(len(matrix)):
-    #    for j in range(len(matrix[0])):
-    #        for p in range(i, len(matrix)):
-    #            for q in range(j, len(matrix[0])):
-    #                cur = matrix[p][q]
-    #                if i > 0:
-    #                    cur -= matrix[i - 1][q]
-    #                if j > 0:
-    #                    cur -= matrix[p][j - 1]
-    #                if i > 0 and j > 0:
-    #                    cur += matrix[i - 1][j - 1]
-    #                if cur <= k:
-    #                    res = max(res, cur)
-    #return res
-
-    # Solution 2
-    # Time Complexity: O(n^2 * mlog(m))
-    # Space Complexity: O(n * m)
-    #res = float('-inf')
-    #for left in range(len(matrix[0])):
-    #    rowSum = [0] * len(matrix)
-    #    for right in range(left, len(matrix[0])):
-    #        for i in range(len(matrix)):
-    #            rowSum[i] += matrix[i][right]
-    #        bst, cur = SortedList([0]), 0
-    #        for s in rowSum:
-    #            cur += s
-    #            idx = bisect.bisect_left(bst, cur - k)
-    #            if idx < len(bst):
-    #                res = max(res, cur - bst[idx])
+def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        for i in range(len(matrix)):
+            for j in range(1, len(matrix[0])):
+                matrix[i][j] += matrix[i][j - 1]
+                
+        result = float('-inf')
+        for i in range(len(matrix[0])):
+            for j in range(i, len(matrix[0])):
+                prefix_sums = set()
+                prefix_sums.add(0)
+                current_sum = 0
+                for row in matrix:
+                    current_sum += row[j] - (row[i - 1] if i > 0 else 0)
+                    target = current_sum - k
+                    for prefix_sum in prefix_sums:
+                        if prefix_sum <= target:
+                            result = max(result, current_sum - prefix_sum)
+                    prefix_sums.add(current_sum)
+        return result

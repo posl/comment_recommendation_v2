@@ -1,107 +1,129 @@
-Synthesizing 10/10 solutions (Duplicates hidden)
+Synthesizing 10/10 solutions
 
 =======
 Suggestion 1
 
-def twoSum(nums, target):
-    """Return indices of the two numbers such that they add up to target.
-    :type nums: List[int]
-    :type target: int
-    :rtype: List[int]
-    """
-    for i in range(len(nums)):
-        for j in range(i+1, len(nums)):
-            if nums[i]+nums[j] == target:
-                return [i, j]
-    return 0
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
+        return []
 
 =======
 Suggestion 2
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(len(nums)):
-            if nums[i] + nums[j] == target and i != j:
-                return [i, j]
-
-print(twoSum([2,7,11,15], 9))
-print(twoSum([3,2,4], 6))
-print(twoSum([3,3], 6))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if (nums[i] + nums[j] == target):
+                    return [i, j]
+        return False
 
 =======
 Suggestion 3
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(1,len(nums)):
-            if nums[i]+nums[j]==target:
-                return [i,j]
-    return []
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        # Brute force method
+        # Time complexity: O(n^2)
+        # Space complexity: O(1)
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i]+nums[j] == target: return [i,j]
+        return []
 
 =======
 Suggestion 4
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1, len(nums)):
-            if(nums[i] + nums[j] == target):
-                return [i,j]
-
-print(twoSum([2,7,11,15], 9))
-print(twoSum([3,2,4], 6))
-print(twoSum([3,3], 6))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        # Brute Force O(n^2)
+        for i in range(0, len(nums)):
+            for j in range(0, len(nums)):
+                if i != j:
+                    if nums[i] + nums[j] == target:
+                        return [i, j]
+        return []
+        # Two Pass Hash Table O(n)
+        # hashTable = {}
+        # for i in range(0, len(nums)):
+        #     hashTable[nums[i]] = i
+        # for i in range(0, len(nums)):
+        #     complement = target - nums[i]
+        #     if complement in hashTable and hashTable[complement] != i:
+        #         return [i, hashTable[complement]]
+        # return []
+        # One Pass Hash Table O(n)
+        # hashTable = {}
+        # for i in range(0, len(nums)):
+        #     complement = target - nums[i]
+        #     if complement in hashTable:
+        #         return [i, hashTable[complement]]
+        #     hashTable[nums[i]] = i
+        # return []
 
 =======
 Suggestion 5
 
-def twoSum(nums, target):
-    d = {}
-    for i, n in enumerate(nums):
-        if target-n in d:
-            return [d[target-n], i]
-        else:
-            d[n] = i
-    return []
-
-nums = [2,7,11,15]
-target = 9
-print(twoSum(nums, target))
-nums = [3,2,4]
-target = 6
-print(twoSum(nums, target))
-nums = [3,3]
-target = 6
-print(twoSum(nums, target))
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if(nums[i]+nums[j]==target):
+                    return [i,j]
+        return []
 
 =======
 Suggestion 6
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1, len(nums)):
-            if nums[j] == target - nums[i]:
-                return [i,j]
-    return None
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(0,len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
 
 =======
 Suggestion 7
 
-def twoSum(nums, target):
-    index = []
-    for i in range(len(nums)):
-        for j in range(len(nums)):
-            if i != j:
-                if nums[i] + nums[j] == target:
-                    index.append(i)
-                    index.append(j)
-                    return index
-    return index
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        # initialize a dictionary to store the difference and index
+        # loop through the nums list
+        # calculate the difference between the target and the current element
+        # check if the difference is in the dictionary
+        # if it is, return the index of the difference and the current index
+        # if not, add the difference and index to the dictionary
+        # if no pair is found, return an empty list
+        diff_dict = {}
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in diff_dict:
+                return [diff_dict[diff], i]
+            else:
+                diff_dict[nums[i]] = i
+        return []
 
 =======
 Suggestion 8
 
-def twoSum(nums, target):
-    for i in range(len(nums)):
-        for j in range(i+1,len(nums)):
-            if nums[i]+nums[j] == target:
-                return [i,j]
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i != j and nums[i] + nums[j] == target:
+                    return [i,j]
+
+=======
+Suggestion 9
+
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(0, len(nums)):
+            for j in range(i+1, len(nums)):
+                if (nums[i] + nums[j] == target):
+                    return [i,j]
+        return None
+
+=======
+Suggestion 10
+
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i,j]

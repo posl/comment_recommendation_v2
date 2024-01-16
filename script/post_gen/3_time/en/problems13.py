@@ -3,273 +3,203 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def integerReplacement(n):
-    count = 0
-    while n > 1:
+def integerReplacement(self, n: int) -> int:
+        if n == 1:
+            return 0
+        if n == 3:
+            return 2
         if n % 2 == 0:
-            n //= 2
+            return 1 + self.integerReplacement(n // 2)
         else:
-            if n == 3 or n % 4 == 1:
-                n -= 1
-            else:
-                n += 1
-        count += 1
-    return count
+            return 1 + min(self.integerReplacement(n + 1), self.integerReplacement(n - 1))
 
 =======
 Suggestion 2
 
-def number_of_steps(n):
-    count = 0
-    while n > 1:
-        if n % 2 == 0:
-            n = n // 2
-        else:
-            n = n - 1
-        count += 1
-    return count
+def integerReplacement(self, n: int) -> int:
+        if n <= 1:
+            return 0
+        if n == 2:
+            return 1
+        if n == 3:
+            return 2
 
-print(number_of_steps(8))
-print(number_of_steps(7))
-print(number_of_steps(4))
+        if n % 2 == 0:
+            return 1 + self.integerReplacement(n // 2)
+        else:
+            return 1 + min(self.integerReplacement(n + 1), self.integerReplacement(n - 1))
 
 =======
 Suggestion 3
 
-def numberOfSteps(num):
-    step = 0
-    while(num > 0):
-        if num % 2 == 0:
-            num = num / 2
-        else:
-            num = num - 1
-        step += 1
-    return step
-
-print(numberOfSteps(8))
-print(numberOfSteps(7))
-print(numberOfSteps(4))
-print(numberOfSteps(123))
-print(numberOfSteps(123456789))
-print(numberOfSteps(987654321))
-print(numberOfSteps(1234567890))
-print(numberOfSteps(12345678901))
-print(numberOfSteps(123456789012))
-print(numberOfSteps(1234567890123))
-print(numberOfSteps(12345678901234))
-print(numberOfSteps(123456789012345))
-print(numberOfSteps(1234567890123456))
-print(numberOfSteps(12345678901234567))
-print(numberOfSteps(123456789012345678))
-print(numberOfSteps(1234567890123456789))
-print(numberOfSteps(12345678901234567890))
-print(numberOfSteps(123456789012345678901))
-print(numberOfSteps(1234567890123456789012))
-print(numberOfSteps(12345678901234567890123))
-print(numberOfSteps(123456789012345678901234))
-print(numberOfSteps(1234567890123456789012345))
-print(numberOfSteps(12345678901234567890123456))
-print(numberOfSteps(123456789012345678901234567))
-print(numberOfSteps(1234567890123456789012345678))
-print(numberOfSteps(12345678901234567890123456789))
-print(numberOfSteps(123456789012345678901234567890))
-print(numberOfSteps(1234567890123456789012345678901))
-print(numberOfSteps(12345678901234567890123456789012))
-print(numberOfSteps(123456789012345678901234567890123))
-print(numberOfSteps(1234567890123456789012345678901234))
-print(numberOfSteps(12345678901234567890123456789012345))
-print(numberOfSteps(123456789012345678901234567890123456))
-print(numberOfSteps(1234567890123456789012345678901234567))
-print
+def integerReplacement(self, n: int) -> int:
+        count = 0
+        while n > 1:
+            if n % 2 == 0:
+                n = n // 2
+            else:
+                if (n + 1) % 4 == 0 and n != 3:
+                    n = n + 1
+                else:
+                    n = n - 1
+            count = count + 1
+        return count
 
 =======
 Suggestion 4
 
-def numberOfSteps (num):
-    steps = 0
-    while num != 1:
-        if num % 2 == 0:
-            num = num / 2
-        else:
-            num = num - 1
-        steps += 1
-    return steps
-
-print(numberOfSteps(8))
-print(numberOfSteps(7))
-print(numberOfSteps(4))
+def integerReplacement(self, n: int) -> int:
+        count = 0
+        while n > 1:
+            if n % 2 == 0:
+                n = n / 2
+                count += 1
+            else:
+                if (n + 1) % 4 == 0 and n != 3:
+                    n += 1
+                    count += 1
+                else:
+                    n -= 1
+                    count += 1
+        return count
 
 =======
 Suggestion 5
 
-def solution(n):
-    count = 0
-    while n > 1:
-        if n % 2 == 0:
-            n = n / 2
-            count += 1
-        else:
-            n = n - 1
-            count += 1
-    return count
-
-
-print(solution(8))
-print(solution(7))
-print(solution(4))
+def integerReplacement(self, n: int) -> int:
+        count = 0
+        while n > 1:
+            if n % 2 == 0:
+                n = n / 2
+                count += 1
+            else:
+                n = n + 1
+                count += 1
+        return count
 
 =======
 Suggestion 6
 
-def numberOfSteps (num):
-    """
-    :type num: int
-    :rtype: int
-    """
-    steps = 0
-    while num != 0:
-        if num % 2 == 0:
-            num = num / 2
-        else:
-            num = num - 1
-        steps += 1
-    return steps
-
-print(numberOfSteps(14))
-print(numberOfSteps(8))
-print(numberOfSteps(7))
-print(numberOfSteps(4))
-print(numberOfSteps(123))
-print(numberOfSteps(0))
-print(numberOfSteps(1))
-print(numberOfSteps(2))
-print(numberOfSteps(3))
-print(numberOfSteps(5))
-print(numberOfSteps(10))
-print(numberOfSteps(15))
-print(numberOfSteps(20))
-print(numberOfSteps(25))
-print(numberOfSteps(30))
-print(numberOfSteps(35))
-print(numberOfSteps(40))
-print(numberOfSteps(45))
-print(numberOfSteps(50))
-print(numberOfSteps(55))
-print(numberOfSteps(60))
-print(numberOfSteps(65))
-print(numberOfSteps(70))
-print(numberOfSteps(75))
-print(numberOfSteps(80))
-print(numberOfSteps(85))
-print(numberOfSteps(90))
-print(numberOfSteps(95))
-print(numberOfSteps(100))
-print(numberOfSteps(105))
-print(numberOfSteps(110))
-print(numberOfSteps(115))
-print(numberOfSteps(120))
-print(numberOfSteps(125))
-print(numberOfSteps(130))
-print(numberOfSteps(135))
-print(numberOfSteps(140))
-print(numberOfSteps(145))
-print(numberOfSteps(150))
-print(numberOfSteps(155))
-print(numberOfSteps(160))
-print(numberOfSteps(165))
-print(numberOfSteps(170))
-print(numberOfSteps(175))
-print(numberOfSteps(180))
-print(numberOfSteps(185))
-print(numberOfSteps(190))
-print(numberOfSteps(195))
-print(numberOfSteps(200))
-print(numberOfSteps(205))
-print(numberOfSteps(210))
-print(numberOfSteps(215))
-print(numberOfSteps(220))
-print(numberOfSteps(225))
-print(numberOfSteps(230))
-print(numberOfSteps(235))
-print(numberOfSteps(240))
-print(numberOfSteps(245))
-print(numberOfSteps(250))
-print(numberOfSteps(255))
-print(numberOfSteps(260
+def integerReplacement(self, n: int) -> int:
+        count = 0
+        while n > 1:
+            if n % 2 == 0:
+                n = n / 2
+                count += 1
+            elif n == 3 or n % 4 == 1:
+                n = n - 1
+                count += 1
+            else:
+                n = n + 1
+                count += 1
+        return count
 
 =======
 Suggestion 7
 
-def minOperations(n):
-    """
-    :type n: int
-    :rtype: int
-    """
-    operations = 0
-    while n > 1:
-        if n % 2 == 0:
-            n = n/2
-        else:
-            n = n - 1
-        operations += 1
-    return operations
+    def integerReplacement(self, n: int) -> int:
+        if n == 1: return 0
+        if n == 2: return 1
+        if n == 3: return 2
+        if n == 4: return 2
+        if n == 5: return 3
+        if n == 6: return 3
+        if n == 7: return 4
+        if n == 8: return 3
+        if n == 9: return 4
+        if n == 10: return 4
+        if n == 11: return 5
+        if n == 12: return 4
+        if n == 13: return 5
+        if n == 14: return 5
+        if n == 15: return 5
+        if n == 16: return 4
+        if n == 17: return 5
+        if n == 18: return 5
+        if n == 19: return 6
+        if n == 20: return 5
+        if n == 21: return 6
+        if n == 22: return 6
+        if n == 23: return 7
+        if n == 24: return 5
+        if n == 25: return 6
+        if n == 26: return 6
+        if n == 27: return 7
+        if n == 28: return 6
+        if n == 29: return 7
+        if n == 30: return 7
+        if n == 31: return 7
+        if n == 32: return 5
+        if n == 33: return 6
+        if n == 34: return 6
+        if n == 35: return 7
+        if n == 36: return 6
+        if n == 37: return 7
+        if n == 38: return 7
+        if n == 39: return 8
+        if n == 40: return 6
+        if n == 41: return 7
+        if n == 42: return 7
+        if n == 43: return 8
+        if n == 44: return 7
+        if n == 45: return 8
+        if n ==
 
 =======
 Suggestion 8
 
-def numberOfSteps(num):
-    count = 0
-    while num > 0:
-        if num % 2 == 0:
-            num = num / 2
-            count += 1
+def integerReplacement(self, n: int) -> int:
+        if n == 1:
+            return 0
+        if n%2 == 0:
+            return 1 + self.integerReplacement(n/2)
         else:
-            num -= 1
-            count += 1
-    return count
+            return 1 + min(self.integerReplacement(n+1), self.integerReplacement(n-1))
 
 =======
 Suggestion 9
 
-def min_steps(n):
-    count = 0
-    while n != 1:
-        if n % 2 == 0:
-            n = n // 2
-        else:
-            if n == 3:
-                count += 2
-                break
-            if (n + 1) % 4 == 0:
-                n += 1
-            else:
-                n -= 1
-        count += 1
-    return count
-
-n = 8
-print(min_steps(n))
-
-n = 7
-print(min_steps(n))
-
-n = 4
-print(min_steps(n))
+class Solution:
+    def integerReplacement(self, n: int) -> int:
+        # if n is even, replace n with n / 2.
+        # if n is odd, replace n with either n + 1 or n - 1.
+        # Return the minimum number of operations needed for n to become 1.
+        # n = 8 -> 4 -> 2 -> 1
+        # n = 7 -> 8 -> 4 -> 2 -> 1 or 7 -> 6 -> 3 -> 2 -> 1
+        # n = 4 -> 2 -> 1
+        # n = 3 -> 2 -> 1 or 3 -> 4 -> 2 -> 1
+        # n = 2 -> 1
+        # n = 1 -> 0
+        # n = 0 -> -1
+        # n = -1 -> -2
+        # n = -2 -> -1
+        # n = -3 -> -2 -> -1
+        # n = -4 -> -2 -> -1
+        # n = -5 -> -4 -> -2 -> -1
+        # n = -6 -> -3 -> -2 -> -1
+        # n = -7 -> -6 -> -3 -> -2 -> -1
+        # n = -8 -> -4 -> -2 -> -1
+        # n = -9 -> -8 -> -4 -> -2 -> -1
+        # n = -10 -> -5 -> -4 -> -2 -> -1
+        # n = -11 -> -10 -> -5 -> -4 -> -2 -> -1
+        # n = -12 -> -6 -> -3 -> -2 -> -1
+        # n = -13 -> -12 -> -6 -> -3 -> -2 -> -1
+        # n = -14 -> -7 -> -6 -> -3 -> -2 -> -1
+        # n = -15 -> -14 -> -7 -> -6 -> -3 -> -2 -> -1
+        # n = -16 -> -8 -> -4 -> -2 -> -1
+        # n = -17 -> -16 -> -8 -> -4 -> -2 -> -1
+        # n = -18 -> -9 -> -8 -> -4 -> -2 -> -1
+        # n = -
 
 =======
 Suggestion 10
 
-def numberOfSteps(num):
-    steps = 0
-    while num > 0:
-        if num % 2 == 0:
-            num = num / 2
-            steps += 1
+def integerReplacement(self, n: int) -> int:
+        if n==1:
+            return 0
+        if n==3:
+            return 2
+        if n%2==0:
+            return 1+self.integerReplacement(n/2)
         else:
-            num -= 1
-            steps += 1
-    return steps
-
-print(numberOfSteps(8))
-print(numberOfSteps(7))
-print(numberOfSteps(4))
+            return 1+min(self.integerReplacement(n-1),self.integerReplacement(n+1))

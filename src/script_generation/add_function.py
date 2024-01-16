@@ -35,13 +35,15 @@ class AddFunction:
                 with open('{0}/{1}/{2}'.format(Input, each_dir, file), 'r') as f:
                     source_file_l = f.readlines()
                     try:
+                        # source_file_l = list(map(lambda x: '    ' + x, source_file_l))
                         if source_file_l[0].split(' ')[0] == 'def':
+                        #if 'def ' in source_file_l[0]:
                             function_name = source_file_l[0].split(' ')[1].split('(')[0]
                             argument = source_file_l[0].split('(')[1].split(')')[0]
                             each_argument_l = argument.replace(' ', '').split(',')
                             each_argument_l = list(map(lambda x: x.split(':')[0], each_argument_l))
-                            if 'self' in each_argument_l:
-                                each_argument_l.remove('self')
+                            #if 'self' in each_argument_l:
+                            #    each_argument_l.remove('self')
                             new_argument = ''
                             for index, each_argument in enumerate(each_argument_l):
                                 if index == len(each_argument_l) - 1:
@@ -51,6 +53,9 @@ class AddFunction:
                             if (function_name in source_file_l[-1]) and not('return' in source_file_l[-1]) and not('append' in source_file_l[-1]): #and not('print' in script_l[-1])
                                 pass
                             else:
+                                # problem != 15 -> add class Solution:\n
+                                # problem == 15 -> add class TreeNode and class Solution(object):\n
+                                # source_file_l.insert(0, 'class Solution:\n')
                                 source_file_l.append('\nif __name__ == \'__main__\':\n')
                                 # for matrix
                                 if (each_dir == '28') or (each_dir == '29'):

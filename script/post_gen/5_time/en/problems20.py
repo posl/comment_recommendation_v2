@@ -3,226 +3,153 @@ Synthesizing 10/10 solutions
 =======
 Suggestion 1
 
-def maxProfit(prices):
-    n = len(prices)
-    if n < 2:
-        return 0
-    dp = [[0 for _ in range(2)] for _ in range(n)]
-    dp[0][0] = 0
-    dp[0][1] = -prices[0]
-    dp[1][0] = max(dp[0][0], dp[0][1] + prices[1])
-    dp[1][1] = max(dp[0][1], dp[0][0] - prices[1])
-    for i in range(2, n):
-        dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
-        dp[i][1] = max(dp[i - 1][1], dp[i - 2][0] - prices[i])
-    return dp[n - 1][0]
-print(maxProfit([1,2,3,0,2]))
-print(maxProfit([1]))
+def maxProfit(self, prices: list[int]) -> int:
+        if len(prices) == 1:
+            return 0
+        elif len(prices) == 2:
+            return max(0, prices[1] - prices[0])
+        else:
+            dp = [0] * len(prices)
+            dp[0] = 0
+            dp[1] = max(0, prices[1] - prices[0])
+            for i in range(2, len(prices)):
+                dp[i] = max(dp[i-1], dp[i-2] + prices[i] - prices[i-1])
+            return dp[-1]
 
 =======
 Suggestion 2
 
-def maxProfit(prices):
-    n = len(prices)
-    if n == 1:
-        return 0
-    dp = [[0 for _ in range(2)] for _ in range(n)]
-    dp[0][0], dp[0][1] = 0, -prices[0]
-    for i in range(1, n):
-        dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
-        if i == 1:
-            dp[i][1] = max(dp[i-1][1], -prices[i])
-        else:
-            dp[i][1] = max(dp[i-1][1], dp[i-2][0] - prices[i])
-    return dp[n-1][0]
+def maxProfit(self, prices: list[int]) -> int:
+        if len(prices) == 1:
+            return 0
+        if len(prices) == 2:
+            return max(prices[1] - prices[0], 0)
+        dp = [0] * len(prices)
+        for i in range(1, len(prices)):
+            dp[i] = max(dp[i - 1], dp[i - 2] + prices[i] - prices[i - 1])
+        return max(dp[-1], dp[-2])
 
 =======
 Suggestion 3
 
-def maxProfit(prices):
-    """
-    :type prices: List[int]
-    :rtype: int
-    """
-    # buy[i] = max(buy[i-1], sell[i-2] - prices[i])
-    # sell[i] = max(sell[i-1], buy[i-1] + prices[i])
-    # buy[0] = -prices[0]
-    # buy[1] = max(buy[0], sell[0] - prices[1])
-    # sell[0] = 0
-    # sell[1] = max(sell[0], buy[0] + prices[1])
-    if not prices:
-        return 0
-    buy = [-prices[0], 0]
-    sell = [0, 0]
-    for i in range(1, len(prices)):
-        buy.append(max(buy[i], sell[i-2] - prices[i]))
-        sell.append(max(sell[i-1], buy[i-1] + prices[i]))
-    return sell[-1]
+def maxProfit(self, prices: list[int]) -> int:
+        n = len(prices)
+        if n <= 1:
+            return 0
+        dp = [[0, 0] for _ in range(n)]
+        dp[0][0] = -prices[0]
+        dp[1][0] = max(-prices[0], -prices[1])
+        dp[1][1] = max(0, prices[1] - prices[0])
+        for i in range(2, n):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 2][1] - prices[i])
+            dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] + prices[i])
+        return dp[n - 1][1]
 
 =======
 Suggestion 4
 
-def maxProfit(prices):
-    if len(prices) <= 1:
-        return 0
-    dp = [[0]*len(prices) for _ in range(len(prices))]
-    for i in range(len(prices)):
-        for j in range(i+1, len(prices)):
-            dp[i][j] = prices[j] - prices[i]
-    print(dp)
-    return max(max(dp))
-
-print(maxProfit([1,2,3,0,2]))
-print(maxProfit([1]))
+def maxProfit(self, prices: list[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        dp = [[0 for _ in range(2)] for _ in range(len(prices))]
+        dp[0][1] = -prices[0]
+        dp[1][1] = -prices[1]
+        dp[1][0] = max(dp[0][0], dp[0][1] + prices[1])
+        for i in range(2, len(prices)):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+            dp[i][1] = max(dp[i - 2][0] - prices[i], dp[i - 1][1])
+        return dp[-1][0]
 
 =======
 Suggestion 5
 
-def maxProfit(prices):
-    if len(prices) < 2:
-        return 0
-    dp = [[0 for _ in range(len(prices))] for _ in range(3)]
-    dp[0][0] = -prices[0]
-    dp[1][0] = 0
-    dp[2][0] = 0
-    for i in range(1, len(prices)):
-        dp[0][i] = max(dp[0][i - 1], dp[2][i - 1] - prices[i])
-        dp[1][i] = dp[0][i - 1] + prices[i]
-        dp[2][i] = max(dp[1][i - 1], dp[2][i - 1])
-    return max(dp[1][-1], dp[2][-1])
+def maxProfit(self, prices: list[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        
+        dp = [[0 for _ in range(3)] for _ in range(len(prices))]
+        dp[0][0] = -prices[0]
+        
+        for i in range(1, len(prices)):
+            dp[i][0] = max(dp[i-1][0], dp[i-1][2] - prices[i])
+            dp[i][1] = dp[i-1][0] + prices[i]
+            dp[i][2] = max(dp[i-1][2], dp[i-1][1])
+        
+        return max(dp[-1][1], dp[-1][2])
 
 =======
 Suggestion 6
 
-def maxProfit(prices):
-    """
-    :type prices: List[int]
-    :rtype: int
-    """
-    #print(prices)
-    #print(len(prices))
-    if len(prices) < 2:
-        return 0
-    if len(prices) == 2:
-        if prices[1] > prices[0]:
-            return prices[1] - prices[0]
-        else:
+def maxProfit(self, prices: list[int]) -> int:
+        # dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+        # dp[i][1] = max(dp[i-1][1], dp[i-2][0] - prices[i])
+        n = len(prices)
+        if n <= 1:
             return 0
-    if len(prices) == 3:
-        if prices[1] > prices[0]:
-            if prices[2] > prices[1]:
-                return prices[2] - prices[0]
-            else:
-                return prices[1] - prices[0]
-        else:
-            return 0
-    profit = 0
-    i = 0
-    while i < len(prices) - 2:
-        if prices[i+1] > prices[i]:
-            if prices[i+2] > prices[i+1]:
-                profit += prices[i+2] - prices[i]
-                i += 3
-            else:
-                profit += prices[i+1] - prices[i]
-                i += 2
-        else:
-            i += 1
-    return profit
+        dp_i_0 = 0
+        dp_i_1 = -prices[0]
+        dp_pre_0 = 0
+        for i in range(1, n):
+            tmp = dp_i_0
+            dp_i_0 = max(dp_i_0, dp_i_1 + prices[i])
+            dp_i_1 = max(dp_i_1, dp_pre_0 - prices[i])
+            dp_pre_0 = tmp
+        return dp_i_0
 
 =======
 Suggestion 7
 
-def maxProfit(prices):
-    """
-    :type prices: List[int]
-    :rtype: int
-    """
-    n = len(prices)
-    if n < 2:
-        return 0
-    dp = [[0 for _ in range(2)] for _ in range(n)]
-    dp[0][1] = -prices[0]
-    dp[1][0] = max(dp[0][0], dp[0][1]+prices[1])
-    dp[1][1] = max(dp[0][1], dp[0][0]-prices[1])
-    for i in range(2, n):
-        dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
-        dp[i][1] = max(dp[i-1][1], dp[i-2][0]-prices[i])
-    return dp[-1][0]
+def maxProfit(self, prices: list[int]) -> int:
+        buy, sell, cooldown = -prices[0], 0, 0
+        for i in range(1, len(prices)):
+            buy, sell, cooldown = max(buy, cooldown - prices[i]), max(sell, buy + prices[i]), max(cooldown, sell)
+        return sell
 
 =======
 Suggestion 8
 
-def maxProfit(prices):
-    n = len(prices)
-    buy = [0] * (n+1)
-    sell = [0] * (n+1)
-
-    buy[1] = -prices[0]
-
-    for i in range(2, n+1):
-        buy[i] = max(buy[i-1], sell[i-2] - prices[i-1])
-        sell[i] = max(sell[i-1], buy[i-1] + prices[i-1])
-
-    return sell[n]
-
-print(maxProfit([1,2,3,0,2]))
+def maxProfit(self, prices: list[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        dp = [0] * len(prices)
+        dp[1] = max(prices[1] - prices[0], 0)
+        for i in range(2, len(prices)):
+            dp[i] = max(dp[i - 1], dp[i - 2] + prices[i] - prices[i - 1])
+            for j in range(2, i):
+                dp[i] = max(dp[i], dp[j - 2] + prices[i] - prices[j])
+        return dp[-1]
 
 =======
 Suggestion 9
 
-def maxProfit(prices):
-    print(prices)
-    n = len(prices)
-    if n == 1:
-        return 0
-    dp = [[0 for x in range(2)] for x in range(n)]
-    dp[0][0] = 0
-    dp[0][1] = -prices[0]
-    dp[1][0] = max(dp[0][0], dp[0][1] + prices[1])
-    dp[1][1] = max(dp[0][1], dp[0][0] - prices[1])
-    for i in range(2, n):
-        dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
-        dp[i][1] = max(dp[i-1][1], dp[i-2][0] - prices[i])
-    print(dp)
-    return dp[n-1][0]
-
-print(maxProfit([1,2,3,0,2]))
-print(maxProfit([1]))
-print(maxProfit([1,2,4]))
-print(maxProfit([1,2,3,0,2,1,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9]))
-print(maxProfit([1,2,3,0,2,1,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]))
-print(maxProfit([1,2,3,0,2,1,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1]))
-print(maxProfit([1,2,3,0,2,1,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2]))
-print(maxProfit([1,2,3,0,2,1,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3]))
-print(max
+def maxProfit(self, prices: list[int]) -> int:
+        n = len(prices)
+        if n <= 1:
+            return 0
+        buy = [0] * n
+        sell = [0] * n
+        buy[0] = -prices[0]
+        buy[1] = max(buy[0], -prices[1])
+        sell[1] = max(sell[0], buy[0] + prices[1])
+        for i in range(2, n):
+            buy[i] = max(buy[i - 1], sell[i - 2] - prices[i])
+            sell[i] = max(sell[i - 1], buy[i - 1] + prices[i])
+        return sell[n - 1]
 
 =======
 Suggestion 10
 
-def maxProfit(prices):
-    n = len(prices)
-    if n < 2:
-        return 0
-    dp = [[0 for i in range(2)] for j in range(n)]
-    dp[0][0] = 0
-    dp[0][1] = -prices[0]
-    dp[1][0] = max(dp[0][0], dp[0][1] + prices[1])
-    dp[1][1] = max(dp[0][1], dp[0][0] - prices[1])
-    for i in range(2, n):
-        dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
-        dp[i][1] = max(dp[i-1][1], dp[i-2][0] - prices[i])
-    return dp[n-1][0]
-
-
-prices = [1,2,3,0,2]
-print(maxProfit(prices))
-prices = [1]
-print(maxProfit(prices))
-prices = [1,2,4]
-print(maxProfit(prices))
-prices = [1,2,3,0,2]
-print(maxProfit(prices))
-prices = [1,2,3,0,2]
-print(maxProfit(prices))
-prices
+def maxProfit(self, prices: list[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        if len(prices) == 2:
+            return max(0, prices[1] - prices[0])
+        dp = [[0, 0] for i in range(len(prices))]
+        dp[0][0] = 0
+        dp[0][1] = -prices[0]
+        dp[1][0] = max(dp[0][0], dp[0][1] + prices[1])
+        dp[1][1] = max(dp[0][1], dp[0][0] - prices[1])
+        for i in range(2, len(prices)):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+            dp[i][1] = max(dp[i - 1][1], dp[i - 2][0] - prices[i])
+        return dp[-1][0]
