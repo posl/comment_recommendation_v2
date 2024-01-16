@@ -72,7 +72,7 @@ class AddFunction:
                                     source_file_l.append('    {0} = {1}'.format(each_argument, compliment))
                                 #source_file_l.append('    a = {0}({1})\n    print(a)'.format(function_name, new_argument))
                                 if each_dir == '15':
-                                    source_file_l.append('    a = Solution()\n    b = a.{0}({1})\n    levelOrder(b)'.format(function_name, new_argument))
+                                    source_file_l.append('    a = Solution()\n    b = a.{0}({1})\n    print(levelOrder(b))'.format(function_name, new_argument))
                                 else:
                                     source_file_l.append('    a = Solution()\n    print(a.{0}({1}))'.format(function_name, new_argument))
                             
