@@ -49,4 +49,4 @@ if __name__ == '__main__':
     postorder = list(map(int, input().split()))
     a = Solution()
     b = a.buildTree(inorder, postorder)
-    levelOrder(b)
+    print(levelOrder(b))
