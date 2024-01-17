@@ -1,6 +1,11 @@
-def countBits(n):
-    res = [0] * (n + 1)
-    for i in range(1, n + 1):
-        res[i] = res[i >> 1] + (i & 1)
-    return res
-print(countBits(5))
+class Solution:
+    def countBits(self, n: int) -> list[int]:
+        ans = []
+        for i in range(n+1):
+            ans.append(self.countOnes(i))
+        return ans
+
+if __name__ == '__main__':
+    n = int(input())
+    a = Solution()
+    print(a.countBits(n))

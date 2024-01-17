@@ -1,19 +1,19 @@
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    # Time Complexity: O(n)
-    # Space Complexity: O(1)
-    count = 0
-    sum = 0
-    for i in range(2, len(nums)):
-        if nums[i] - nums[i-1] == nums[i-1] - nums[i-2]:
-            count += 1
-            sum += count
-        else:
-            count = 0
-    return sum
+class Solution:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        if len(nums) < 3:
+            return 0
+        result = 0
+        for i in range(len(nums) - 2):
+            j = i + 1
+            diff = nums[j] - nums[i]
+            while j < len(nums) - 1 and nums[j + 1] - nums[j] == diff:
+                j += 1
+            if j - i + 1 >= 3:
+                result += ((j - i) * (j - i + 1)) // 2
+                i = j
+        return result
 
 if __name__ == '__main__':
-    numberOfArithmeticSlices()
+    nums = list(map(int, input().split()))
+    a = Solution()
+    print(a.numberOfArithmeticSlices(nums))

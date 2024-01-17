@@ -1,28 +1,18 @@
-def generate(numRows):
-    """
-    :type numRows: int
-    :rtype: List[List[int]]
-    """
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1], [1, 1]]
-    elif numRows == 3:
-        return [[1], [1, 1], [1, 2, 1]]
-    elif numRows == 4:
-        return [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]
-    elif numRows == 5:
-        return [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
-    elif numRows == 6:
-        return [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]]
-    elif numRows == 7:
-        return [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1],
-                [1, 6, 15, 20, 15, 6, 1]]
-    elif numRows == 8:
-        return [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1],
-                [1, 6, 15, 20, 15, 6, 1], [1, 7, 21, 35, 35, 21, 7, 1]]
-    elif numRows == 9:
-        return [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1,
+class Solution:
+    def generate(self, numRows: int) -> list[list[int]]:
+        triangle = []
+        for row_num in range(numRows):
+            # The first and last row elements are always 1.
+            row = [None for _ in range(row_num+1)]
+            row[0], row[-1] = 1, 1
+            # Each triangle element is equal to the sum of the elements
+            # above-and-to-the-left and above-and-to-the-right.
+            for j in range(1, len(row)-1):
+                row[j] = triangle[row_num-1][j-1] + triangle[row_num-1][j]
+            triangle.append(row)
+        return triangle
 
 if __name__ == '__main__':
-    generate()
+    numRows = int(input())
+    a = Solution()
+    print(a.generate(numRows))

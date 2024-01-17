@@ -1,15 +1,15 @@
-def integerReplacement(n):
-    count = 0
-    while n > 1:
+class Solution:
+    def integerReplacement(self, n: int) -> int:
+        if n == 1:
+            return 0
+        if n == 3:
+            return 2
         if n % 2 == 0:
-            n //= 2
+            return 1 + self.integerReplacement(n // 2)
         else:
-            if n == 3 or n % 4 == 1:
-                n -= 1
-            else:
-                n += 1
-        count += 1
-    return count
+            return 1 + min(self.integerReplacement(n + 1), self.integerReplacement(n - 1))
 
 if __name__ == '__main__':
-    integerReplacement()
+    n = int(input())
+    a = Solution()
+    print(a.integerReplacement(n))

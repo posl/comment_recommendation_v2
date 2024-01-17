@@ -1,14 +1,14 @@
-def canIWin(maxChoosableInteger, desiredTotal):
-    """
-    :type maxChoosableInteger: int
-    :type desiredTotal: int
-    :rtype: bool
-    """
-    if maxChoosableInteger >= desiredTotal:
-        return True
-    if (1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal:
-        return False
-    return canIWinHelper(range(1, maxChoosableInteger + 1), desiredTotal)
+class Solution:
+    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if maxChoosableInteger*(maxChoosableInteger+1)/2 < desiredTotal:
+            return False
+        if desiredTotal <= 0:
+            return True
+        self.memo = {}
+        return self.dfs([i for i in range(1, maxChoosableInteger+1)], desiredTotal)
 
 if __name__ == '__main__':
-    canIWin()
+    maxChoosableInteger = int(input())
+    desiredTotal = int(input())
+    a = Solution()
+    print(a.canIWin(maxChoosableInteger, desiredTotal))

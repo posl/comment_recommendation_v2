@@ -1,21 +1,19 @@
-def maxSumSubmatrix(matrix, k):
-    """
-    :type matrix: List[List[int]]
-    :type k: int
-    :rtype: int
-    """
-    if not matrix:
-        return 0
-    m = len(matrix)
-    n = len(matrix[0])
-    ans = float("-inf")
-    for i in range(m):
-        total = [0] * n
-        for j in range(i, m):
-            for c in range(n):
-                total[c] += matrix[j][c]
-            ans = max(ans, maxSumSubarray(total, k))
-    return ans
+class Solution:
+    def maxSumSubmatrix(self, matrix: list[list[int]], k: int) -> int:
+        rows = len(matrix)
+        cols = len(matrix[0])
+        max_sum = float('-inf')
+        for left in range(cols):
+            row_sum = [0] * rows
+            for right in range(left, cols):
+                for row in range(rows):
+                    row_sum[row] += matrix[row][right]
+                max_sum = max(max_sum, self.maxSumSubarray(row_sum, k))
+        return max_sum
 
 if __name__ == '__main__':
-    maxSumSubmatrix()
+    N, M = map(int, input().split())
+    matrix = [list(map(int, input().split())) for _ in range(N)]
+    k = int(input())
+    a = Solution()
+    print(a.maxSumSubmatrix(matrix, k))
