@@ -8,10 +8,13 @@ class AddPackage:
         self.add_package('1', 'en', '33', 'collections', 'Counter')
         self.add_package('1', 'en', '24', 'functools', 'cache')
         self.add_package('1', 'en', '15', 'collections', 'deque')
-        #self.add_package('2', 'en', '15', 'collections', 'deque')
-        #self.add_package('3', 'en', '15', 'collections', 'deque')
-        #self.add_package('4', 'en', '15', 'collections', 'deque')
-        #self.add_package('5', 'en', '15', 'collections', 'deque')
+        self.add_package('2', 'en', '15', 'collections', 'deque')
+        self.add_package('2', 'en', '22', 'bisect', 'bisect_left')
+        self.add_package('3', 'en', '15', 'collections', 'deque')
+        self.add_package('4', 'en', '15', 'collections', 'deque')
+        self.add_package('4', 'en', '33', 'collections', 'defaultdict')
+        self.add_package('5', 'en', '15', 'collections', 'deque')
+        self.add_package('5', 'en', '22', 'bisect', 'bisect_left')
         #self.add_package('1', 'en', '15', False, '')
 
     def add_package(self, time, language, problem, from_package, import_package):
