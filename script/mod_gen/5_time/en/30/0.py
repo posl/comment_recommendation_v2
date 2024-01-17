@@ -1,75 +1,15 @@
-def canCross(stones):
-    """
-    :type stones: List[int]
-    :rtype: bool
-    """
-    if stones[0] != 0 or stones[1] != 1:
-        return False
-    if len(stones) == 2:
-        return True
-    if len(stones) == 3:
-        return True
-    if len(stones) == 4:
-        return True
-    if len(stones) == 5:
-        return True
-    if len(stones) == 6:
-        return True
-    if len(stones) == 7:
-        return True
-    if len(stones) == 8:
-        return True
-    if len(stones) == 9:
-        return True
-    if len(stones) == 10:
-        return True
-    if len(stones) == 11:
-        return True
-    if len(stones) == 12:
-        return True
-    if len(stones) == 13:
-        return True
-    if len(stones) == 14:
-        return True
-    if len(stones) == 15:
-        return True
-    if len(stones) == 16:
-        return True
-    if len(stones) == 17:
-        return True
-    if len(stones) == 18:
-        return True
-    if len(stones) == 19:
-        return True
-    if len(stones) == 20:
-        return True
-    if len(stones) == 21:
-        return True
-    if len(stones) == 22:
-        return True
-    if len(stones) == 23:
-        return True
-    if len(stones) == 24:
-        return True
-    if len(stones) == 25:
-        return True
-    if len(stones) == 26:
-        return True
-    if len(stones) == 27:
-        return True
-    if len(stones) == 28:
-        return True
-    if len(stones) == 29:
-        return True
-    if len(stones) == 30:
-        return True
-    if len(stones) == 31:
-        return True
-    if len(stones) == 32:
-        return True
-    if len(stones) == 33:
-        return True
-    if len(stones) ==
+class Solution:
+    def canCross(self, stones: list[int]) -> bool:
+        dp = {stone: set() for stone in stones}
+        dp[0].add(0)
+        for stone in stones:
+            for k in dp[stone]:
+                for step in range(k-1, k+2):
+                    if step > 0 and stone + step in dp:
+                        dp[stone + step].add(step)
+        return len(dp[stones[-1]]) > 0
 
 if __name__ == '__main__':
-    canCross()
+    stones = list(map(int, input().split()))
+    a = Solution()
+    print(a.canCross(stones))

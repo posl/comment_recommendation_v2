@@ -1,17 +1,14 @@
-def nthSuperUglyNumber(n, primes):
-    """
-    :type n: int
-    :type primes: List[int]
-    :rtype: int
-    """
-    ugly = [1]
-    index = [0] * len(primes)
-    for i in range(n - 1):
-        ugly.append(min([ugly[index[j]] * primes[j] for j in range(len(primes))]))
-        for j in range(len(primes)):
-            if ugly[-1] == ugly[index[j]] * primes[j]:
-                index[j] += 1
-    return ugly[-1]
+class Solution:
+    def nthSuperUglyNumber(self, n: int, primes: list[int]) -> int:
+        ugly = [1]
+        i = 0
+        while len(ugly) < n:
+            ugly.append(min([ugly[j] * primes[i] for j in range(len(ugly))]))
+            i = ugly.index(ugly[-1] / primes[i])
+        return ugly[-1]
 
 if __name__ == '__main__':
-    nthSuperUglyNumber()
+    n = int(input())
+    primes = list(map(int, input().split()))
+    a = Solution()
+    print(a.nthSuperUglyNumber(n, primes))

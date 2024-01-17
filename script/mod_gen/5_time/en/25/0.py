@@ -1,16 +1,18 @@
-def maxCoins(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    nums = [1] + nums + [1]
-    n = len(nums)
-    dp = [[0] * n for _ in range(n)]
-    for k in range(2, n):
-        for left in range(0, n - k):
-            right = left + k
-            for i in range(left + 1, right):
-                dp[left][right] = max(dp[left][right], nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right])
-    return dp[0][n - 1]
-nums = [3,1,5,8]
-print(maxCoins(nums))
+class Solution:
+    def maxCoins(self, nums: list[int]) -> int:
+        n = len(nums)
+        nums = [1] + nums + [1]
+        dp = [[0 for _ in range(n + 2)] for _ in range(n + 2)]
+        for i in range(n, -1, -1):
+            for j in range(i + 1, n + 2):
+                for k in range(i + 1, j):
+                    dp[i][j] = max(
+                        dp[i][j],
+                        dp[i][k] + dp[k][j] + nums[i] * nums[j] * nums[k],
+                    )
+        return dp[0][n + 1]
+
+if __name__ == '__main__':
+    nums = list(map(int, input().split()))
+    a = Solution()
+    print(a.maxCoins(nums))

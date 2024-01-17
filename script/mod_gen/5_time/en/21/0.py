@@ -1,18 +1,16 @@
-def numberOfArithmeticSlices(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    if len(nums) < 3:
-        return 0
-    count = 0
-    for i in range(0, len(nums)-2):
-        for j in range(i+2, len(nums)):
-            if nums[j] - nums[j-1] == nums[j-1] - nums[j-2]:
-                count += 1
+class Solution:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:
+        count = 0
+        diff = 0
+        for i in range(2,len(nums)):
+            if nums[i]-nums[i-1] == nums[i-1]-nums[i-2]:
+                diff += 1
+                count += diff
             else:
-                break
-    return count
+                diff = 0
+        return count
 
 if __name__ == '__main__':
-    numberOfArithmeticSlices()
+    nums = list(map(int, input().split()))
+    a = Solution()
+    print(a.numberOfArithmeticSlices(nums))
