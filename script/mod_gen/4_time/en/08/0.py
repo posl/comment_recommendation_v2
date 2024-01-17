@@ -1,20 +1,19 @@
-def maxRotateFunction(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    if len(nums) == 1:
-        return 0
-    n = len(nums)
-    max_sum = 0
-    for i in range(n):
-        max_sum += i * nums[i]
-    curr_sum = max_sum
-    for i in range(1, n):
-        curr_sum = curr_sum - (n * nums[n - i]) + max_sum
-        if curr_sum > max_sum:
-            max_sum = curr_sum
-    return max_sum
+class Solution:
+    def maxRotateFunction(self, nums: list[int]) -> int:
+        n = len(nums)
+        if n == 1:
+            return 0
+        max_sum = -999999
+        for i in range(n):
+            sum = 0
+            for j in range(n):
+                sum += j * nums[j]
+            if sum > max_sum:
+                max_sum = sum
+            nums.insert(0, nums.pop())
+        return max_sum
 
 if __name__ == '__main__':
-    maxRotateFunction()
+    nums = list(map(int, input().split()))
+    a = Solution()
+    print(a.maxRotateFunction(nums))

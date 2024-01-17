@@ -1,40 +1,40 @@
-def getMaxRepetitions(s1, n1, s2, n2):
-    """
-    :type s1: str
-    :type n1: int
-    :type s2: str
-    :type n2: int
-    :rtype: int
-    """
-    if n1 == 0:
-        return 0
-    s1cnt, index, s2cnt = 0, 0, 0
-    recall = dict()
-    while True:
-        s1cnt += 1
-        for ch in s1:
-            if ch == s2[index]:
-                index += 1
-                if index == len(s2):
-                    s2cnt, index = s2cnt + 1, 0
-        if s1cnt == n1:
-            return s2cnt // n2
-        if index in recall:
-            s1cnt_prime, s2cnt_prime = recall[index]
-            pre_loop = (s1cnt_prime, s2cnt_prime)
-            in_loop = (s1cnt - s1cnt_prime, s2cnt - s2cnt_prime)
-            break
-        else:
-            recall[index] = (s1cnt, s2cnt)
-    ans = pre_loop[1] + (n1 - pre_loop[0]) // in_loop[0] * in_loop[1]
-    rest = (n1 - pre_loop[0]) % in_loop[0]
-    for i in range(rest):
-        for ch in s1:
-            if ch == s2[index]:
-                index += 1
-                if index == len(s2):
-                    ans, index = ans + 1, 0
-    return ans // n2
+class Solution:
+    def getMaxRepetitions(self, s1: str, n1: int, s2: str, n2: int) -> int:
+        # s1 = s1 * n1
+        # s2 = s2 * n2
+        # i = 0
+        # j = 0
+        # count = 0
+        # while i < len(s1):
+        #     if s1[i] == s2[j]:
+        #         i += 1
+        #         j += 1
+        #     else:
+        #         i += 1
+        #     if j == len(s2):
+        #         j = 0
+        #         count += 1
+        # return count
+        s1 = s1 * n1
+        s2 = s2 * n2
+        i = 0
+        j = 0
+        count = 0
+        while i < len(s1):
+            if s1[i] == s2[j]:
+                i += 1
+                j += 1
+            else:
+                i += 1
+            if j == len(s2):
+                j = 0
+                count += 1
+        return count
 
 if __name__ == '__main__':
-    getMaxRepetitions()
+    s1 = input()
+    n1 = int(input())
+    s2 = input()
+    n2 = int(input())
+    a = Solution()
+    print(a.getMaxRepetitions(s1, n1, s2, n2))

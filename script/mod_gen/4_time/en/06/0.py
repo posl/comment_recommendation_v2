@@ -1,22 +1,27 @@
-def nthUglyNumber(n):
-    # 1 is always an ugly number
-    ugly = [1]
-    # keep track of the last index of each ugly number
-    i2, i3, i5 = 0, 0, 0
-    while n > 1:
-        # get the next ugly number by multiplying the minimum of the ugly numbers at the current indices
-        # by the corresponding prime
-        ugly.append(min(ugly[i2] * 2, ugly[i3] * 3, ugly[i5] * 5))
-        # check if the ugly number at the current index is a multiple of the corresponding prime
-        # if so, increment the index
-        if ugly[-1] == ugly[i2] * 2:
-            i2 += 1
-        if ugly[-1] == ugly[i3] * 3:
-            i3 += 1
-        if ugly[-1] == ugly[i5] * 5:
-            i5 += 1
-        n -= 1
-    return ugly[-1]
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        if n == 1:
+            return 1
+        ugly = [1]
+        i2 = 0
+        i3 = 0
+        i5 = 0
+        while n > 1:
+            n2 = ugly[i2] * 2
+            n3 = ugly[i3] * 3
+            n5 = ugly[i5] * 5
+            min_ugly = min(n2, n3, n5)
+            if min_ugly == n2:
+                i2 += 1
+            if min_ugly == n3:
+                i3 += 1
+            if min_ugly == n5:
+                i5 += 1
+            ugly.append(min_ugly)
+            n -= 1
+        return ugly[-1]
 
 if __name__ == '__main__':
-    nthUglyNumber()
+    n = int(input())
+    a = Solution()
+    print(a.nthUglyNumber(n))

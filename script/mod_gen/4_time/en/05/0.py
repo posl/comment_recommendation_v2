@@ -1,20 +1,19 @@
-def findSubstringInWraproundString(s: str) -> int:
-    if len(s) == 0:
-        return 0
-    if len(s) == 1:
-        return 1
-    d = dict()
-    d[s[0]] = 1
-    curr = 1
-    for i in range(1, len(s)):
-        if ord(s[i]) - ord(s[i-1]) == 1 or ord(s[i]) - ord(s[i-1]) == -25:
-            curr += 1
-        else:
-            curr = 1
-        d[s[i]] = max(d.get(s[i], 0), curr)
-    return sum(d.values())
-print(findSubstringInWraproundString("zab"))
-print(findSubstringInWraproundString("cac"))
-print(findSubstringInWraproundString("a"))
-print(findSubstringInWraproundString("zabaz"))
-print(findSubstringInWraproundString("zaba"))
+class Solution:
+    def findSubstringInWraproundString(self, s: str) -> int:
+        if not s:
+            return 0
+        dp = [0] * 26
+        dp[ord(s[0]) - ord('a')] = 1
+        length = 1
+        for i in range(1, len(s)):
+            if ord(s[i]) - ord(s[i - 1]) == 1 or (s[i] == 'a' and s[i - 1] == 'z'):
+                length += 1
+            else:
+                length = 1
+            dp[ord(s[i]) - ord('a')] = max(dp[ord(s[i]) - ord('a')], length)
+        return sum(dp)
+
+if __name__ == '__main__':
+    s = input()
+    a = Solution()
+    print(a.findSubstringInWraproundString(s))
