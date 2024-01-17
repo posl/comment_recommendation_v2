@@ -1,20 +1,18 @@
-def maxEnvelopes(envelopes):
-    envelopes.sort(key=lambda x: (x[0], -x[1]))
-    dp = []
-    for _, h in envelopes:
-        left, right = 0, len(dp)
-        while left < right:
-            mid = (left + right) // 2
-            if dp[mid] < h:
-                left = mid + 1
+from bisect import bisect_left
+class Solution:
+    def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        dp = []
+        for _, h in envelopes:
+            idx = bisect_left(dp, h)
+            if idx == len(dp):
+                dp.append(h)
             else:
-                right = mid
-        if right >= len(dp):
-            dp.append(h)
-        else:
-            dp[right] = h
-    return len(dp)
-envelopes = [[5,4],[6,4],[6,7],[2,3]]
-print(maxEnvelopes(envelopes))
-envelopes = [[1,1],[1,1],[1,1]]
-print(maxEnvelopes(envelopes))
+                dp[idx] = h
+        return len(dp)
+
+if __name__ == '__main__':
+    envelopes = list(map(int, input().split()))
+    envelopes = [envelopes[i:i+2] for i in range(0, len(envelopes), 2)]
+    a = Solution()
+    print(a.maxEnvelopes(envelopes))

@@ -1,19 +1,20 @@
-def countNumbersWithUniqueDigits(n):
-    """
-    :type n: int
-    :rtype: int
-    """
-    if n == 0:
-        return 1
-    res = 10
-    uniqueDigits = 9
-    availableNumber = 9
-    while n > 1 and availableNumber > 0:
-        uniqueDigits = uniqueDigits * availableNumber
-        res += uniqueDigits
-        availableNumber -= 1
-        n -= 1
-    return res
+class Solution:
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        if n == 0:
+            return 1
+        
+        if n == 1:
+            return 10
+        
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 10
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + self.getUniqueDigits(i)
+        
+        return dp[n]
 
 if __name__ == '__main__':
-    countNumbersWithUniqueDigits()
+    n = int(input())
+    a = Solution()
+    print(a.countNumbersWithUniqueDigits(n))
