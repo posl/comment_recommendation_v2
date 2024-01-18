@@ -17,6 +17,9 @@ class AddPackage:
         self.add_package('5', 'en', '22', 'bisect', 'bisect_left')
         self.add_package('1', 'ja', '15', 'collections', 'deque')
         self.add_package('2', 'ja', '15', 'collections', 'deque')
+        self.add_package('3', 'ja', '15', 'collections', 'deque')
+        self.add_package('3', 'ja', '23', False, 'math')
+        self.add_package('3', 'ja', '33', 'collections', 'defaultdict')
 
     def add_package(self, time, language, problem, from_package, import_package):
         time = str(time) + '_time'
