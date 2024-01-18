@@ -1,3 +1,4 @@
+from bisect import bisect_left
 class Solution:
     def maxEnvelopes(self, envelopes: list[list[int]]) -> int:
         envelopes.sort(key=lambda x: (x[0], -x[1]))
