@@ -1,0 +1,4 @@
+difficulty,pass_num,total_num,accuracy
+easy,4,4,1.0
+medium,10,17,0.5882352941176471
+hard,5,12,0.4166666666666667
