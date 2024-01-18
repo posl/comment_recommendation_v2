@@ -24,6 +24,7 @@ class AddPackage:
         self.add_package('4', 'ja', '18', False, 'math')
         self.add_package('4', 'ja', '22', False, 'bisect')
         self.add_package('4', 'ja', '33', 'collections', 'defaultdict')
+        self.add_package('5', 'ja', '15', 'collections', 'deque')
 
     def add_package(self, time, language, problem, from_package, import_package):
         time = str(time) + '_time'
